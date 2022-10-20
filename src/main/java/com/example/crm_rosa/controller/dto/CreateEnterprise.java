@@ -9,7 +9,7 @@ public class CreateEnterprise {
 
     private String name;
 
-    private String logo;
+    private String logoUrl;
 
     private MultipartFile logoFile;
 
@@ -47,12 +47,12 @@ public class CreateEnterprise {
         this.name = name;
     }
 
-    public String getLogo() {
-        return logo;
+    public String getLogoUrl() {
+        return logoUrl;
     }
 
-    public void setLogo(String logo) {
-        this.logo = logo;
+    public void setLogoUrl(String logoUrl) {
+        this.logoUrl = logoUrl;
     }
 
     public MultipartFile getLogoFile() {
