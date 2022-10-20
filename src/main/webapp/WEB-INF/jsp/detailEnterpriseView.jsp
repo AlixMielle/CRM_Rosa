@@ -56,7 +56,7 @@
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
                                     <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
-                                    <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/delete/${enterprise.id}">Supprimer</a>
+                                    <c:import url="deleteEnterpriseAction.jsp"></c:import>
                                 </div>
                             </div>
                         </div>

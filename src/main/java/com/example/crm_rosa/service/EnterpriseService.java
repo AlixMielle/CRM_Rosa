@@ -86,6 +86,14 @@ public class EnterpriseService {
         enterprise.setZipcode(editEnterprise.getZipcode());
         enterprise.setSector(editEnterprise.getSector());
 
+        MultipartFile logo = editEnterprise.getLogoFile();
+        if (logo == null || logo.isEmpty()){
+            enterprise.setLogo(editEnterprise.getLogoUrl());
+        } else {
+            storageService.store(logo);
+            enterprise.setLogo("http://localhost:8080/images/" + logo.getOriginalFilename());
+        }
+
         this.enterpriseRepository.save(enterprise);
     }
 }

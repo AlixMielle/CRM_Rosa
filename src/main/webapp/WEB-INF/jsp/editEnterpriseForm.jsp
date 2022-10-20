@@ -93,14 +93,14 @@
                         <%-- Picture file --%>
                         <div class="col-sm-12 mb-1">
                             <label for="logoFile">Chargez un fichier :</label>
-                            <input id="logoFile" type="file" name="logoFile" required="" disabled value="${enterprise.logoFile}">
+                            <input id="logoFile" type="file" name="logoFile" required="" disabled value="${enterprise.logo}">
                             <div class="invalid-feedback">Un fichier valide est demandé.</div>
                         </div>
                         <%-- Picture Url --%>
                         <div class="col-sm-12 mb-3">
                             <label for="logoUrl">ou saisissez une adresse URL :</label>
                             <input id="logoUrl" type="text" class="form-control" name="logoUrl"
-                                   placeholder="http://www.picture.website.fr/my-picture.png" required="" value="${enterprise.logoUrl}">
+                                   placeholder="http://www.picture.website.fr/my-picture.png" required="" value="${enterprise.logo}">
                             <div class="invalid-feedback">Une URL valide est obligatoire.</div>
                         </div>
                     </div>
@@ -114,7 +114,7 @@
                     <div class="col-12">
                         <label for="sector" class="form-label">Secteur d'activité</label>
                         <div class="input-group">
-                            <textarea class="form-control" id="sector" name="sector" rows="2">value="${enterprise.sector}"</textarea>
+                            <textarea class="form-control" id="sector" name="sector" rows="2">${enterprise.sector}</textarea>
                         </div>
                     </div>
                     <%--<div class="col-sm-6">
