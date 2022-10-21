@@ -50,6 +50,9 @@
                     </div>
                 </div>
             </div>
+            <div>
+                <a href="${pageContext.request.contextPath}/users/all" style="color: darkslategray">Retour à la liste</a>
+            </div>
         </div>
     </div>
 

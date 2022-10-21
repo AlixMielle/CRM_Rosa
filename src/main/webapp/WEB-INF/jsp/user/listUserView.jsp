@@ -21,10 +21,14 @@
 
 <main>
 
-    <section class="py-5 text-center container">
+    <section class="py-2 text-center container">
         <div class="row py-lg-5">
             <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Liste des utilisateurs</h1>
+                <h1 class="fw-light">EasyToTask</h1>
+                <p class="lead text-muted">Simplifiez-vous la vie !</p>
+                <p>
+                    <a href="${pageContext.request.contextPath}/signup" class="btn my-2 text-white" style="background-color: darkslategray">Créer un compte</a>
+                </p>
             </div>
         </div>
     </section>

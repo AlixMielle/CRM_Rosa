@@ -6,7 +6,6 @@ import com.example.crm_rosa.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.view.RedirectView;
 
 import java.util.List;
 
@@ -42,15 +41,15 @@ public class UserController {
     }
 
     @PostMapping ("/edit/{id}")
-    public RedirectView editUser(@PathVariable("id") long id, CreateUser editUser){
+    public String editUser(@PathVariable("id") long id, CreateUser editUser){
         userService.editUser(id,editUser);
-        return new RedirectView("/users/details/" + id);
+        return "redirect:/users/details/" + id;
     }
 
     @PostMapping ("/delete/{id}")
-    public RedirectView deleteEnterprise(@PathVariable("id") long id){
+    public String deleteUser(@PathVariable("id") long id){
         userService.deleteUser(id);
-        return new RedirectView("/home");
+        return "redirect:/users/all";
     }
 
 

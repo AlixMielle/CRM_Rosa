@@ -30,7 +30,7 @@
 
         <div class="row g-3">
             <div class="col-md-7 col-lg-8">
-                <form action="${pageContext.request.contextPath}/edit/${user.id}" method="post" enctype="multipart/form-data">
+                <form action="${pageContext.request.contextPath}/users/edit/${user.id}" method="post" enctype="multipart/form-data">
                     <input type="hidden" name="id" value="${user.id}">
                     <div class="row">
                         <div class="col-sm-6">
@@ -44,8 +44,48 @@
                     </div>
                     <div class="row">
                         <div class="col-sm-6">
+                            <label for="email" class="form-label">Email</label>
+                            <input type="email" class="form-control" id="email" name="email" value="${user.email}">
+                        </div>
+                        <div class="col-sm-6">
                             <label for="password" class="form-label">Mot de passe</label>
                             <input type="password" class="form-control" id="password" name="password" value="${user.password}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="mobile" class="form-label">Portable</label>
+                            <input type="text" class="form-control" id="mobile" name="mobile" value="${user.mobile}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="phone" class="form-label">Téléphone fixe</label>
+                            <input type="text" class="form-control" id="phone" name="phone" value="${user.phone}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <label for="address" class="form-label">Adresse</label>
+                            <input type="text" class="form-control" id="address" name="address" value="${user.address}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="city" class="form-label">Ville</label>
+                            <input type="text" class="form-control" id="city" name="city" value="${user.city}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="zipcode" class="form-label">Code postal</label>
+                            <input type="text" class="form-control" id="zipcode" name="zipcode" value="${user.zipcode}">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <label for="enterpriseName" class="form-label">Nom de l'entreprise</label>
+                            <input type="text" class="form-control" id="enterpriseName" name="enterpriseName" value="${user.enterpriseName}">
+                        </div>
+                        <div class="col-sm-6">
+                            <label for="job" class="form-label">Intitulé du poste</label>
+                            <input type="text" class="form-control" id="job" name="job" value="${user.job}">
                         </div>
                     </div>
                     <%-- Toogle switch --%>
@@ -76,11 +116,13 @@
                             document.getElementById("pictureFile").disabled = this.checked;
                         });
                     </script>
+
+
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <button class="btn my-2 text-white" style="background-color: darkslategray" type="submit">Modifier le profil</button>
                     <button class="btn my-2 text-white" style="background-color: darkslategray" type="reset">Annuler</button>
                     <div>
-                        <a href="${pageContext.request.contextPath}/" style="color: darkslategray">Retour à la liste</a>
+                        <a href="${pageContext.request.contextPath}/users/all" style="color: darkslategray">Retour à la liste</a>
                     </div>
                 </form>
             </div>
