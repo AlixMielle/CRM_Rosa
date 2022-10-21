@@ -45,8 +45,9 @@
         <div>
             <label for="enterprise">Entreprise:</label>
             <select class="form-select" id="enterprise" required name="enterpriseId">
+                <option <c:if test="${empty prospect}">selected</c:if> value="-1">Aucune</option>
                 <c:forEach items="${enterprises}" var="enterprise">
-                    <option <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if> value="${enterprise.id}">${enterprise.name}</option>
+                    <option <c:if test="${prospect.enterprise==enterprise}">selected</c:if> value="${enterprise.id}">${enterprise.name}</option>
                 </c:forEach>
             </select>
         </div>

@@ -4,6 +4,7 @@ import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
 import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import com.example.crm_rosa.service.ClientService;
 import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.ProspectService;
 import org.springframework.stereotype.Controller;
@@ -14,33 +15,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/prospects")
-public class ProspectController {
+@RequestMapping("/clients")
+public class ClientController {
 
-    private ProspectService prospectService;
+    private ClientService clientService;
     private EnterpriseService enterpriseService;
 
-    public ProspectController(ProspectService prospectService, EnterpriseService enterpriseService) {
-        this.prospectService = prospectService;
+    public ClientController(ClientService clientService, EnterpriseService enterpriseService) {
+        this.clientService = clientService;
         this.enterpriseService = enterpriseService;
     }
 
     @GetMapping("/all")
     public String displayAllProspects(Model model){
-        model.addAttribute("prospects", this.prospectService.getAbsolutelyAllProspects());
-        return "prospectAllView";
-    }
-
-    @GetMapping("/enterprise/{id}")
-    public String displayProspectOfEnterprise(Model model, @PathVariable("id") long idEnterprise){
-        model.addAttribute("prospects", this.prospectService.getProspectsByEnterprise(idEnterprise));
-        return "prospectAllView";
+        model.addAttribute("clients", this.clientService.getAbsolutelyAllClients());
+        return "clientsAllView";
     }
 
     @GetMapping("/details/{id}")
     public String displayOneProspect(@PathVariable("id") long id, Model model){
         //TODO: add some checks somewhere to make sure you can't just type the URL manually and get the ID of someone else (will do when users are implemented)
-        model.addAttribute("prospect", prospectService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getProspectById(id));
         return "prospectDetailsView";
     }
 
@@ -54,7 +49,7 @@ public class ProspectController {
     @PostMapping("/add")
     public String addProspect(ProspectCreateDto newProspect){
         //TODO: user stuff again
-        prospectService.addProspect(newProspect, 0L);
+        clientService.addProspect(newProspect, 0L);
         return "redirect:/prospects/all";
     }
 
@@ -63,28 +58,28 @@ public class ProspectController {
         //TODO: same checks as for create
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
-        model.addAttribute("prospect", prospectService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getProspectById(id));
         return "addProspectForm";
     }
 
     @PostMapping("/edit")
     public String editProspect(ProspectEditDto prospectEditDto){
-        prospectService.editProspect(prospectEditDto);
+        clientService.editProspect(prospectEditDto);
         return "redirect:/prospects/all";
     }
 
     @GetMapping("/delete/{id}")
     public String deleteProspectConfirm(@PathVariable("id") long id, Model model){
-        model.addAttribute("prospect", prospectService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getProspectById(id));
         model.addAttribute("isDeleteForm", true);
         return "prospectDetailsView";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteProspect(@PathVariable("id") long id){
-        Prospect prospect = prospectService.getProspectById(id);
+        Prospect prospect = clientService.getProspectById(id);
         prospect.getEnterprise().removeProspect(prospect);
-        prospectService.deleteProspectById(id);
+        clientService.deleteProspectById(id);
         return "redirect:/prospects/all";
     }
 }

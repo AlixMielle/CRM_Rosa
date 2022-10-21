@@ -22,6 +22,7 @@ public class Prospect {
     private Enterprise enterprise;
     private String jobTitle;
     private LocalDate createdAt;
+    @Enumerated(EnumType.STRING)
     private ProspectionStatus prospectionStatus;
 
     public Prospect() {
