@@ -40,7 +40,7 @@ public class EnterpriseController {
     @GetMapping("/add")
     public String createEnterpriseForm(Model model){
         //todo : ajouter la liste des prospects ?
-        //List<Prospects> prospectsList = prospectService.findAllProspects();
+        //List<Prospect> prospectList = prospectService.findAllProspects();
         //model.addAttribute("prospectsList", prospectsList);
         return "createEnterpriseForm";
     }

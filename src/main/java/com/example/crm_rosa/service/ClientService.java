@@ -11,31 +11,27 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Service
-public class ProspectService {
+public class ClientService {
 
     private ProspectRepository prospectRepository;
     private EnterpriseService enterpriseService;
 
-    public ProspectService(ProspectRepository prospectRepository, EnterpriseService enterpriseService) {
+    public ClientService(ProspectRepository prospectRepository, EnterpriseService enterpriseService) {
         this.prospectRepository = prospectRepository;
         this.enterpriseService = enterpriseService;
     }
 
-    public List<Prospect> getAbsolutelyAllProspects(){
-        return (List<Prospect>) this.prospectRepository.findAll();
+    public List<Prospect> getAbsolutelyAllClients(){
+        return (List<Prospect>) this.prospectRepository.findAllClients();
     }
 
     //TODO: modify when user entity comes in
     public List<Prospect> getAllProspects(long userId){
-        return this.prospectRepository.findProspectByUser(userId);
-    }
-
-    public List<Prospect> getProspectsByEnterprise(long enterpriseId){
-        return this.prospectRepository.findProspectByEnterprise_Id(enterpriseId);
+        return (List<Prospect>) this.prospectRepository.findProspectByUser(userId);
     }
 
     public Prospect getProspectById(long prospectId){
-        return this.prospectRepository.findById(prospectId).orElseThrow(() -> new ObjectNotFoundException(prospectId, "Prospect"));
+        return (Prospect) this.prospectRepository.findById(prospectId).orElseThrow(() -> new ObjectNotFoundException(prospectId, "Prospect"));
     }
 
     //TODO: currentUser needs to be a User
@@ -49,9 +45,7 @@ public class ProspectService {
         prospect.setMobilePhone(prospectCreateDto.getMobilePhone());
         prospect.setLandlinePhone(prospectCreateDto.getLandlinePhone());
         //enterprise stuff
-        if(prospectCreateDto.getEnterpriseId() != -1){
-            prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectCreateDto.getEnterpriseId()));
-        }
+        prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectCreateDto.getEnterpriseId()));
         prospect.setJobTitle(prospectCreateDto.getJobTitle());
         prospect.setCreatedAt(LocalDate.now());
         //prospection
@@ -63,7 +57,8 @@ public class ProspectService {
     }
 
     public void editProspect(ProspectEditDto prospectEditDto){
-        Prospect prospect = this.getProspectById(prospectEditDto.getId());
+        Prospect prospect = new Prospect();
+        prospect.setId(prospectEditDto.getId());
         prospect.setFirstName(prospectEditDto.getFirstName());
         prospect.setLastName(prospectEditDto.getLastName());
         prospect.setProfilePictureUrl(prospectEditDto.getProfilePictureUrl());
@@ -71,11 +66,7 @@ public class ProspectService {
         prospect.setMobilePhone(prospectEditDto.getMobilePhone());
         prospect.setLandlinePhone(prospectEditDto.getLandlinePhone());
         //enterprise stuff
-        if(prospectEditDto.getEnterpriseId() == -1){
-            prospect.setEnterprise(null);
-        } else{
-            prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectEditDto.getEnterpriseId()));
-        }
+        prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectEditDto.getEnterpriseId()));
         prospect.setJobTitle(prospectEditDto.getJobTitle());
         //prospection
         prospect.setProspectionStatus(prospectEditDto.getProspectionStatus());

@@ -1,9 +1,6 @@
 package com.example.crm_rosa.repository.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
@@ -21,10 +18,11 @@ public class Prospect {
     private String email;
     private String mobilePhone;
     private String landlinePhone;
-    //ManyToOne
-    private long enterpriseId;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private Enterprise enterprise;
     private String jobTitle;
     private LocalDate createdAt;
+    @Enumerated(EnumType.STRING)
     private ProspectionStatus prospectionStatus;
 
     public Prospect() {
@@ -95,12 +93,12 @@ public class Prospect {
         this.landlinePhone = landlinePhone;
     }
 
-    public long getEnterpriseId() {
-        return enterpriseId;
+    public Enterprise getEnterprise() {
+        return enterprise;
     }
 
-    public void setEnterpriseId(long enterpriseId) {
-        this.enterpriseId = enterpriseId;
+    public void setEnterprise(Enterprise enterprise) {
+        this.enterprise = enterprise;
     }
 
     public String getJobTitle() {
