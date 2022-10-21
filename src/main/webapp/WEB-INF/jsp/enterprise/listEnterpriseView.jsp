@@ -44,6 +44,8 @@
                                 <h3 class="card-text">${enterprise.name}</h3>
                                 <h5 class="card-text"><a href="mailto:${enterprise.email}">Envoyer un email</a></h5>
                                 <h5 class="card-text"><a href="${enterprise.website}">Visiter le site web</a></h5>
+                                <h5 class="card-text"><a href="tel:${enterprise.mobile}">Appelez-nous au : ${enterprise.mobile}</a></h5>
+                                <h5 class="card-text"><a href="tel:${enterprise.phone}">Appelez-nous au : ${enterprise.phone}</a></h5>
                                     <%--<c:forEach items="${enterprises.prospects}" var="prospect">
                                         <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
                                     </c:forEach>--%>
