@@ -1,40 +1,40 @@
 package com.example.crm_rosa.controller;
 
+import com.example.crm_rosa.controller.dto.CreateUser;
+import com.example.crm_rosa.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 
 import javax.validation.Valid;
 
 @Controller
-@RequestMapping("/")
 public class HomeController {
 
     private UserService userService;
 
-    public UserController(UserService userService) {
+    public HomeController(UserService userService) {
         this.userService = userService;
     }
 
     @GetMapping("/signin")
     public String displaySignInForm() {
-        return "signInForm";
+        return "connexion/signInForm";
     }
 
     @GetMapping("/signup")
     public String displaySignUpForm(Model model) {
         model.addAttribute("createUser", new CreateUser());
-        return "signUpForm";
+        return "connexion/signUpForm";
     }
 
     @PostMapping("/signup")
     public String signUp(@Valid CreateUser createUser, BindingResult result, Model model) {
         if (result.hasErrors()) {
             model.addAttribute("createUser", createUser);
-            return "signUpForm";
+            return "connexion/signUpForm";
         } else {
             userService.register(createUser);
             return "redirect:/signin";

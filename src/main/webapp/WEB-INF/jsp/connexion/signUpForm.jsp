@@ -48,13 +48,34 @@
                     <label for="password">Mot de passe</label>
                     <input type="password" name="password" id="password" class="form-control" required>
                 </div>
-                <%-- Picture Url --%>
-                <div class="col-sm-6 m-2">
-                    <label for="pictureUrl">Photo de profil :</label>
-                    <input id="pictureUrl" type="text" class="form-control" name="pictureUrl"
-                           placeholder="http://www.picture.website.fr/my-picture.png" required="">
-                    <div class="invalid-feedback">Une URL valide est obligatoire.</div>
+                <%-- Toogle switch --%>
+                <div class="row g-3">
+                    <div class="col-sm-12 form-check form-switch">
+                        <label class="form-check-label" for="toggleLogoOptions">Photo de profil</label>
+                        <input id="toggleLogoOptions" class="form-check-input" type="checkbox" role="switch"
+                               checked>
+                    </div>
+                    <%-- Picture file --%>
+                    <div class="col-sm-12 mb-1">
+                        <label for="pictureFile">Chargez un fichier :</label>
+                        <input id="pictureFile" type="file" name="pictureFile" required="" disabled>
+                        <div class="invalid-feedback">Un fichier valide est demandé.</div>
+                    </div>
+                    <%-- Picture Url --%>
+                    <div class="col-sm-12 mb-3">
+                        <label for="pictureUrl">ou saisissez une adresse URL :</label>
+                        <input id="pictureUrl" type="text" class="form-control" name="pictureUrl"
+                               placeholder="http://www.picture.website.fr/my-picture.png" required="">
+                        <div class="invalid-feedback">Une URL valide est obligatoire.</div>
+                    </div>
                 </div>
+                <script>
+                    let checkboxPictures = document.getElementById("toggleLogoOptions");
+                    checkboxPictures.addEventListener('change', function () {
+                        document.getElementById("pictureUrl").disabled = !this.checked;
+                        document.getElementById("pictureFile").disabled = this.checked;
+                    });
+                </script>
         </div>
         <div class="col-sm-6 m-2">
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
