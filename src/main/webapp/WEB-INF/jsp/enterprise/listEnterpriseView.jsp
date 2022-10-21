@@ -43,10 +43,10 @@
                             <div class="card-body">
                                 <h3 class="card-text">${enterprise.name}</h3>
                                 <h5 class="card-text"><a href="mailto:${enterprise.email}">Envoyer un email</a></h5>
+                                <h5 class="card-text"><a href="${enterprise.website}">Visiter le site web</a></h5>
                                     <%--<c:forEach items="${enterprises.prospects}" var="prospect">
                                         <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
                                     </c:forEach>--%>
-                                <h5 class="card-text">${enterprise.website}</h5>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}">Voir</a>
