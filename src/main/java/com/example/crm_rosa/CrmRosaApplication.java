@@ -41,10 +41,13 @@ public class CrmRosaApplication implements CommandLineRunner {
         enterpriseRepository.save(enterprise2);
         enterpriseRepository.save(enterprise3);
 
-        User user1 = new User("Bob", "Gallaghan", "b.gala@webmail.com", "0654341919", "0976514343", "6, rue des Epines", "Saint-Herblain", 44300, "bobgal", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Apple", "Sales director");
-        User user2 = new User("Linda", "Tropez", "linda3@grout.com", "0654332119", "0976987343", "32, rue des Plombiers", "Lille", 59000, "linda90", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Orange", "UX Designer");
-        User user3 = new User("Patrick", "Potier", "pp@yahoo.fr", "0654393449", "0973114343", "10, rue des Chaumières", "Bordeaux", 33000, "patrick", "https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Groupama", "Manager");
+        User admin = new User("Cecile", "Rosa", "rosa@worktogether.fr", "0690989194", "0977654343", "87, rue des Cailloux", "Brest", 29200, "rosarosa", "https://images.unsplash.com/photo-1607105213504-70fed0df97ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGluayUyMGhhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "EasyToTask", "Formatrice et consultante", true);
 
+        User user1 = new User("Bob", "Gallaghan", "b.gala@webmail.com", "0654341919", "0976514343", "6, rue des Epines", "Saint-Herblain", 44300, "bobgal", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Apple", "Sales director", false);
+        User user2 = new User("Linda", "Tropez", "linda3@grout.com", "0654332119", "0976987343", "32, rue des Plombiers", "Lille", 59000, "linda90", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Orange", "UX Designer", false);
+        User user3 = new User("Patrick", "Potier", "pp@yahoo.fr", "0654393449", "0973114343", "10, rue des Chaumières", "Bordeaux", 33000, "patrick", "https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Groupama", "Manager", false);
+
+        userRepository.save(admin);
         userRepository.save(user1);
         userRepository.save(user2);
         userRepository.save(user3);
