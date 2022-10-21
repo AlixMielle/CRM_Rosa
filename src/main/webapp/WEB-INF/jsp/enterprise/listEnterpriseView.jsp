@@ -42,6 +42,7 @@
                             <img src="${enterprise.logo}" alt="photo">
                             <div class="card-body">
                                 <h3 class="card-text">${enterprise.name}</h3>
+                                <h5 class="card-text"><a href="mailto:${enterprise.email}">Envoyer un email</a></h5>
                                     <%--<c:forEach items="${enterprises.prospects}" var="prospect">
                                         <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
                                     </c:forEach>--%>

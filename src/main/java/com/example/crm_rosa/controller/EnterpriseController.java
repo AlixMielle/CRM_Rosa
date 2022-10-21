@@ -27,14 +27,14 @@ public class EnterpriseController {
         List<Enterprise> enterpriseList = enterpriseService.findEnterpriseByName(keyword);
         model.addAttribute("enterpriseList", enterpriseList);
         model.addAttribute("keyword", keyword);
-        return "listEnterpriseView";
+        return "enterprise/listEnterpriseView";
     }
 
     @GetMapping("/details/{id}")
     public String displayOneEnterprise(@PathVariable("id") long id, Model model){
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
-        return "detailEnterpriseView";
+        return "enterprise/detailEnterpriseView";
     }
 
     @GetMapping("/add")
@@ -42,7 +42,7 @@ public class EnterpriseController {
         //todo : ajouter la liste des prospects ?
         //List<Prospect> prospectList = prospectService.findAllProspects();
         //model.addAttribute("prospectsList", prospectsList);
-        return "createEnterpriseForm";
+        return "enterprise/createEnterpriseForm";
     }
 
     @PostMapping("/add")
@@ -61,7 +61,7 @@ public class EnterpriseController {
     public String editEnterpriseForm(@PathVariable("id") long id, Model model){
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
-        return "editEnterpriseForm";
+        return "enterprise/editEnterpriseForm";
     }
 
     @PostMapping ("/edit/{id}")
