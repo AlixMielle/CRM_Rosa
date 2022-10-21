@@ -36,11 +36,13 @@ public class User {
 
     private String job;
 
+    private boolean isAdmin;
+
 
     public User() {
     }
 
-    public User(String firstname, String lastname, String email, String mobile, String phone, String address, String city, int zipcode, String password, String pictureUrl, String enterpriseName, String job) {
+    public User(String firstname, String lastname, String email, String mobile, String phone, String address, String city, int zipcode, String password, String pictureUrl, String enterpriseName, String job, boolean isAdmin) {
         this.firstname = firstname;
         this.lastname = lastname;
         this.email = email;
@@ -53,6 +55,7 @@ public class User {
         this.pictureUrl = pictureUrl;
         this.enterpriseName = enterpriseName;
         this.job = job;
+        this.isAdmin = isAdmin;
     }
 
     public Long getId() {
@@ -157,5 +160,13 @@ public class User {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public boolean getIsAdmin() {
+        return isAdmin;
+    }
+
+    public void setAdmin(boolean admin) {
+        isAdmin = admin;
     }
 }
