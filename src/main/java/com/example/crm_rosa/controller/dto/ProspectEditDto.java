@@ -11,9 +11,8 @@ public class ProspectEditDto {
     private String email;
     private String mobilePhone;
     private String landlinePhone;
-    //TODO: company stuff
-    //enterpriseId
-    //jobTitle
+    private long enterpriseId;
+    private String jobTitle;
     private ProspectionStatus prospectionStatus;
 
     public ProspectEditDto() {
@@ -73,6 +72,22 @@ public class ProspectEditDto {
 
     public void setLandlinePhone(String landlinePhone) {
         this.landlinePhone = landlinePhone;
+    }
+
+    public long getEnterpriseId() {
+        return enterpriseId;
+    }
+
+    public void setEnterpriseId(long enterpriseId) {
+        this.enterpriseId = enterpriseId;
+    }
+
+    public String getJobTitle() {
+        return jobTitle;
+    }
+
+    public void setJobTitle(String jobTitle) {
+        this.jobTitle = jobTitle;
     }
 
     public ProspectionStatus getProspectionStatus() {

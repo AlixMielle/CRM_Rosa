@@ -1,15 +1,14 @@
 package com.example.crm_rosa.repository.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Enterprise {
 
-    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String name;
 
@@ -36,6 +35,9 @@ public class Enterprise {
     private String sector;
 
     private LocalDate createdAt;
+
+    @OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prospect> prospects;
 
     public Enterprise() {
     }
@@ -166,5 +168,21 @@ public class Enterprise {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Prospect> getProspects() {
+        return prospects;
+    }
+
+    public void setProspects(List<Prospect> prospects) {
+        this.prospects = prospects;
+    }
+
+    public void addProspect(Prospect prospect){
+        this.prospects.add(prospect);
+    }
+
+    public void removeProspect(Prospect prospect){
+        this.prospects.remove(prospect);
     }
 }

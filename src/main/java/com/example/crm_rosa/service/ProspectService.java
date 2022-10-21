@@ -14,9 +14,11 @@ import java.util.List;
 public class ProspectService {
 
     private ProspectRepository prospectRepository;
+    private EnterpriseService enterpriseService;
 
-    public ProspectService(ProspectRepository prospectRepository) {
+    public ProspectService(ProspectRepository prospectRepository, EnterpriseService enterpriseService) {
         this.prospectRepository = prospectRepository;
+        this.enterpriseService = enterpriseService;
     }
 
     public List<Prospect> getAbsolutelyAllProspects(){
@@ -42,8 +44,11 @@ public class ProspectService {
         prospect.setEmail(prospectCreateDto.getEmail());
         prospect.setMobilePhone(prospectCreateDto.getMobilePhone());
         prospect.setLandlinePhone(prospectCreateDto.getLandlinePhone());
-        //TODO: enterprise stuff
+        //enterprise stuff
+        prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectCreateDto.getEnterpriseId()));
+        prospect.setJobTitle(prospectCreateDto.getJobTitle());
         prospect.setCreatedAt(LocalDate.now());
+        //prospection
         prospect.setProspectionStatus(prospectCreateDto.getProspectionStatus());
 
         //TODO: add contact to currentUser
@@ -60,7 +65,10 @@ public class ProspectService {
         prospect.setEmail(prospectEditDto.getEmail());
         prospect.setMobilePhone(prospectEditDto.getMobilePhone());
         prospect.setLandlinePhone(prospectEditDto.getLandlinePhone());
-        //TODO: enterprise stuff
+        //enterprise stuff
+        prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectEditDto.getEnterpriseId()));
+        prospect.setJobTitle(prospectEditDto.getJobTitle());
+        //prospection
         prospect.setProspectionStatus(prospectEditDto.getProspectionStatus());
 
         //TODO: add contact to currentUser

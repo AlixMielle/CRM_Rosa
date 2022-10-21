@@ -42,12 +42,29 @@
             <input type="text" name="email" id="email" <c:if test="${!empty prospect}">value="${prospect.email}"</c:if>>
         </div>
 
-        <select class="form-select" id="prospectionStatus" required name="prospectionStatus">
-            <option disabled selected>Choose 1</option>
-            <c:forEach items="${prospectionStatuses}" var="prospectionStatus">
-                <option value="${prospectionStatus}">${prospectionStatus}</option>
-            </c:forEach>
-        </select>
+        <div>
+            <label for="enterprise">Entreprise:</label>
+            <select class="form-select" id="enterprise" required name="enterpriseId">
+                <c:forEach items="${enterprises}" var="enterprise">
+                    <option <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if> value="${enterprise.id}">${enterprise.name}</option>
+                </c:forEach>
+            </select>
+        </div>
+
+        <div>
+            <label for="jobTitle">Titre de travail:</label>
+            <input type="text" name="jobTitle" id="jobTitle" <c:if test="${!empty prospect}">value="${prospect.jobTitle}"</c:if>>
+        </div>
+
+        <div>
+            <label for="prospectionStatus">Status de prospection:</label>
+            <select class="form-select" id="prospectionStatus" required name="prospectionStatus">
+                <c:forEach items="${prospectionStatuses}" var="prospectionStatus">
+                <option <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if> value="${prospectionStatus}">${prospectionStatus}</option>
+                </c:forEach>
+            </select>
+        </div>
+
 
         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
 

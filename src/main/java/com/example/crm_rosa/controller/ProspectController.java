@@ -2,7 +2,9 @@ package com.example.crm_rosa.controller;
 
 import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
+import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.ProspectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 public class ProspectController {
 
     private ProspectService prospectService;
+    private EnterpriseService enterpriseService;
 
-    public ProspectController(ProspectService prospectService) {
+    public ProspectController(ProspectService prospectService, EnterpriseService enterpriseService) {
         this.prospectService = prospectService;
+        this.enterpriseService = enterpriseService;
     }
 
     @GetMapping("/all")
@@ -36,6 +40,7 @@ public class ProspectController {
 
     @GetMapping("/add")
     public String displayAddProspectForm(Model model){
+        model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
         return "addProspectForm";
     }
@@ -50,6 +55,7 @@ public class ProspectController {
     @GetMapping("/edit/{id}")
     public String displayEditProspectForm(@PathVariable("id") long id, Model model){
         //TODO: same checks as for create
+        model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
         model.addAttribute("prospect", prospectService.getProspectById(id));
         return "addProspectForm";
@@ -70,6 +76,8 @@ public class ProspectController {
 
     @PostMapping("/delete/{id}")
     public String deleteProspect(@PathVariable("id") long id){
+        Prospect prospect = prospectService.getProspectById(id);
+        prospect.getEnterprise().removeProspect(prospect);
         prospectService.deleteProspectById(id);
         return "redirect:/prospects/all";
     }
