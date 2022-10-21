@@ -44,9 +44,9 @@
                                 <h5 class="card-text"><a href="${enterprise.website}">Visiter le site web</a></h5>
                                 <h5 class="card-text"><a href="tel:${enterprise.mobile}">Appelez-nous au : ${enterprise.mobile}</a></h5>
                                 <h5 class="card-text"><a href="tel:${enterprise.phone}">Appelez-nous au : ${enterprise.phone}</a></h5>
-                                    <%--<c:forEach items="${enterprises.prospects}" var="prospect">
-                                        <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
-                                    </c:forEach>--%>
+                                    <c:forEach items="${enterprise.prospects}" var="prospect">
+                                        <h5 class="card-text">${prospect.firstName} ${prospect.lastName}</h5>
+                                    </c:forEach>
                                 <div class="d-flex justify-content-between align-items-center">
                                     <div class="btn-group">
                                         <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}">Voir</a>

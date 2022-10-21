@@ -28,6 +28,20 @@ public class Prospect {
     public Prospect() {
     }
 
+    public Prospect(long user, String firstName, String lastName, String profilePictureUrl, String email, String mobilePhone, String landlinePhone, Enterprise enterprise, String jobTitle, LocalDate createdAt, ProspectionStatus prospectionStatus) {
+        this.user = user;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.profilePictureUrl = profilePictureUrl;
+        this.email = email;
+        this.mobilePhone = mobilePhone;
+        this.landlinePhone = landlinePhone;
+        this.enterprise = enterprise;
+        this.jobTitle = jobTitle;
+        this.createdAt = createdAt;
+        this.prospectionStatus = prospectionStatus;
+    }
+
     public long getId() {
         return id;
     }

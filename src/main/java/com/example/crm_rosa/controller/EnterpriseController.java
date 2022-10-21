@@ -2,7 +2,9 @@ package com.example.crm_rosa.controller;
 
 import com.example.crm_rosa.controller.dto.CreateEnterprise;
 import com.example.crm_rosa.repository.entity.Enterprise;
+import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.service.EnterpriseService;
+import com.example.crm_rosa.service.ProspectService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -15,11 +17,11 @@ import java.util.List;
 public class EnterpriseController {
 
     private EnterpriseService enterpriseService;
-    //private ProspectService prospectService;
+    private ProspectService prospectService;
 
-    public EnterpriseController(EnterpriseService enterpriseService) {
+    public EnterpriseController(EnterpriseService enterpriseService, ProspectService prospectService) {
         this.enterpriseService = enterpriseService;
-        //todo : ajouter prospectService
+        this.prospectService = prospectService;
     }
 
     @GetMapping("/all")
@@ -39,9 +41,8 @@ public class EnterpriseController {
 
     @GetMapping("/add")
     public String createEnterpriseForm(Model model){
-        //todo : ajouter la liste des prospects ?
-        //List<Prospect> prospectList = prospectService.findAllProspects();
-        //model.addAttribute("prospectsList", prospectsList);
+        List<Prospect> prospectList = prospectService.getAbsolutelyAllProspects();
+        model.addAttribute("prospectList", prospectList);
         return "enterprise/createEnterpriseForm";
     }
 
