@@ -58,12 +58,20 @@
         </div>
 
         <div>
-            <label for="prospectionStatus">Status de prospection:</label>
-            <select class="form-select" id="prospectionStatus" required name="prospectionStatus">
-                <c:forEach items="${prospectionStatuses}" var="prospectionStatus">
-                <option <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if> value="${prospectionStatus}">${prospectionStatus}</option>
-                </c:forEach>
-            </select>
+            <c:choose>
+                <!--When adding a Client the prospectionStatus is necessarily CLIENT-->
+                <c:when test="${addingClient}">
+                    <input type="text" name="prospectionStatus" value="CLIENT" hidden>
+                </c:when>
+                <c:otherwise>
+                    <label for="prospectionStatus">Status de prospection:</label>
+                    <select class="form-select" id="prospectionStatus" required name="prospectionStatus">
+                        <c:forEach items="${prospectionStatuses}" var="prospectionStatus">
+                            <option <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if> value="${prospectionStatus}">${prospectionStatus}</option>
+                        </c:forEach>
+                    </select>
+                </c:otherwise>
+            </c:choose>
         </div>
 
 

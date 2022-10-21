@@ -38,6 +38,10 @@ public class ProspectService {
         return this.prospectRepository.findById(prospectId).orElseThrow(() -> new ObjectNotFoundException(prospectId, "Prospect"));
     }
 
+    public List<Prospect> getProspectsBySearch(String search){
+        return this.prospectRepository.findProspectsBySearch(search);
+    }
+
     //TODO: currentUser needs to be a User
     public void addProspect(ProspectCreateDto prospectCreateDto, long currentUser){
         Prospect prospect = new Prospect();

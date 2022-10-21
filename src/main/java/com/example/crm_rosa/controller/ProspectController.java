@@ -44,6 +44,12 @@ public class ProspectController {
         return "prospectDetailsView";
     }
 
+    @GetMapping("/search/{search}")
+    public String displaySearchedProspects(@PathVariable("search") String search, Model model){
+        model.addAttribute("prospects", prospectService.getProspectsBySearch(search));
+        return "prospectAllView";
+    }
+
     @GetMapping("/add")
     public String displayAddProspectForm(Model model){
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
