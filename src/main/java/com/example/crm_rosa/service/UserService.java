@@ -7,6 +7,8 @@ import com.example.crm_rosa.repository.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.util.List;
+
 @Service
 public class UserService {
 
@@ -16,6 +18,13 @@ public class UserService {
     public UserService(UserRepository userRepository, StorageService storageService) {
         this.userRepository = userRepository;
         this.storageService = storageService;
+    }
+
+    public List<User> findUserByName(String keyword) {
+        if (keyword != null){
+            return this.userRepository.searchByName(keyword);
+        }
+        return (List<User>) this.userRepository.findAll();
     }
 
     public void register(CreateUser createUser) {
@@ -39,7 +48,6 @@ public class UserService {
         }
         this.userRepository.save(newUser);
     }
-
 
     public User findUserById(long id) {
         return this.userRepository
