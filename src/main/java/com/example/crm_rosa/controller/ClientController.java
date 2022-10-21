@@ -35,14 +35,21 @@ public class ClientController {
     @GetMapping("/details/{id}")
     public String displayOneProspect(@PathVariable("id") long id, Model model){
         //TODO: add some checks somewhere to make sure you can't just type the URL manually and get the ID of someone else (will do when users are implemented)
-        model.addAttribute("prospect", clientService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getClientById(id));
         return "prospectDetailsView";
     }
 
+    @GetMapping("/search/{search}")
+    public String displaySearchedProspects(@PathVariable("search") String search, Model model){
+        model.addAttribute("prospects", clientService.getClientsBySearch(search));
+        return "prospectAllView";
+    }
+
     @GetMapping("/add")
-    public String displayAddProspectForm(Model model){
+    public String displayAddClientForm(Model model){
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
+        model.addAttribute("addingClient", true);
         return "addProspectForm";
     }
 
@@ -58,7 +65,7 @@ public class ClientController {
         //TODO: same checks as for create
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
-        model.addAttribute("prospect", clientService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getClientById(id));
         return "addProspectForm";
     }
 
@@ -70,14 +77,14 @@ public class ClientController {
 
     @GetMapping("/delete/{id}")
     public String deleteProspectConfirm(@PathVariable("id") long id, Model model){
-        model.addAttribute("prospect", clientService.getProspectById(id));
+        model.addAttribute("prospect", clientService.getClientById(id));
         model.addAttribute("isDeleteForm", true);
         return "prospectDetailsView";
     }
 
     @PostMapping("/delete/{id}")
     public String deleteProspect(@PathVariable("id") long id){
-        Prospect prospect = clientService.getProspectById(id);
+        Prospect prospect = clientService.getClientById(id);
         prospect.getEnterprise().removeProspect(prospect);
         clientService.deleteProspectById(id);
         return "redirect:/prospects/all";

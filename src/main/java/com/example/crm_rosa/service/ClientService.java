@@ -22,16 +22,20 @@ public class ClientService {
     }
 
     public List<Prospect> getAbsolutelyAllClients(){
-        return (List<Prospect>) this.prospectRepository.findAllClients();
+        return this.prospectRepository.findAllClients();
     }
 
     //TODO: modify when user entity comes in
-    public List<Prospect> getAllProspects(long userId){
-        return (List<Prospect>) this.prospectRepository.findProspectByUser(userId);
+    public List<Prospect> getAllClients(long userId){
+        return this.prospectRepository.findProspectByUser(userId);
     }
 
-    public Prospect getProspectById(long prospectId){
-        return (Prospect) this.prospectRepository.findById(prospectId).orElseThrow(() -> new ObjectNotFoundException(prospectId, "Prospect"));
+    public Prospect getClientById(long clientId){
+        return this.prospectRepository.findClientById(clientId).orElseThrow(() -> new ObjectNotFoundException(clientId, "Prospect"));
+    }
+
+    public List<Prospect> getClientsBySearch(String search){
+        return this.prospectRepository.findClientBySearch(search);
     }
 
     //TODO: currentUser needs to be a User
