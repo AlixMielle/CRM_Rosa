@@ -118,11 +118,11 @@
                         </div>
                     </div>
                     <%--<div class="col-sm-6">
-                        <label for="prospect" class="form-label">Prospects/Clients</label>
-                        <select class="form-select" id="prospect" name="prospectIds" required="true" multiple>
-                            <option disabled selected>Sélectionnez...</option>
+                        <label for="prospect">Prospects/Clients:</label>
+                        <select class="form-select" id="prospect" required name="prospect" multiple>
+                            <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
                             <c:forEach items="${prospectList}" var="prospect">
-                                <option value="${prospect.id}">${prospect.firstname} ${prospect.lastname}</option>
+                                <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}">${prospect.firstName} ${prospect.lastName}</option>
                             </c:forEach>
                         </select>
                     </div>--%>

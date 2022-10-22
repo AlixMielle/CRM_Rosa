@@ -3,21 +3,27 @@ package com.example.crm_rosa.service;
 import com.example.crm_rosa.controller.dto.CreateEnterprise;
 import com.example.crm_rosa.exception.EnterpriseNotFoundException;
 import com.example.crm_rosa.repository.EnterpriseRepository;
+import com.example.crm_rosa.repository.ProspectRepository;
 import com.example.crm_rosa.repository.entity.Enterprise;
+import com.example.crm_rosa.repository.entity.Prospect;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
 public class EnterpriseService {
 
     private EnterpriseRepository enterpriseRepository;
+    private ProspectRepository prospectRepository;
     private StorageService storageService;
 
-    public EnterpriseService(EnterpriseRepository enterpriseRepository, StorageService storageService) {
+    public EnterpriseService(EnterpriseRepository enterpriseRepository, ProspectRepository prospectRepository, StorageService storageService) {
         this.enterpriseRepository = enterpriseRepository;
+        this.prospectRepository = prospectRepository;
         this.storageService = storageService;
     }
 
@@ -39,6 +45,10 @@ public class EnterpriseService {
     }
 
     public void addEnterprise(CreateEnterprise createEnterprise) {
+        List<Long> prospectsIds = createEnterprise.getProspectsIds();
+
+        //demande de chercher les objets avec les id demandés
+        List<Prospect> prospectList = (List<Prospect>) prospectRepository.findAllById(prospectsIds);
 
         Enterprise e = new Enterprise();
         e.setName(createEnterprise.getName());
@@ -53,6 +63,7 @@ public class EnterpriseService {
         e.setZipcode(createEnterprise.getZipcode());
         e.setSector(createEnterprise.getSector());
         e.setCreatedAt(LocalDate.now());
+        e.setProspects(prospectList);
 
         MultipartFile logo = createEnterprise.getLogoFile();
         if (logo == null || logo.isEmpty()){
@@ -96,4 +107,23 @@ public class EnterpriseService {
 
         this.enterpriseRepository.save(enterprise);
     }
+
+    public void convertListToArray() {
+
+        //Declaration of Array List
+        List<Enterprise> enterpriseList = findAllEnterprises();
+
+        //Declaring Array with Equal Size to the List
+        String[]tabEnterprise = new String [enterpriseList.size()];
+
+        //Converting List to Array
+        enterpriseList.toArray(tabEnterprise);
+
+        //Printing the Array
+        System.out.print("Elements of Array: ");
+        for (int i = 0 ; i < tabEnterprise.length ; i++){
+            System.out.print(tabEnterprise[i] + "  ");
+        }
+    }
+
 }

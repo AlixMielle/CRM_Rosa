@@ -4,6 +4,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class CreateEnterprise {
 
@@ -35,6 +36,8 @@ public class CreateEnterprise {
 
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate createdAt;
+
+    private List<Long> prospectsIds;
 
     public CreateEnterprise() {
     }
@@ -149,5 +152,13 @@ public class CreateEnterprise {
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public List<Long> getProspectsIds() {
+        return prospectsIds;
+    }
+
+    public void setProspectsIds(List<Long> prospectsIds) {
+        this.prospectsIds = prospectsIds;
     }
 }

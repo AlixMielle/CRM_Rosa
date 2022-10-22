@@ -116,15 +116,15 @@
                             <textarea class="form-control" id="sector" name="sector" rows="2"></textarea>
                         </div>
                     </div>
-                    <%--<div class="col-sm-6">
-                        <label for="prospect" class="form-label">Prospects/Clients</label>
-                        <select class="form-select" id="prospect" name="prospectIds" required="true" multiple>
-                            <option disabled selected>Sélectionnez...</option>
+                    <div class="col-sm-6">
+                        <label for="prospect">Prospects/Clients:</label>
+                        <select class="form-select" id="prospect" required name="prospect" multiple>
+                            <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
                             <c:forEach items="${prospectList}" var="prospect">
-                                <option value="${prospect.id}">${prospect.firstname} ${prospect.lastname}</option>
+                                <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}"> ${prospect.firstName} ${prospect.lastName}</option>
                             </c:forEach>
                         </select>
-                    </div>--%>
+                    </div>
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                     <button class="btn my-2 text-white" style="background-color: darkslategray" type="submit">
                         Enregistrer une nouvelle entreprise
