@@ -1,31 +1,41 @@
+// clear de la la recherche
 const button = document.getElementById("clearButton")
 button.addEventListener("click", (event)=>{
         window.location = "/enterprises/all";
 })
 
-const reorder = () => {
-    const frag = document.createDocumentFragment();
-    const list = document.querySelector("h5");
-    const items = list.querySelectorAll("a");
-    const sortedList = [enterpriseList].sort((a, b) => {
-        const c = a.textContent,
-            d = b.textContent;
-        return c < d ? -1 : c > d ? 1 : 0;
-    });
-    for (const item of sortedList) {
-        frag.appendChild(item);
-    }
-    list.appendChild(frag);
-}
 
-const button = document.getElementById("alphaButton")
-button.addEventListener("click", (event)=>{
-reorder()
-    window.location = "/enterprises/all";
+
+var options = {
+    data: data,
+    columns: [
+        { data: 'Entreprise' },
+        { data: 'Informations' },
+        { data: 'salary' },
+        { data: 'office' }
+    ],
+    rowsPerPage: 10,
+    pagination: true,
+    sorting: true,
+    totalPages: 100,
+    sortingIcons: {
+        asc: '<span>▼</span>',
+        desc: '<span>▲</span>',
+    },
+    prevText: '<span>prev<span>',
+    nextText: '<span>next<span>',
+};
+
+var table = $('#table-sortable').tableSortable(options);
+
+$.get("/api/enterprises", function(data) {
+    // or Set new data on table, columns is optional.
+    table.setData(data, columns);
 })
 
-
-
+$('#refresh').click(function() {
+    table.refresh();
+})
 
 
 
