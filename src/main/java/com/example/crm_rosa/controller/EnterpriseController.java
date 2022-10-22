@@ -32,6 +32,7 @@ public class EnterpriseController {
         return "enterprise/listEnterpriseView";
     }
 
+
     @GetMapping("/details/{id}")
     public String displayOneEnterprise(@PathVariable("id") long id, Model model){
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);

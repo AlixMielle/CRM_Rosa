@@ -6,10 +6,12 @@ import com.example.crm_rosa.repository.EnterpriseRepository;
 import com.example.crm_rosa.repository.ProspectRepository;
 import com.example.crm_rosa.repository.entity.Enterprise;
 import com.example.crm_rosa.repository.entity.Prospect;
+import net.bytebuddy.asm.Advice;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -105,4 +107,23 @@ public class EnterpriseService {
 
         this.enterpriseRepository.save(enterprise);
     }
+
+    public void convertListToArray() {
+
+        //Declaration of Array List
+        List<Enterprise> enterpriseList = findAllEnterprises();
+
+        //Declaring Array with Equal Size to the List
+        String[]tabEnterprise = new String [enterpriseList.size()];
+
+        //Converting List to Array
+        enterpriseList.toArray(tabEnterprise);
+
+        //Printing the Array
+        System.out.print("Elements of Array: ");
+        for (int i = 0 ; i < tabEnterprise.length ; i++){
+            System.out.print(tabEnterprise[i] + "  ");
+        }
+    }
+
 }
