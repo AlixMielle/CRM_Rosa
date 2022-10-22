@@ -2,6 +2,7 @@
 <%@ taglib prefix="th" uri="http://jakarta.apache.org/taglibs/standard/permittedTaglibs" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -43,6 +44,7 @@
                             <div class="btn-group">
                                 <button type="submit" class="btn btn-sm btn-outline-secondary">Rechercher</button>
                                 <button type="button" id="clearButton" class="btn btn-sm btn-outline-secondary" onclick="clearSearch()">Effacer</button>
+                                <button type="button" id="alphaButton" class="btn btn-sm btn-outline-secondary" onclick="alphabeticSearch()">A-Z</button>
                             </div>
                         </div>
                     </form>
