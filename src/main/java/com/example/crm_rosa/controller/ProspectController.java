@@ -44,8 +44,8 @@ public class ProspectController {
         return "prospectDetailsView";
     }
 
-    @GetMapping("/search/{search}")
-    public String displaySearchedProspects(@PathVariable("search") String search, Model model){
+    @GetMapping("/search")
+    public String displaySearchedProspects(String search, Model model){
         model.addAttribute("prospects", prospectService.getProspectsBySearch(search));
         return "prospectAllView";
     }
@@ -88,8 +88,6 @@ public class ProspectController {
 
     @PostMapping("/delete/{id}")
     public String deleteProspect(@PathVariable("id") long id){
-        Prospect prospect = prospectService.getProspectById(id);
-        prospect.getEnterprise().removeProspect(prospect);
         prospectService.deleteProspectById(id);
         return "redirect:/prospects/all";
     }

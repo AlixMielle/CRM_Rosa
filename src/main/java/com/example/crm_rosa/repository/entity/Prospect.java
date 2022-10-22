@@ -2,6 +2,7 @@ package com.example.crm_rosa.repository.entity;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 public class Prospect {
@@ -24,6 +25,8 @@ public class Prospect {
     private LocalDate createdAt;
     @Enumerated(EnumType.STRING)
     private ProspectionStatus prospectionStatus;
+    @OneToMany(mappedBy = "prospect", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Note> notes;
 
     public Prospect() {
     }
@@ -123,5 +126,21 @@ public class Prospect {
 
     public void setProspectionStatus(ProspectionStatus prospectionStatus) {
         this.prospectionStatus = prospectionStatus;
+    }
+
+    public List<Note> getNotes() {
+        return notes;
+    }
+
+    public void setNotes(List<Note> notes) {
+        this.notes = notes;
+    }
+
+    public void addNote(Note note){
+        this.notes.add(note);
+    }
+
+    public void removeNote(Note note){
+        this.notes.remove(note);
     }
 }

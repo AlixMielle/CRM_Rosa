@@ -13,6 +13,12 @@
 </head>
 <body>
 
+<form class="d-flex" role="search" action="${pageContext.request.contextPath}/clients/search" method="get">
+    <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search" name="search">
+    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+    <button class="btn btn-outline-success" type="submit">Search</button>
+</form>
+
 <div><a href="${pageContext.request.contextPath}/prospects/all">all prospects</a> <a href="${pageContext.request.contextPath}/prospects/add">Ajout de prospect</a></div>
 
 <h1>Liste Clients</h1>

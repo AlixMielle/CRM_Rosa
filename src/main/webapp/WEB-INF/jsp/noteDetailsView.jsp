@@ -9,31 +9,27 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
-    <title>Details contact</title>
+    <title>Details note</title>
 </head>
 <body>
 
-<h1>Contact details</h1>
-<div><img src="${prospect.profilePictureUrl}" class="max-width=500px max-height=500px"></div>
-<div>Prenom: ${prospect.firstName}</div>
-<div>Nom de famille: ${prospect.lastName}</div>
-<div>Email: ${prospect.email}</div>
-<div>Telephone portable: ${prospect.mobilePhone}</div>
-<div>Telephone fixe: ${prospect.landlinePhone}</div>
-<div>Prospection status: ${prospect.prospectionStatus}</div>
+<h1>Note details</h1>
+<div>Date: ${note.createdAt}</div>
+<div>Prospect: ${note.prospect.firstName} ${note.prospect.lastName}</div>
+<div>Titre: ${note.title}</div>
+<div>Contenu: ${note.content}</div>
 
 <c:if test="${isDeleteForm}">
     <div>
-        <form action="${pageContext.request.contextPath}/prospects/delete/${prospect.id}" method="post">
-            <input id="id" name="id" type="text" value="${prospect.id}" required hidden=/>
+        <form action="${pageContext.request.contextPath}/notes/delete/${note.id}" method="post">
+            <input id="id" name="id" type="text" value="${note.id}" required hidden=/>
             <div>Etes vous sur de vouloir supprimer ce prospect?</div>
             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
             <button type="submit">Oui</button>
         </form>
     </div>
 </c:if>
-<div><a href="${pageContext.request.contextPath}/notes/${prospect.id}">Notes du prospect</a></div>
-<div><a href="${pageContext.request.contextPath}/prospects/all">Retour</a></div>
+<div><a href="${pageContext.request.contextPath}/notes/${note.prospect.id}">Retour</a></div>
 
 </body>
 </html>

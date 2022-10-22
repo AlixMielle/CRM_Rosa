@@ -39,8 +39,8 @@ public class ClientController {
         return "prospectDetailsView";
     }
 
-    @GetMapping("/search/{search}")
-    public String displaySearchedProspects(@PathVariable("search") String search, Model model){
+    @GetMapping("/search")
+    public String displaySearchedProspects(String search, Model model){
         model.addAttribute("prospects", clientService.getClientsBySearch(search));
         return "prospectAllView";
     }

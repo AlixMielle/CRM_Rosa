@@ -58,8 +58,8 @@
         </div>
 
         <div>
+            <!--When adding a Client the prospectionStatus is necessarily CLIENT-->
             <c:choose>
-                <!--When adding a Client the prospectionStatus is necessarily CLIENT-->
                 <c:when test="${addingClient}">
                     <input type="text" name="prospectionStatus" value="CLIENT" hidden>
                 </c:when>
