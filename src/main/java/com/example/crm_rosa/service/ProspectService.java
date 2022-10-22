@@ -90,6 +90,8 @@ public class ProspectService {
     }
 
     public void deleteProspectById(long id){
+        Prospect prospect = this.getProspectById(id);
+        prospect.getEnterprise().removeProspect(prospect);
         this.prospectRepository.deleteById(id);
     }
 }
