@@ -2,6 +2,7 @@
 <%@ taglib prefix="th" uri="http://jakarta.apache.org/taglibs/standard/permittedTaglibs" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
+
 <!doctype html>
 <html lang="fr">
 <head>
@@ -14,6 +15,8 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <%--<link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/resources/static/css/root.css">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
+    <script defer src="../../../js/main.js"></script>
 </head>
 <body>
 
@@ -31,36 +34,78 @@
         </div>
     </section>
 
-    <div class="album py-5 bg-light">
         <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <c:forEach items="${enterpriseList}" var="enterprise">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="${enterprise.logo}" alt="photo">
-                            <div class="card-body">
-                                <h3 class="card-text">${enterprise.name}</h3>
-                                <h5 class="card-text"><a href="mailto:${enterprise.email}">Envoyer un email</a></h5>
-                                <h5 class="card-text"><a href="${enterprise.website}">Visiter le site web</a></h5>
-                                <h5 class="card-text"><a href="tel:${enterprise.mobile}">Appelez-nous au : ${enterprise.mobile}</a></h5>
-                                <h5 class="card-text"><a href="tel:${enterprise.phone}">Appelez-nous au : ${enterprise.phone}</a></h5>
-                                    <c:forEach items="${enterprise.prospects}" var="prospect">
-                                        <h5 class="card-text">${prospect.firstName} ${prospect.lastName}</h5>
-                                    </c:forEach>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}">Voir</a>
-                                        <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
-                                    </div>
-                                </div>
+           <h5>Filtres</h5>
+            <div class="row navbar-brand d-flex align-items-center justify-content-around">
+                <div class="col-10">
+                    <form action="${pageContext.request.contextPath}/enterprises/all" class="navbar-brand d-flex justify-content-between" role="search">
+                        <input class="form-control me-2" type="search" name="keyword" value="${keyword}" id="keyword" placeholder="Rechercher une entreprise" aria-label="Search" style="color: darkslategray">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div class="btn-group">
+                                <button type="submit" class="btn btn-sm btn-outline-secondary">Rechercher</button>
+                                <button type="button" id="clearButton" class="btn btn-sm btn-outline-secondary" onclick="clearSearch()">Effacer</button>
+                                <button type="button" id="alphaButton" class="btn btn-sm btn-outline-secondary" onclick="alphabeticSearch()">A-Z</button>
                             </div>
                         </div>
-                    </div>
-                </c:forEach>
+                    </form>
+                </div>
             </div>
-        </div>
-    </div>
 
+    <table class="table table-hover">
+        <h3>Liste des entreprises</h3>
+        <thead>
+        <tr>
+            <th scope="col">Entreprise</th>
+            <th scope="col">Informations</th>
+            <th scope="col">Date de création</th>
+            <th scope="col">Liste des prospects</th>
+            <th scope="col">Nombre de clients</th>
+            <th scope="col"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <c:forEach items="${enterpriseList}" var="enterprise">
+        <tr>
+            <th scope="row">
+                <h5>
+                    <a href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}" class="card-text">${enterprise.name}</a>
+                </h5>
+                <img src="${enterprise.logo}" alt="photo" width="20%">
+            </th>
+            <td>
+                <p>
+                    <i class="bi bi-envelope"></i> <a href="mailto:${enterprise.email}">${enterprise.email}</a>
+                </p>
+                <p>
+                    <i class="bi bi-phone"></i> <a href="tel:${enterprise.mobile}">${enterprise.mobile}</a>
+                </p>
+                <p>
+                    <i class="bi bi-telephone"></i> <a href="tel:${enterprise.phone}">${enterprise.phone}</a>
+                </p>
+                <p>
+                    <i class="bi bi-globe"></i> <a href="${enterprise.website}">Visiter le site web</a>
+                </p>
+            </td>
+            <td>${enterprise.createdAt}</td>
+            <td>
+                <c:forEach items="${enterprise.prospects}" var="prospect">
+                    <p>
+                        <a href="${pageContext.request.contextPath}/prospects/details/${prospect.id}" class="card-text">${prospect.firstName} ${prospect.lastName}</a>
+                    </p>
+                </c:forEach>
+            </td>
+            <td>nombre à définir</td>
+            <td>
+                <div class="btn-group">
+                <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}">Voir</a>
+                <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
+            </div>
+            </td>
+        </tr>
+        </c:forEach>
+        </tbody>
+    </table>
+        </div>
 </main>
 
 <%--<jsp:include page="footer.jsp"/>--%>

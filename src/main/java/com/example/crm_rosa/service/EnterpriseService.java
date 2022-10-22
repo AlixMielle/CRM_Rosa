@@ -108,22 +108,4 @@ public class EnterpriseService {
         this.enterpriseRepository.save(enterprise);
     }
 
-    public void convertListToArray() {
-
-        //Declaration of Array List
-        List<Enterprise> enterpriseList = findAllEnterprises();
-
-        //Declaring Array with Equal Size to the List
-        String[]tabEnterprise = new String [enterpriseList.size()];
-
-        //Converting List to Array
-        enterpriseList.toArray(tabEnterprise);
-
-        //Printing the Array
-        System.out.print("Elements of Array: ");
-        for (int i = 0 ; i < tabEnterprise.length ; i++){
-            System.out.print(tabEnterprise[i] + "  ");
-        }
-    }
-
 }
