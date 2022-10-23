@@ -37,14 +37,12 @@ public class NoteService {
         note.setTitle(noteCreateDto.getTitle());
         note.setContent(noteCreateDto.getContent());
         note.setCreatedAt(LocalDate.now());
-        prospect.addNote(note);
 
         this.noteRepository.save(note);
     }
 
-    public void editNote(NoteCreateDto noteCreateDto, long idNote, long idProspect){
+    public void editNote(NoteCreateDto noteCreateDto, long idNote){
         Note note = this.noteRepository.findById(idNote).orElseThrow(() -> new ObjectNotFoundException(idNote, "Note"));
-        Prospect prospect = this.prospectRepository.findById(idProspect).orElseThrow(() -> new ObjectNotFoundException(idProspect, "Prospect"));
         note.setTitle(noteCreateDto.getTitle());
         note.setContent(noteCreateDto.getContent());
 

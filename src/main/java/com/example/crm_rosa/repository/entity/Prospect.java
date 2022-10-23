@@ -10,9 +10,8 @@ public class Prospect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    //ManyToOne(cascades)
-    //TODO: change long user into User user when that comes in
-    private long user;
+    @ManyToOne(fetch = FetchType.EAGER)
+    private User user;
     private String firstName;
     private String lastName;
     private String profilePictureUrl;
@@ -31,7 +30,7 @@ public class Prospect {
     public Prospect() {
     }
 
-    public Prospect(long user, String firstName, String lastName, String profilePictureUrl, String email, String mobilePhone, String landlinePhone, Enterprise enterprise, String jobTitle, LocalDate createdAt, ProspectionStatus prospectionStatus) {
+    public Prospect(User user, String firstName, String lastName, String profilePictureUrl, String email, String mobilePhone, String landlinePhone, Enterprise enterprise, String jobTitle, LocalDate createdAt, ProspectionStatus prospectionStatus) {
         this.user = user;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -54,11 +53,11 @@ public class Prospect {
     }
 
     //TODO: the get/set needs to change when the User entity comes in
-    public long getUser() {
+    public User getUser() {
         return user;
     }
 
-    public void setUser(long user) {
+    public void setUser(User user) {
         this.user = user;
     }
 
