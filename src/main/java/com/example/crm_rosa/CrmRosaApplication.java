@@ -84,5 +84,6 @@ public class CrmRosaApplication implements CommandLineRunner {
         prospectRepository.save(prospect2);
         prospectRepository.save(prospect3);
 
+
     }
 }

@@ -32,6 +32,18 @@ public class EnterpriseController {
         return "enterprise/listEnterpriseView";
     }
 
+    @GetMapping("/all/sorted")
+    public String displayAllEnterprisesSortedByName(Model model){
+        List<Enterprise> enterpriseList = enterpriseService.sortEnterpriseByNameOrder();
+        model.addAttribute("enterpriseList", enterpriseList);
+        return "enterprise/listEnterpriseView";
+    }
+    @GetMapping("/all/resorted")
+    public String displayAllEnterprisesResortedByName(Model model){
+        List<Enterprise> enterpriseList = enterpriseService.resortEnterpriseByNameOrder();
+        model.addAttribute("enterpriseList", enterpriseList);
+        return "enterprise/listEnterpriseView";
+    }
 
     @GetMapping("/details/{id}")
     public String displayOneEnterprise(@PathVariable("id") long id, Model model){

@@ -38,6 +38,13 @@ public class EnterpriseService {
         return (List<Enterprise>) this.enterpriseRepository.findAll();
     }
 
+    public List<Enterprise> sortEnterpriseByNameOrder() {
+        return this.enterpriseRepository.sortByAlphabeticalOrder();
+    }
+    public List<Enterprise> resortEnterpriseByNameOrder() {
+        return this.enterpriseRepository.resortByAlphabeticalOrder();
+    }
+
     public Enterprise findEnterpriseById(long id) {
         return this.enterpriseRepository
                 .findById(id)
@@ -104,7 +111,6 @@ public class EnterpriseService {
             storageService.store(logo);
             enterprise.setLogo("http://localhost:8080/images/" + logo.getOriginalFilename());
         }
-
         this.enterpriseRepository.save(enterprise);
     }
 

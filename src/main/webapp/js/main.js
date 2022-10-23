@@ -1,12 +1,21 @@
 // clear de la la recherche
-const button = document.getElementById("clearButton")
-button.addEventListener("click", (event)=>{
+const button1 = document.getElementById("clearButton")
+button1.addEventListener("click", (event)=>{
         window.location = "/enterprises/all";
 })
 
+const button2 = document.getElementById("sortButton")
+button2.addEventListener("click", (event)=>{
+    window.location = "/enterprises/all/sorted";
+})
+
+const button3 = document.getElementById("resortButton")
+button3.addEventListener("click", (event)=>{
+    window.location = "/enterprises/all";
+})
 
 
-var options = {
+/*var options = {
     data: data,
     columns: [
         { data: 'Entreprise' },
@@ -31,11 +40,7 @@ var table = $('#table-sortable').tableSortable(options);
 $.get("/api/enterprises", function(data) {
     // or Set new data on table, columns is optional.
     table.setData(data, columns);
-})
-
-$('#refresh').click(function() {
-    table.refresh();
-})
+})*/
 
 
 
