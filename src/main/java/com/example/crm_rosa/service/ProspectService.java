@@ -27,11 +27,11 @@ public class ProspectService {
     }
 
     public List<Prospect> getAllProspects(User user){
-        return this.prospectRepository.findProspectByUser(user.getId());
+        return this.prospectRepository.findProspectByUser(user);
     }
 
     public List<Prospect> getProspectsByEnterprise(long enterpriseId, User user){
-        return this.prospectRepository.findProspectByEnterpriseAndUser(enterpriseId, user.getId());
+        return this.prospectRepository.findProspectByEnterprise_IdAndUser(enterpriseId, user);
     }
 
     public Prospect getProspectById(long prospectId){

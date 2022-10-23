@@ -25,7 +25,7 @@
 <c:forEach items="${clients}" var="client">
     <div>Prenom: ${client.firstName}</div>
     <div>Nom de famille: ${client.lastName}</div>
-    <div><a href="${pageContext.request.contextPath}/clients/details/${prospect.id}">Details</a> <a href="${pageContext.request.contextPath}/clients/delete/${prospect.id}">Suppression</a> <a href="${pageContext.request.contextPath}/clients/edit/${prospect.id}">Mise a jour</a></div>
+    <div><a href="${pageContext.request.contextPath}/clients/details/${client.id}">Details</a> <a href="${pageContext.request.contextPath}/clients/delete/${client.id}">Suppression</a> <a href="${pageContext.request.contextPath}/clients/edit/${client.id}">Mise a jour</a></div>
 </c:forEach>
 
 </body>
