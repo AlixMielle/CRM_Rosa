@@ -19,6 +19,7 @@ public class CreateUser {
     public CreateUser() {
     }
 
+
     public String getFirstname() {
         return firstname;
     }

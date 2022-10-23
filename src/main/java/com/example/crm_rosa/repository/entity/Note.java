@@ -18,6 +18,13 @@ public class Note {
     public Note() {
     }
 
+    public Note(Prospect prospect, LocalDate createdAt, String title, String content) {
+        this.prospect = prospect;
+        this.createdAt = createdAt;
+        this.title = title;
+        this.content = content;
+    }
+
     public long getId() {
         return id;
     }
