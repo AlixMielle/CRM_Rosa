@@ -4,6 +4,7 @@ import com.example.crm_rosa.controller.dto.CreateUser;
 import com.example.crm_rosa.exception.UserNotFoundException;
 import com.example.crm_rosa.repository.UserRepository;
 import com.example.crm_rosa.repository.entity.User;
+import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -25,6 +26,10 @@ public class UserService {
             return this.userRepository.searchByName(keyword);
         }
         return (List<User>) this.userRepository.findAll();
+    }
+
+    public User findUserByEmail(String username){
+        return this.userRepository.findUserByEmail(username).orElseThrow(() -> new ObjectNotFoundException(username, "User"));
     }
 
     public void register(CreateUser createUser) {

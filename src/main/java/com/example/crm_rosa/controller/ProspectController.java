@@ -4,8 +4,10 @@ import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
 import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.ProspectService;
+import com.example.crm_rosa.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,34 +21,44 @@ public class ProspectController {
 
     private ProspectService prospectService;
     private EnterpriseService enterpriseService;
+    private UserService userService;
 
-    public ProspectController(ProspectService prospectService, EnterpriseService enterpriseService) {
+    public ProspectController(ProspectService prospectService, EnterpriseService enterpriseService, UserService userService) {
         this.prospectService = prospectService;
         this.enterpriseService = enterpriseService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
     public String displayAllProspects(Model model){
-        model.addAttribute("prospects", this.prospectService.getAbsolutelyAllProspects());
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr"); //TODO: authentication
+        model.addAttribute("prospects", this.prospectService.getAllProspects(user));
         return "prospectAllView";
     }
 
     @GetMapping("/enterprise/{id}")
     public String displayProspectOfEnterprise(Model model, @PathVariable("id") long idEnterprise){
-        model.addAttribute("prospects", this.prospectService.getProspectsByEnterprise(idEnterprise));
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr"); //TODO: authentication
+        model.addAttribute("prospects", this.prospectService.getProspectsByEnterprise(idEnterprise, user));
         return "prospectAllView";
     }
 
     @GetMapping("/details/{id}")
     public String displayOneProspect(@PathVariable("id") long id, Model model){
-        //TODO: add some checks somewhere to make sure you can't just type the URL manually and get the ID of someone else (will do when users are implemented)
-        model.addAttribute("prospect", prospectService.getProspectById(id));
-        return "prospectDetailsView";
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        Prospect prospect = prospectService.getProspectById(id);
+        if(user.getIsAdmin() || prospect.getUser().equals(user)){
+            model.addAttribute("prospect", prospect);
+            return "prospectDetailsView";
+        } else{
+            return "redirect:/prospects/all";
+        }
     }
 
     @GetMapping("/search")
     public String displaySearchedProspects(String search, Model model){
-        model.addAttribute("prospects", prospectService.getProspectsBySearch(search));
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        model.addAttribute("prospects", prospectService.getProspectsBySearch(search, user));
         return "prospectAllView";
     }
 
@@ -59,14 +71,14 @@ public class ProspectController {
 
     @PostMapping("/add")
     public String addProspect(ProspectCreateDto newProspect){
-        //TODO: user stuff again
-        prospectService.addProspect(newProspect, 0L);
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        prospectService.addProspect(newProspect, user);
         return "redirect:/prospects/all";
     }
 
     @GetMapping("/edit/{id}")
     public String displayEditProspectForm(@PathVariable("id") long id, Model model){
-        //TODO: same checks as for create
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
         model.addAttribute("prospect", prospectService.getProspectById(id));
@@ -81,6 +93,7 @@ public class ProspectController {
 
     @GetMapping("/delete/{id}")
     public String deleteProspectConfirm(@PathVariable("id") long id, Model model){
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
         model.addAttribute("prospect", prospectService.getProspectById(id));
         model.addAttribute("isDeleteForm", true);
         return "prospectDetailsView";

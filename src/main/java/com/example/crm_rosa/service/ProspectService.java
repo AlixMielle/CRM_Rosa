@@ -4,6 +4,7 @@ import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
 import com.example.crm_rosa.repository.ProspectRepository;
 import com.example.crm_rosa.repository.entity.Prospect;
+import com.example.crm_rosa.repository.entity.User;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
 
@@ -25,25 +26,23 @@ public class ProspectService {
         return (List<Prospect>) this.prospectRepository.findAll();
     }
 
-    //TODO: modify when user entity comes in
-    public List<Prospect> getAllProspects(long userId){
-        return this.prospectRepository.findProspectByUser(userId);
+    public List<Prospect> getAllProspects(User user){
+        return this.prospectRepository.findProspectByUser(user.getId());
     }
 
-    public List<Prospect> getProspectsByEnterprise(long enterpriseId){
-        return this.prospectRepository.findProspectByEnterprise_Id(enterpriseId);
+    public List<Prospect> getProspectsByEnterprise(long enterpriseId, User user){
+        return this.prospectRepository.findProspectByEnterpriseAndUser(enterpriseId, user.getId());
     }
 
     public Prospect getProspectById(long prospectId){
         return this.prospectRepository.findById(prospectId).orElseThrow(() -> new ObjectNotFoundException(prospectId, "Prospect"));
     }
 
-    public List<Prospect> getProspectsBySearch(String search){
-        return this.prospectRepository.findProspectsBySearch(search);
+    public List<Prospect> getProspectsBySearch(String search, User user){
+        return this.prospectRepository.findProspectsBySearch(search, user.getId());
     }
 
-    //TODO: currentUser needs to be a User
-    public void addProspect(ProspectCreateDto prospectCreateDto, long currentUser){
+    public void addProspect(ProspectCreateDto prospectCreateDto, User currentUser){
         Prospect prospect = new Prospect();
         prospect.setUser(currentUser);
         prospect.setFirstName(prospectCreateDto.getFirstName());
@@ -60,8 +59,6 @@ public class ProspectService {
         prospect.setCreatedAt(LocalDate.now());
         //prospection
         prospect.setProspectionStatus(prospectCreateDto.getProspectionStatus());
-
-        //TODO: add contact to currentUser
 
         this.prospectRepository.save(prospect);
     }
@@ -83,8 +80,6 @@ public class ProspectService {
         prospect.setJobTitle(prospectEditDto.getJobTitle());
         //prospection
         prospect.setProspectionStatus(prospectEditDto.getProspectionStatus());
-
-        //TODO: add contact to currentUser
 
         this.prospectRepository.save(prospect);
     }

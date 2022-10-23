@@ -4,9 +4,11 @@ import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
 import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.ClientService;
 import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.ProspectService;
+import com.example.crm_rosa.service.UserService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,28 +22,44 @@ public class ClientController {
 
     private ClientService clientService;
     private EnterpriseService enterpriseService;
+    private UserService userService;
 
-    public ClientController(ClientService clientService, EnterpriseService enterpriseService) {
+    public ClientController(ClientService clientService, EnterpriseService enterpriseService, UserService userService) {
         this.clientService = clientService;
         this.enterpriseService = enterpriseService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
     public String displayAllProspects(Model model){
-        model.addAttribute("clients", this.clientService.getAbsolutelyAllClients());
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        model.addAttribute("clients", this.clientService.getAllClients(user));
         return "clientsAllView";
+    }
+
+    @GetMapping("/enterprise/{id}")
+    public String displayClientOfEnterprise(Model model, @PathVariable("id") long idEnterprise){
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr"); //TODO: authentication
+        model.addAttribute("prospects", this.clientService.getClientsByEnterprise(idEnterprise, user));
+        return "prospectAllView";
     }
 
     @GetMapping("/details/{id}")
     public String displayOneProspect(@PathVariable("id") long id, Model model){
-        //TODO: add some checks somewhere to make sure you can't just type the URL manually and get the ID of someone else (will do when users are implemented)
-        model.addAttribute("prospect", clientService.getClientById(id));
-        return "prospectDetailsView";
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        Prospect prospect = clientService.getClientById(id);
+        if(user.getIsAdmin() || prospect.getUser().equals(user)){
+            model.addAttribute("prospect", prospect);
+            return "prospectDetailsView";
+        } else{
+            return "redirect:/prospects/all";
+        }
     }
 
     @GetMapping("/search")
     public String displaySearchedProspects(String search, Model model){
-        model.addAttribute("prospects", clientService.getClientsBySearch(search));
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        model.addAttribute("prospects", clientService.getClientsBySearch(search, user));
         return "prospectAllView";
     }
 
@@ -54,9 +72,9 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public String addProspect(ProspectCreateDto newProspect){
-        //TODO: user stuff again
-        clientService.addProspect(newProspect, 0L);
+    public String addClient(ProspectCreateDto newProspect){
+        User user = this.userService.findUserByEmail("rosa@worktogether.fr");//TODO: authentication
+        clientService.addClient(newProspect, user);
         return "redirect:/prospects/all";
     }
 
