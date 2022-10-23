@@ -152,6 +152,7 @@ public class Prospect {
 
     public void addNote(Note note){
         this.notes.add(note);
+
     }
 
     public void removeNote(Note note){

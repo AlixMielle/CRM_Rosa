@@ -4,6 +4,7 @@ import com.example.crm_rosa.controller.dto.CreateUser;
 import com.example.crm_rosa.exception.UserNotFoundException;
 import com.example.crm_rosa.repository.UserRepository;
 import com.example.crm_rosa.repository.entity.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -28,15 +29,13 @@ public class UserService {
     }
 
     public void register(CreateUser createUser) {
-        //todo : décommenter pour ajout Security
-        //BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
         User newUser = new User();
         newUser.setFirstname(createUser.getFirstname());
         newUser.setLastname(createUser.getLastname());
         newUser.setEmail(createUser.getEmail());
-        //newUser.setPassword(passwordEncoder.encode(createUser.getPassword()));
-        newUser.setPassword((createUser.getPassword()));
+        newUser.setPassword(passwordEncoder.encode(createUser.getPassword()));
         newUser.setPictureUrl(createUser.getPictureUrl());
 
         MultipartFile picture = createUser.getPictureFile();
@@ -47,6 +46,12 @@ public class UserService {
             newUser.setPictureUrl("http://localhost:8080/images/" + picture.getOriginalFilename());
         }
         this.userRepository.save(newUser);
+    }
+
+    public void register(User user) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        this.userRepository.save(user);
     }
 
     public User findUserById(long id) {

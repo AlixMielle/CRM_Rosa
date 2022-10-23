@@ -19,7 +19,7 @@
 <c:forEach items="${notes}" var="note">
     <div>Date: ${note.createdAt}</div>
     <div>Titre: ${note.title}</div>
-    <div><a href="${pageContext.request.contextPath}/notes/${idProspect}/${note.id}">Details</a> <a href="${pageContext.request.contextPath}/notes/delete/${note.id}">Suppression</a> <a href="${pageContext.request.contextPath}/notes/edit/${prospect.id}">Mise a jour</a></div>
+    <div><a href="${pageContext.request.contextPath}/notes/${idProspect}/${note.id}">Details</a> <a href="${pageContext.request.contextPath}/notes/delete/${note.id}">Suppression</a> <a href="${pageContext.request.contextPath}/notes/edit/${note.id}">Mise a jour</a></div>
 </c:forEach>
 
 </body>

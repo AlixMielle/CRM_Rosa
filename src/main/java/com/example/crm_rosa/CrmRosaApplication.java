@@ -1,17 +1,18 @@
 package com.example.crm_rosa;
 
+import com.example.crm_rosa.controller.dto.CreateUser;
 import com.example.crm_rosa.repository.EnterpriseRepository;
+import com.example.crm_rosa.repository.NoteRepository;
 import com.example.crm_rosa.repository.ProspectRepository;
 import com.example.crm_rosa.repository.UserRepository;
-import com.example.crm_rosa.repository.entity.Enterprise;
-import com.example.crm_rosa.repository.entity.Prospect;
-import com.example.crm_rosa.repository.entity.ProspectionStatus;
-import com.example.crm_rosa.repository.entity.User;
+import com.example.crm_rosa.repository.entity.*;
+import com.example.crm_rosa.service.UserService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @SpringBootApplication
 public class CrmRosaApplication implements CommandLineRunner {
@@ -20,18 +21,21 @@ public class CrmRosaApplication implements CommandLineRunner {
     private UserRepository userRepository;
 
     private ProspectRepository prospectRepository;
+    private UserService userService;
 
-    public CrmRosaApplication(EnterpriseRepository enterpriseRepository, UserRepository userRepository, ProspectRepository prospectRepository) {
+    private NoteRepository noteRepository;
+
+    public CrmRosaApplication(EnterpriseRepository enterpriseRepository, UserRepository userRepository, ProspectRepository prospectRepository, UserService userService, NoteRepository noteRepository) {
         this.enterpriseRepository = enterpriseRepository;
         this.userRepository = userRepository;
         this.prospectRepository = prospectRepository;
+        this.userService = userService;
+        this.noteRepository = noteRepository;
     }
 
     public static void main(String[] args) {
         SpringApplication.run(CrmRosaApplication.class, args);
-
     }
-
 
     @Override
     public void run(String... args) throws Exception {
@@ -65,24 +69,34 @@ public class CrmRosaApplication implements CommandLineRunner {
 
         User admin = new User("Cecile", "Rosa", "rosa@worktogether.fr", "0690989194", "0977654343", "87, rue des Cailloux", "Brest", 29200, "rosarosa", "https://images.unsplash.com/photo-1607105213504-70fed0df97ef?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OHx8cGluayUyMGhhaXJ8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "EasyToTask", "Formatrice et consultante", true);
 
-        User user1 = new User("Bob", "Gallaghan", "b.gala@webmail.com", "0654341919", "0976514343", "6, rue des Epines", "Saint-Herblain", 44300, "bobgal", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Apple", "Sales director", false);
-        User user2 = new User("Linda", "Tropez", "linda3@grout.com", "0654332119", "0976987343", "32, rue des Plombiers", "Lille", 59000, "linda90", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Orange", "UX Designer", false);
-        User user3 = new User("Patrick", "Potier", "pp@yahoo.fr", "0654393449", "0973114343", "10, rue des Chaumières", "Bordeaux", 33000, "patrick", "https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Groupama", "Manager", false);
+        User user1 = new User("Bob", "Gallaghan", "b.gala@webmail.com", "0654341919", "0976514343", "6, rue des Epines", "Saint-Herblain", 44300, "bobtest", "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8M3x8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Apple", "Sales director", false);
+        User user2 = new User("Linda", "Tropez", "linda3@grout.com", "0654332119", "0976987343", "32, rue des Plombiers", "Lille", 59000, "lindatest", "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8Nnx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Orange", "UX Designer", false);
+        User user3 = new User("Patrick", "Potier", "pp@yahoo.fr", "0654393449", "0973114343", "10, rue des Chaumières", "Bordeaux", 33000, "patricktest", "https://images.unsplash.com/photo-1628890920690-9e29d0019b9b?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cHJvZmlsZSUyMHBpY3R1cmV8ZW58MHx8MHx8&auto=format&fit=crop&w=500&q=60", "Groupama", "Manager", false);
 
-        userRepository.save(admin);
-        userRepository.save(user1);
-        userRepository.save(user2);
-        userRepository.save(user3);
+        userService.register(admin);
+        userService.register(user1);
+        userService.register(user2);
+        userService.register(user3);
 
-        Prospect prospect1 = new Prospect(2, "Emile", "Dupont", "dupont@webmail.com", "0654341919", "0976514343", "7, rue des Ilôts 85200 Fontenay-Le-Compte", enterprise1, "Développeur", LocalDate.of(2022, 6, 13), ProspectionStatus.ONGOING);
+        Prospect prospect1 = new Prospect(2L, "Emile", "Dupont", "dupont@webmail.com", "0654341919", "0976514343", "7, rue des Ilôts 85200 Fontenay-Le-Compte", enterprise1, "Développeur", LocalDate.of(2022, 6, 13), ProspectionStatus.ONGOING);
 
-        Prospect prospect2 = new Prospect(3, "Alexandra", "Douillard", "alex.d@webmail.com", "0654333319", "0976518843", "15, impasse des tulipes 74000 Niort", enterprise1, "Cheffe de projet", LocalDate.of(2022, 6, 22), ProspectionStatus.ONGOING);
+        Prospect prospect2 = new Prospect(3L, "Alexandra", "Douillard", "alex.d@webmail.com", "0654333319", "0976518843", "15, impasse des tulipes 74000 Niort", enterprise1, "Cheffe de projet", LocalDate.of(2022, 6, 22), ProspectionStatus.ONGOING);
 
-        Prospect prospect3 = new Prospect(1, "Victoire", "Le Merle", "vmerle@gmail.com", "0600333319", "0921218843", "90, rue de Vaugirard 75015 Paris", enterprise3, "Chef de projet", LocalDate.of(2021, 11, 22), ProspectionStatus.SEEKUPDATE);
+        Prospect prospect3 = new Prospect(1L, "Victoire", "Le Merle", "vmerle@gmail.com", "0600333319", "0921218843", "90, rue de Vaugirard 75015 Paris", enterprise3, "Chef de projet", LocalDate.of(2021, 11, 22), ProspectionStatus.SEEKUPDATE);
 
         prospectRepository.save(prospect1);
         prospectRepository.save(prospect2);
         prospectRepository.save(prospect3);
+
+        Note note1 = new Note(prospect1, LocalDate.of(2021, 11, 22), "Création prospect Mr Machin", "Mise en contact avec Mr Machin pour formation truc");
+
+        Note note2 = new Note(prospect2, LocalDate.of(2019, 1, 2), "Premier contact avec Mme Devers", "Bon contact, à suivre");
+
+        Note note3 = new Note(prospect3, LocalDate.of(2022, 10, 29), "Rappeler le soir", "Futur client");
+        noteRepository.save(note1);
+        noteRepository.save(note2);
+        noteRepository.save(note3);
+
 
 
     }
