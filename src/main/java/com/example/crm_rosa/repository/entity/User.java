@@ -1,9 +1,7 @@
 package com.example.crm_rosa.repository.entity;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 public class User {
@@ -37,6 +35,9 @@ public class User {
     private String job;
 
     private boolean isAdmin;
+
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<Prospect> prospects;
 
 
     public User() {
@@ -168,5 +169,21 @@ public class User {
 
     public void setAdmin(boolean admin) {
         isAdmin = admin;
+    }
+
+    public List<Prospect> getProspects() {
+        return prospects;
+    }
+
+    public void setProspects(List<Prospect> prospects) {
+        this.prospects = prospects;
+    }
+
+    public void addProspect(Prospect prospect){
+        this.prospects.add(prospect);
+    }
+
+    public void removeProspect(Prospect prospect){
+        this.prospects.remove(prospect);
     }
 }

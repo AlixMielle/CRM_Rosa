@@ -58,7 +58,7 @@ public class NoteController {
 
     @PostMapping("/edit")
     public String editNote(NoteCreateDto noteCreateDto, long idNote, long idProspect){
-        this.noteService.editNote(noteCreateDto, idNote, idProspect);
+        this.noteService.editNote(noteCreateDto, idNote);
         return "redirect:/notes/" + idProspect;
     }
 

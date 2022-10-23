@@ -35,7 +35,9 @@ public class CrmRosaApplication implements CommandLineRunner {
 
     public static void main(String[] args) {
         SpringApplication.run(CrmRosaApplication.class, args);
+
     }
+
 
     @Override
     public void run(String... args) throws Exception {
@@ -78,11 +80,9 @@ public class CrmRosaApplication implements CommandLineRunner {
         userService.register(user2);
         userService.register(user3);
 
-        Prospect prospect1 = new Prospect(2L, "Emile", "Dupont", "dupont@webmail.com", "0654341919", "0976514343", "7, rue des Ilôts 85200 Fontenay-Le-Compte", enterprise1, "Développeur", LocalDate.of(2022, 6, 13), ProspectionStatus.ONGOING);
-
-        Prospect prospect2 = new Prospect(3L, "Alexandra", "Douillard", "alex.d@webmail.com", "0654333319", "0976518843", "15, impasse des tulipes 74000 Niort", enterprise1, "Cheffe de projet", LocalDate.of(2022, 6, 22), ProspectionStatus.ONGOING);
-
-        Prospect prospect3 = new Prospect(1L, "Victoire", "Le Merle", "vmerle@gmail.com", "0600333319", "0921218843", "90, rue de Vaugirard 75015 Paris", enterprise3, "Chef de projet", LocalDate.of(2021, 11, 22), ProspectionStatus.SEEKUPDATE);
+        Prospect prospect1 = new Prospect(user2, "Emile", "Dupont", "dupont@webmail.com", "0654341919", "0976514343", "7, rue des Ilôts 85200 Fontenay-Le-Compte", enterprise1, "Développeur", LocalDate.of(2022, 6, 13), ProspectionStatus.ONGOING);
+        Prospect prospect2 = new Prospect(user3, "Alexandra", "Douillard", "alex.d@webmail.com", "0654333319", "0976518843", "15, impasse des tulipes 74000 Niort", enterprise1, "Cheffe de projet", LocalDate.of(2022, 6, 22), ProspectionStatus.ONGOING);
+        Prospect prospect3 = new Prospect(user1, "Victoire", "Le Merle", "vmerle@gmail.com", "0600333319", "0921218843", "90, rue de Vaugirard 75015 Paris", enterprise3, "Chef de projet", LocalDate.of(2021, 11, 22), ProspectionStatus.SEEKUPDATE);
 
         prospectRepository.save(prospect1);
         prospectRepository.save(prospect2);

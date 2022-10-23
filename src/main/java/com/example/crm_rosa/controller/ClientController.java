@@ -4,9 +4,11 @@ import com.example.crm_rosa.controller.dto.ProspectCreateDto;
 import com.example.crm_rosa.controller.dto.ProspectEditDto;
 import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.ClientService;
 import com.example.crm_rosa.service.EnterpriseService;
-import com.example.crm_rosa.service.ProspectService;
+import com.example.crm_rosa.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,28 +22,44 @@ public class ClientController {
 
     private ClientService clientService;
     private EnterpriseService enterpriseService;
+    private UserService userService;
 
-    public ClientController(ClientService clientService, EnterpriseService enterpriseService) {
+    public ClientController(ClientService clientService, EnterpriseService enterpriseService, UserService userService) {
         this.clientService = clientService;
         this.enterpriseService = enterpriseService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
-    public String displayAllProspects(Model model){
-        model.addAttribute("clients", this.clientService.getAbsolutelyAllClients());
+    public String displayAllProspects(Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        model.addAttribute("clients", this.clientService.getAllClients(user));
         return "clientsAllView";
     }
 
+    @GetMapping("/enterprise/{id}")
+    public String displayClientOfEnterprise(Model model, @PathVariable("id") long idEnterprise, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        model.addAttribute("prospects", this.clientService.getClientsByEnterprise(idEnterprise, user));
+        return "prospectAllView";
+    }
+
     @GetMapping("/details/{id}")
-    public String displayOneProspect(@PathVariable("id") long id, Model model){
-        //TODO: add some checks somewhere to make sure you can't just type the URL manually and get the ID of someone else (will do when users are implemented)
-        model.addAttribute("prospect", clientService.getClientById(id));
-        return "prospectDetailsView";
+    public String displayOneProspect(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        Prospect prospect = clientService.getClientById(id);
+        if(user.getIsAdmin() || prospect.getUser().equals(user)){
+            model.addAttribute("prospect", prospect);
+            return "prospectDetailsView";
+        } else{
+            return "redirect:/prospects/all";
+        }
     }
 
     @GetMapping("/search")
-    public String displaySearchedProspects(String search, Model model){
-        model.addAttribute("prospects", clientService.getClientsBySearch(search));
+    public String displaySearchedProspects(String search, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        model.addAttribute("prospects", clientService.getClientsBySearch(search, user));
         return "prospectAllView";
     }
 
@@ -54,19 +72,24 @@ public class ClientController {
     }
 
     @PostMapping("/add")
-    public String addProspect(ProspectCreateDto newProspect){
-        //TODO: user stuff again
-        clientService.addProspect(newProspect, 0L);
+    public String addClient(ProspectCreateDto newProspect, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        clientService.addClient(newProspect, user);
         return "redirect:/prospects/all";
     }
 
     @GetMapping("/edit/{id}")
-    public String displayEditProspectForm(@PathVariable("id") long id, Model model){
-        //TODO: same checks as for create
-        model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
-        model.addAttribute("prospectionStatuses", ProspectionStatus.values());
-        model.addAttribute("prospect", clientService.getClientById(id));
-        return "addProspectForm";
+    public String displayEditProspectForm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        Prospect prospect = clientService.getClientById(id);
+        if(user.getIsAdmin() || prospect.getUser().equals(user)){
+            model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
+            model.addAttribute("prospectionStatuses", ProspectionStatus.values());
+            model.addAttribute("prospect", prospect);
+            return "addProspectForm";
+        } else{
+            return "redirect:/prospects/all";
+        }
     }
 
     @PostMapping("/edit")
@@ -76,10 +99,16 @@ public class ClientController {
     }
 
     @GetMapping("/delete/{id}")
-    public String deleteProspectConfirm(@PathVariable("id") long id, Model model){
-        model.addAttribute("prospect", clientService.getClientById(id));
-        model.addAttribute("isDeleteForm", true);
-        return "prospectDetailsView";
+    public String deleteProspectConfirm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        Prospect prospect = clientService.getClientById(id);
+        if(user.getIsAdmin() || prospect.getUser().equals(user)){
+            model.addAttribute("prospect", prospect);
+            model.addAttribute("isDeleteForm", true);
+            return "prospectDetailsView";
+        } else{
+            return "redirect:/prospects/all";
+        }
     }
 
     @PostMapping("/delete/{id}")
