@@ -12,4 +12,10 @@ import java.util.List;
 public interface EnterpriseRepository extends CrudRepository<Enterprise, Long> {
     @Query("SELECT e FROM Enterprise e WHERE e.name LIKE %:keyword%")
     List<Enterprise> searchByName(@Param("keyword")String keyword);
+
+    @Query("SELECT e FROM Enterprise e ORDER BY e.name ASC")
+    List<Enterprise> sortByAlphabeticalOrder();
+
+    @Query("SELECT e FROM Enterprise e ORDER BY e.name DESC")
+    List<Enterprise> resortByAlphabeticalOrder();
 }

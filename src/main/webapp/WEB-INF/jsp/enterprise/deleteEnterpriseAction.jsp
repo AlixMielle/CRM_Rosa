@@ -23,5 +23,5 @@
 
 <button type="button" class="btn btn-sm btn-outline-danger" data-bs-toggle="modal"
         data-bs-target="#delete_modal">
-    Supprimer
+    <i class="bi bi-trash3"></i>
 </button>
