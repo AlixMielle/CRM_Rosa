@@ -25,7 +25,7 @@
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../header.jsp"/>
 
 
     <div class="page-wrapper">
@@ -230,7 +230,7 @@
                     </div>
                 </div>
 
-                <jsp:include page="footer.jsp"></jsp:include>
+                <jsp:include page="../footer.jsp"></jsp:include>
 
             </div>
         </div>
