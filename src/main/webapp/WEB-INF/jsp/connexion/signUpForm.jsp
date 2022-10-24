@@ -39,12 +39,15 @@
                 <div class="form-outline mb-4">
                     <input type="password" name="password" id="password" class="form-control" placeholder="Mot de passe" required>
                 </div>
+
+                <div class="row">
                 <%-- Toogle switch --%>
-                <div class="row g-3">
+                <div class="form-outline mb-4">
                     <div class="col-sm-12 form-check form-switch">
-                        <label class="form-check-label text-white" for="toggleLogoOptions">Photo de profil</label>
+                        <label class="form-check-label text-white my-3" for="toggleLogoOptions">Photo de profil
                         <input id="toggleLogoOptions" class="form-check-input" type="checkbox" role="switch"
                                checked>
+                        </label>
                     </div>
                     <%-- Picture file --%>
                     <div class="col-sm-12 mb-1">
@@ -82,6 +85,7 @@
         </form>
     </div>
     </div>
+        </div>
     </section>
 
 
