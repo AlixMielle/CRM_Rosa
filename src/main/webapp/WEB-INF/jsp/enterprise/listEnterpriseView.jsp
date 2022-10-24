@@ -18,30 +18,49 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Liste des entreprises</title>
-
-
 </head>
 
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-<jsp:include page="../header.jsp"/>
+    <jsp:include page="../header.jsp"/>
 
     <div class="page-wrapper">
         <div class="container-fluid">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Liste des entreprises</h1>
+                <p><a href="${pageContext.request.contextPath}/enterprises/add"
+                      class="btn btn-success mx-auto text-white">Créer une entreprise</a></p>
             </div>
             <div class="row">
                 <div class="col-sm-12">
                     <div class="card">
                         <div class="card-body">
-                            <h4 class="card-title">Entreprises enregistrées</h4>
+                            <div class="row d-flex align-items-center justify-content-around">
+                                <div class="col-10">
+                                    <form action="${pageContext.request.contextPath}/enterprises/all"
+                                          class="d-flex justify-content-between" role="search">
+                                        <input class="form-control me-2" type="search" name="keyword" value="${keyword}"
+                                               id="keyword"
+                                               placeholder="Rechercher une entreprise" aria-label="Search"
+                                               style="color: darkslategray">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn"><i class="bi bi-search"></i></button>
+                                                <button type="button" id="clearButton" class="btn"
+                                                        onclick="clearSearch()"><i class="bi bi-arrow-clockwise"></i>
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
                             <div class="table-responsive">
                                 <table class="table user-table">
                                     <thead>
                                     <tr>
                                         <th class="border-top-0">Logo</th>
+
                                         <th class="border-top-0">Nom <button id="sortAlphabetButton">A/Z</button> <button id="sortReverseAlphabetButton">Z/A</button></th>
                                         <th class="border-top-0">SIRET</th>
                                         <th class="border-top-0">Informations</th>
@@ -71,8 +90,9 @@
                                                 <div><a href="tel:${enterprise.phone}">${enterprise.phone}</a></div>
                                                 <div><a href="${enterprise.website}">Visiter le site web</a></div>
                                             </td>
-                                            <td>${enterprise.address} ${enterprise.zipcode} ${enterprise.city}</td>
-                                            <td class="createdAt">${enterprise.createdAt}</td>
+                                            <td><div><a href="https://www.google.com/maps/dir/${enterprise.address} ${enterprise.zipcode} ${enterprise.city}">${enterprise.address} ${enterprise.zipcode} ${enterprise.city}</a></div></td>
+                                            <td>${enterprise.createdAt}</td>
+
                                             <td>
                                                 <c:forEach items="${enterprise.prospects}" var="prospect">
                                                     <div>
@@ -93,16 +113,6 @@
                                     </c:forEach>
                                     </tbody>
                                 </table>
-                                <div class="form-group m-2 p-2">
-                                    <div class="col-sm-12 d-flex p-2">
-                                        <button class="btn btn-success mx-auto text-white" type="submit">Créer une
-                                            entreprise
-                                        </button>
-                                        <button class="btn btn-success mx-auto text-white" type="submit">Rechercher une
-                                            entreprise
-                                        </button>
-                                    </div>
-                                </div>
                             </div>
                         </div>
                     </div>

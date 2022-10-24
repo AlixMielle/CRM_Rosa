@@ -3,8 +3,11 @@ package com.example.crm_rosa.controller;
 import com.example.crm_rosa.controller.dto.CreateEnterprise;
 import com.example.crm_rosa.repository.entity.Enterprise;
 import com.example.crm_rosa.repository.entity.Prospect;
+import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.ProspectService;
+import com.example.crm_rosa.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -18,17 +21,21 @@ public class EnterpriseController {
 
     private EnterpriseService enterpriseService;
     private ProspectService prospectService;
+    private UserService userService;
 
-    public EnterpriseController(EnterpriseService enterpriseService, ProspectService prospectService) {
+    public EnterpriseController(EnterpriseService enterpriseService, ProspectService prospectService, UserService userService) {
         this.enterpriseService = enterpriseService;
         this.prospectService = prospectService;
+        this.userService = userService;
     }
 
     @GetMapping("/all")
-    public String displayAllEnterprises(Model model, @RequestParam(value = "keyword", required = false) String keyword){
+    public String displayAllEnterprises(Authentication authentication, Model model, @RequestParam(value = "keyword", required = false) String keyword){
+        User user = this.userService.findUserByEmail(authentication.getName());
         List<Enterprise> enterpriseList = enterpriseService.findEnterpriseByName(keyword);
         model.addAttribute("enterpriseList", enterpriseList);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("user", user);
         return "enterprise/listEnterpriseView";
     }
 
@@ -46,16 +53,20 @@ public class EnterpriseController {
     }
 
     @GetMapping("/details/{id}")
-    public String displayOneEnterprise(@PathVariable("id") long id, Model model){
+    public String displayOneEnterprise(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
+        model.addAttribute("user", user);
         return "enterprise/detailEnterpriseView";
     }
 
     @GetMapping("/add")
-    public String createEnterpriseForm(Model model){
+    public String createEnterpriseForm(Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
         List<Prospect> prospectList = prospectService.getAbsolutelyAllProspects();
         model.addAttribute("prospectList", prospectList);
+        model.addAttribute("user", user);
         return "enterprise/createEnterpriseForm";
     }
 
@@ -72,9 +83,11 @@ public class EnterpriseController {
     }
 
     @GetMapping("/edit/{id}")
-    public String editEnterpriseForm(@PathVariable("id") long id, Model model){
+    public String editEnterpriseForm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
+        model.addAttribute("user", user);
         return "enterprise/editEnterpriseForm";
     }
 

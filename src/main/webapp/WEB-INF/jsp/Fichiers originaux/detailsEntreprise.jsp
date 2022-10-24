@@ -21,7 +21,7 @@
             <div class="navbar-header" style="background-color: #1D4851;">
                 <a class="navbar-brand ms-4" href="#">
                     <b class="logo-icon">
-                        <img src="img/logo.png" alt="homepage" class="dark-logo img-fluid" />
+                        <img src="../../../img/logo.png" alt="homepage" class="dark-logo img-fluid" />
 
                     </b>
                 </a>

@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
-    <title>EasyToTask | Editer une entreprise</title>
-
-
+    <title>EasyToTask | Liste des entreprises</title>
 </head>
 
 <body>
@@ -27,134 +25,151 @@
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <jsp:include page="../header.jsp"/>
 
-<div class="container">
-    <main>
-        <div class="py-5">
-            <h2>Modifier une entreprise</h2>
-            <p class="lead">Mettez à jour votre base de données !</p>
-            <hr class="my-1">
-        </div>
+    <div class="page-wrapper">
+        <div class="container-fluid">
 
-        <div class="row g-3">
-            <div class="col-md-7 col-lg-8">
-                <form action="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}" method="post"
-                      enctype="multipart/form-data">
-                    <input type="hidden" name="id" value="${enterprise.id}">
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="name" class="form-label">Nom de l'entreprise</label>
-                            <input type="text" class="form-control" id="name" name="name" value="${enterprise.name}">
-                        </div>
-                        <div class="col-sm-6 mb-3">
-                            <label for="siret" class="form-label">N° siret</label>
-                            <input type="text" class="form-control" id="siret" name="siret" value="${enterprise.siret}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="email" class="form-label">Email</label>
-                            <input type="email" class="form-control" id="email" name="email" value="${enterprise.email}">
-                        </div>
-                        <div class="col-sm-6 mb-3">
-                            <label for="website" class="form-label">Site web </label>
-                            <input type="text" class="form-control" id="website" name="website" value="${enterprise.website}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <label for="mobile" class="form-label">Portable</label>
-                            <input type="text" class="form-control" id="mobile" name="mobile" value="${enterprise.mobile}">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="phone" class="form-label">Téléphone fixe</label>
-                            <input type="text" class="form-control" id="phone" name="phone" value="${enterprise.phone}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <label for="address" class="form-label">Adresse</label>
-                            <input type="text" class="form-control" id="address" name="address" value="${enterprise.address}">
-                        </div>
-                        <div class="col-sm-6 mb-3">
-                            <label for="additionalAddress" class="form-label">Complément d'adresse</label>
-                            <input type="text" class="form-control" id="additionalAddress" name="additionalAddress" value="${enterprise.additionalAddress}">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-sm-6 mb-3">
-                            <label for="zipcode" class="form-label">Code Postal</label>
-                            <input type="number" class="form-control" id="zipcode" name="zipcode" value="${enterprise.zipcode}">
-                        </div>
-                        <div class="col-sm-6">
-                            <label for="city" class="form-label">Ville</label>
-                            <input type="text" class="form-control" id="city" name="city" value="${enterprise.city}">
-                        </div>
-                    </div>
-                    <%-- Toogle switch --%>
-                    <div class="row g-3">
-                        <div class="col-sm-12 form-check form-switch">
-                            <label class="form-check-label" for="toggleLogoOptions">Logo de l'entreprise</label>
-                            <input id="toggleLogoOptions" class="form-check-input" type="checkbox" role="switch"
-                                   checked>
-                        </div>
-                        <%-- Picture file --%>
-                        <div class="col-sm-12 mb-1">
-                            <label for="logoFile">Chargez un fichier :</label>
-                            <input id="logoFile" type="file" name="logoFile" required="" disabled value="${enterprise.logo}">
-                            <div class="invalid-feedback">Un fichier valide est demandé.</div>
-                        </div>
-                        <%-- Picture Url --%>
-                        <div class="col-sm-12 mb-3">
-                            <label for="logoUrl">ou saisissez une adresse URL :</label>
-                            <input id="logoUrl" type="text" class="form-control" name="logoUrl"
-                                   placeholder="http://www.picture.website.fr/my-picture.png" required="" value="${enterprise.logo}">
-                            <div class="invalid-feedback">Une URL valide est obligatoire.</div>
-                        </div>
-                    </div>
-                    <script>
-                        let checkboxPictures = document.getElementById("toggleLogoOptions");
-                        checkboxPictures.addEventListener('change', function () {
-                            document.getElementById("logoUrl").disabled = !this.checked;
-                            document.getElementById("logoFile").disabled = this.checked;
-                        });
-                    </script>
-                    <div class="col-12">
-                        <label for="sector" class="form-label">Secteur d'activité</label>
-                        <div class="input-group">
-                            <textarea class="form-control" id="sector" name="sector" rows="2">${enterprise.sector}</textarea>
-                        </div>
-                    </div>
-                    <%--<div class="col-sm-6">
-                        <label for="prospect">Prospects/Clients:</label>
-                        <select class="form-select" id="prospect" required name="prospect" multiple>
-                            <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
-                            <c:forEach items="${prospectList}" var="prospect">
-                                <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}">${prospect.firstName} ${prospect.lastName}</option>
-                            </c:forEach>
-                        </select>
-                    </div>--%>
-                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <button class="btn my-2 text-white" style="background-color: darkslategray" type="submit">
-                        Modifier l'entreprise
-                    </button>
-                    <button class="btn my-2 text-white" style="background-color: darkslategray" type="reset">Annuler
-                    </button>
-                    <div>
-                        <a href="${pageContext.request.contextPath}/enterprises/all" style="color: darkslategray">Retour à
-                            la liste</a>
-                    </div>
-                </form>
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                <h1 class="h3 mb-0 text-gray-800">Modifier l'entreprise</h1>
             </div>
+            <div class="row">
+                <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="card shadow">
+                        <div class="card-body profile-card">
+                            <center class="mt-4"> <img
+                                    src="${enterprise.logo}" class="rounded-circle img-fluid" width="150" />
+                                <h4 class="card-title mt-2">${enterprise.name}</h4>
+                                <div class="row text-center justify-content-center">
+                                </div>
+                            </center>
+                        </div>
+                            <div class="card-footer bg-dark text-white">
+                                <div class="bg-dark text-white form-check form-switch">
+                                    <label class="form-check-label" for="toggleLogoOptions">Logo de l'entreprise</label>
+                                    <input id="toggleLogoOptions" class="form-check-input" type="checkbox" role="switch"
+                                           checked>
+                                </div>
+                                <div class="col-sm-12 mb-1">
+                                    <label for="logoFile">Chargez une photo :</label>
+                                    <input id="logoFile" type="file" name="logoFile" required="" disabled value="${enterprise.logo}">
+                                    <div class="invalid-feedback">Un fichier valide est demandé.</div>
+                                </div>
+
+                                <div class="col-sm-12 mb-3">
+                                    <label for="logoUrl">ou saisissez une adresse URL :</label>
+                                    <input id="logoUrl" type="text" class="form-control" name="logoUrl"
+                                           placeholder="http://www.picture.website.fr/my-picture.png" required="" value="${enterprise.logo}">
+                                    <div class="invalid-feedback">Une URL valide est obligatoire.</div>
+                                </div>
+                            </div>
+                        <script>
+                            let checkboxPictures = document.getElementById("toggleLogoOptions");
+                            checkboxPictures.addEventListener('change', function () {
+                                document.getElementById("logoUrl").disabled = !this.checked;
+                                document.getElementById("logoFile").disabled = this.checked;
+                            });
+                        </script>
+                    </div>
+                </div>
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card shadow mb-5">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2" action="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}" method="post"
+                                  enctype="multipart/form-data">
+                                <input type="hidden" name="id" value="${enterprise.id}">
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Nom</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Nom" class="form-control ps-0 form-control-line" id="name" name="name" value="${enterprise.name}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="siret" class="col-md-12">Numéro SIRET</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="123 456 789 00056" class="form-control ps-0 form-control-line" id="siret" name="siret" value="${enterprise.siret}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <input type="email" placeholder="Email"
+                                               class="form-control ps-0 form-control-line"
+                                               id="email" name="email" value="${enterprise.email}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Numéro de téléphone fixe</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="123 456 7890"
+                                               class="form-control ps-0 form-control-line" id="phone" name="phone" value="${enterprise.phone}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Numéro de téléphone portable</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="123 456 7890"
+                                               class="form-control ps-0 form-control-line" id="mobile" name="mobile" value="${enterprise.mobile}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Site web</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Adresse du site"
+                                               class="form-control ps-0 form-control-line" id="website" name="website" value="${enterprise.website}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Adresse postale</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Adresse"
+                                               class="form-control ps-0 form-control-line" id="address" name="address" value="${enterprise.address}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="additionalAddress" class="col-md-12 mb-0">Complément d'adresse</label>
+                                    <input type="text" class="form-control ps-0 form-control-line" id="additionalAddress" name="additionalAddress" value="${enterprise.additionalAddress}">
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Code postal</label>
+                                    <div class="col-md-12">
+                                        <input type="text" placeholder="Code postal"
+                                               class="form-control ps-0 form-control-line" id="zipcode" name="zipcode" value="${enterprise.zipcode}">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="sector" class="col-md-12 mb-0">Secteur d'activité</label>
+                                    <textarea class="form-control ps-0 form-control-line" id="sector" name="sector" rows="2">${enterprise.sector}</textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-12" for="prospect">Sélectionner un prospect/client:</label>
+                                    <div class="col-sm-12 border-bottom">
+                                        <select class="form-select shadow-none ps-0 border-0 form-control-line" id="prospect" required name="prospectsIds" multiple>
+                                            <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
+                                            <c:forEach items="${prospectList}" var="prospect">
+                                                <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}">${prospect.firstName} ${prospect.lastName}</option>
+                                            </c:forEach>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="form-group m-2 p-2">
+                                    <div class="col-sm-12 d-flex p-2">
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <button class="btn btn-success mx-auto text-white"
+                                                type="submit">Valider</button>
+                                        <button class="btn btn-success mx-auto text-white"
+                                                type="reset">Annuler</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
-    </main>
-
-    <jsp:include page="../footer.jsp"/>
+        <jsp:include page="../footer.jsp"/>
+    </div>
 </div>
-</div>
-<script src="${pageContext.request.contextPath}/docs/5.2/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
-        crossorigin="anonymous"></script>
-
-<script src="form-validation.js"></script>
-
 </body>
+
+</html>
