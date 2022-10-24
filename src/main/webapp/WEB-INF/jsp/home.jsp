@@ -145,7 +145,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
                                         Prospections restantes</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">67</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbProspects}</div>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -168,8 +168,8 @@
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                        Prospections effectuées</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">41</div>
+                                        Prospections à relancer</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbRelance}</div>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -192,7 +192,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                         Nombre de clients</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">34</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbClients}</div>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -212,7 +212,7 @@
                                 <div class="col mr-2">
                                     <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                         Nombre d'entreprises</div>
-                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">28</div>
+                                    <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbEnterprises}</div>
                                 </div>
                                 <div class="col-auto">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40"
@@ -239,18 +239,18 @@
                             <div class="card-body">
                                 <h5 class="font-weight-bold mb-3">En cours</h5>
                                 <div class="progress mb-4">
-                                    <div class="progress-bar bg-warning" role="progressbar" style="width: 20%"
-                                         aria-valuenow="20" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-warning" role="progressbar" style="width: ${nbProspects/(nbProspects+nbClients)*100}%"
+                                         aria-valuenow="${nbProspects}" aria-valuemin="0" aria-valuemax="${nbProspects+nbClients}"></div>
                                 </div>
                                 <h5 class="font-weight-bold mb-3">A relancer</h5>
                                 <div class="progress mb-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: 40%"
-                                         aria-valuenow="40" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${nbRelace/(nbProspects+nbClients)*100}%"
+                                         aria-valuenow="${nbRelance}" aria-valuemin="0" aria-valuemax="${nbProspects+nbClients}"></div>
                                 </div>
                                 <h5 class="font-weight-bold mb-3">Terminées</h5>
                                 <div class="progress mb-4">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: 60%"
-                                         aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${nbClients/(nbProspects+nbClients)}%"
+                                         aria-valuenow="${nbClients}" aria-valuemin="0" aria-valuemax="${nbProspects+nbClients}"></div>
                                 </div>
                             </div>
                         </div>
