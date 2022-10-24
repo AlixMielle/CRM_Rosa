@@ -7,8 +7,7 @@
             <div class="navbar-header">
                 <a class="navbar-brand ms-4" href="${pageContext.request.contextPath}/home">
                     <b class="logo-icon">
-                        <img src="img/logo.png" alt="homepage" class="dark-logo img-fluid" />
-
+                        <img src="../../img/logo.png" alt="homepage" class="dark-logo img-fluid" />
                     </b>
                 </a>
             </div>

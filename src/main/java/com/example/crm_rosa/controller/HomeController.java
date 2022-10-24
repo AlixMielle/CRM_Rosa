@@ -75,6 +75,6 @@ public class HomeController {
         model.addAttribute("nbRelance", nbRelance);
         model.addAttribute("nbClients", nbClients);
         model.addAttribute("nbEnterprises", enterprisesOfUser.size());
-        return "home";
+        return "connexion/home";
     }
 }
