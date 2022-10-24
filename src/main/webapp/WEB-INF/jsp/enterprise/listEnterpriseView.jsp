@@ -60,25 +60,17 @@
                                     <thead>
                                     <tr>
                                         <th class="border-top-0">Logo</th>
-                                        <th class="border-top-0">Nom
-                                            <form action="${pageContext.request.contextPath}/enterprises/all/sorted">
-                                                <button type="submit" class="btn"><i class="bi bi-sort-alpha-down"></i>
-                                                </button>
-                                            </form>
-                                            <form action="${pageContext.request.contextPath}/enterprises/all/resorted">
-                                                <button type="submit" class="btn"><i class="bi bi-sort-alpha-up"></i>
-                                                </button>
-                                            </form>
-                                        </th>
+
+                                        <th class="border-top-0">Nom <button id="sortAlphabetButton">A/Z</button> <button id="sortReverseAlphabetButton">Z/A</button></th>
                                         <th class="border-top-0">SIRET</th>
                                         <th class="border-top-0">Informations</th>
                                         <th class="border-top-0">Adresse</th>
-                                        <th class="border-top-0">Date de création</th>
+                                        <th class="border-top-0">Date de création <button id="sortDateButton">1/12</button> <button id="sortReverseDateButton">12/1</button></th>
                                         <th class="border-top-0">Prospects de l'entreprise</th>
                                         <th class="border-top-0">Actions</th>
                                     </tr>
                                     </thead>
-                                    <tbody>
+                                    <tbody id="enterpriseSheet">
                                     <c:forEach items="${enterpriseList}" var="enterprise">
                                         <tr>
                                             <td>
@@ -87,7 +79,7 @@
                                             </td>
                                             <td>
                                                 <a href="${pageContext.request.contextPath}/enterprises/details/${enterprise.id}"
-                                                   class="card-text">${enterprise.name}</a>
+                                                   class="card-text enterpriseName">${enterprise.name}</a>
                                             </td>
                                             <td>
                                                     ${enterprise.siret}
@@ -100,6 +92,7 @@
                                             </td>
                                             <td><div><a href="https://www.google.com/maps/dir/${enterprise.address} ${enterprise.zipcode} ${enterprise.city}">${enterprise.address} ${enterprise.zipcode} ${enterprise.city}</a></div></td>
                                             <td>${enterprise.createdAt}</td>
+
                                             <td>
                                                 <c:forEach items="${enterprise.prospects}" var="prospect">
                                                     <div>
