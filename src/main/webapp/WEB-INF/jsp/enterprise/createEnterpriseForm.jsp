@@ -15,6 +15,7 @@
           integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
     <%-- <link rel="stylesheet" href="${pageContext.request.contextPath}/src/main/resources/static/css/root.css">--%>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.0/css/all.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
 </head>
 <body class="bg-light">
 
@@ -75,7 +76,7 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <label for="zipcode" class="form-label">Code Postal</label>
-                            <input type="number" class="form-control" id="zipcode" name="zipcode">
+                            <input type="number" class="form-control" id="zipcode" name="zipcode" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="city" class="form-label">Ville</label>
@@ -118,7 +119,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="prospect">Prospects/Clients:</label>
-                        <select class="form-select" id="prospect" required name="prospect" multiple>
+                        <select class="form-select" id="prospect" required name="prospectsIds" multiple>
                             <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
                             <c:forEach items="${prospectList}" var="prospect">
                                 <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}"> ${prospect.firstName} ${prospect.lastName}</option>

@@ -22,6 +22,10 @@ public class UserService {
         this.storageService = storageService;
     }
 
+    public List<User> findAllUsers(){
+        return (List<User>) this.userRepository.findAll();
+    }
+
     public List<User> findUserByName(String keyword) {
         if (keyword != null){
             return this.userRepository.searchByName(keyword);
