@@ -3,6 +3,7 @@ package com.example.crm_rosa.controller;
 import com.example.crm_rosa.controller.dto.CreateUser;
 import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.UserService;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,9 +46,9 @@ public class HomeController {
     }
 
     @GetMapping("/home")
-    public String displayHome(Model model) {
-        List<User> userList = userService.findAllUsers();
-        model.addAttribute("userList", userList);
+    public String displayHome(Model model, Authentication authentication) {
+        User user = this.userService.findUserByEmail(authentication.getName());
+        model.addAttribute("user", user);
         return "home";
     }
 }

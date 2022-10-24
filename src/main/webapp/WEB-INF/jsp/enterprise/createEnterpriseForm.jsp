@@ -76,7 +76,7 @@
                     <div class="row">
                         <div class="col-sm-6 mb-3">
                             <label for="zipcode" class="form-label">Code Postal</label>
-                            <input type="number" class="form-control" id="zipcode" name="zipcode">
+                            <input type="number" class="form-control" id="zipcode" name="zipcode" required>
                         </div>
                         <div class="col-sm-6">
                             <label for="city" class="form-label">Ville</label>
@@ -119,7 +119,7 @@
                     </div>
                     <div class="col-sm-6">
                         <label for="prospect">Prospects/Clients:</label>
-                        <select class="form-select" id="prospect" required name="prospect" multiple>
+                        <select class="form-select" id="prospect" required name="prospectsIds" multiple>
                             <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
                             <c:forEach items="${prospectList}" var="prospect">
                                 <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}"> ${prospect.firstName} ${prospect.lastName}</option>

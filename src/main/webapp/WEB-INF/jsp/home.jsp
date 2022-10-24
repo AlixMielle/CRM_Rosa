@@ -52,10 +52,8 @@
 
                             <a class="nav-link dropdown-toggle" href="${pageContext.request.contextPath}/users/details/${user.id}" id="navbarDropdownMenuLink" role="button"
                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <c:forEach items="${userList}" var="user">
                                 ${user.firstname} ${user.lastname}
                                 <img src="${user.pictureUrl}" width="40" height="40" class="rounded-circle">
-                                </c:forEach>
                             </a>
                             <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                                 <a class="dropdown-item" href="#">Profil</a>
