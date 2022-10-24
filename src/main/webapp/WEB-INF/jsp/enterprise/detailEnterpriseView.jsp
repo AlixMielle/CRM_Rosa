@@ -107,7 +107,9 @@
                                 </div>
                                 <div class="form-group m-2 p-2">
                                     <div class="col-sm-12 d-flex p-2">
-                                        <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
+                                        <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier une entreprise</a>
+                                        <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/all">Retour à la liste</a>
+
                                         <c:import url="deleteEnterpriseAction.jsp"></c:import>
                                     </div>
                                 </div>

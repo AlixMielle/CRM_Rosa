@@ -42,6 +42,7 @@ public class ProspectController {
     public String displayProspectOfEnterprise(Model model, @PathVariable("id") long idEnterprise, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("prospects", this.prospectService.getProspectsByEnterprise(idEnterprise, user));
+        model.addAttribute("user", user);
         return "prospect/prospectAllView";
     }
 
@@ -51,6 +52,7 @@ public class ProspectController {
         Prospect prospect = prospectService.getProspectById(id);
         if(user.getIsAdmin() || prospect.getUser().equals(user)){
             model.addAttribute("prospect", prospect);
+            model.addAttribute("user", user);
             return "prospect/prospectDetailsView";
         } else {
             return "redirect:/prospects/all";
@@ -61,6 +63,7 @@ public class ProspectController {
     public String displaySearchedProspects(String search, Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("prospects", prospectService.getProspectsBySearch(search, user));
+        model.addAttribute("user", user);
         return "prospect/prospectAllView";
     }
 
@@ -88,6 +91,7 @@ public class ProspectController {
             model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
             model.addAttribute("prospectionStatuses", ProspectionStatus.values());
             model.addAttribute("prospect", prospect);
+            model.addAttribute("user", user);
             return "prospect/addProspectForm";
         } else{
             return "redirect:/prospects/all";
@@ -107,6 +111,7 @@ public class ProspectController {
         if(user.getIsAdmin() || prospect.getUser().equals(user)){
             model.addAttribute("prospect", prospect);
             model.addAttribute("isDeleteForm", true);
+            model.addAttribute("user", user);
             return "prospect/prospectDetailsView";
         } else{
             return "redirect:/prospects/all";

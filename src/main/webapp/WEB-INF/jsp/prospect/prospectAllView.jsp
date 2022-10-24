@@ -79,17 +79,16 @@
                                             <td>
                                                 <a href="${pageContext.request.contextPath}/prospects/details/${prospect.id}"
                                                    class="card-text enterpriseName">${prospect.lastName} ${prospect.firstName}</a>
-                                            </td>
-                                            <td>${prospect.jobTitle}</td>
-                                            <td>${prospect.enterprise}</td>
                                             <td>
                                                 <div><a href="mailto:${prospect.email}">${prospect.email}</a></div>
                                                 <div><a href="tel:${prospect.mobilePhone}">${prospect.mobilePhone}</a></div>
                                                 <div><a href="tel:${prospect.landlinePhone}">${prospect.landlinePhone}</a></div>
                                             </td>
-                                            <td><div><a href="https://www.google.com/maps/dir/${prospect.address} ${prospect.zipcode} ${prospect.city}">${prospect.address} ${prospect.zipcode} ${prospect.city}</a></div></td>
+                                            </td>
+                                            <td>${prospect.jobTitle}</td>
+                                            <td>${prospect.enterprise.name}</td>
+                                            <td>${prospect.prospectionStatus}</td>
                                             <td class="createdAt">${prospect.createdAt}</td>
-                                            <td class="createdAt">${prospect.prospectionStatus}</td>
                                             <td>
                                                 <a type="button" class="btn btn-sm btn-outline-primary"
                                                    href="${pageContext.request.contextPath}/prospects/details/${prospect.id}"><i
