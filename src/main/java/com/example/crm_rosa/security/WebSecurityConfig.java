@@ -81,7 +81,8 @@ public class WebSecurityConfig {
         return new WebSecurityCustomizer() {
             @Override
             public void customize(WebSecurity web) {
-                web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/favicon.ico", "/files/**");
+                web.ignoring().antMatchers("/css/**", "/js/**", "/img/**", "/favicon.ico", "/files/**", "/uploads/**");
+
             }
         };
     }

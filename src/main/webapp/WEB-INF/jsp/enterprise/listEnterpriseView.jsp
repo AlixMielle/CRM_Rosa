@@ -91,7 +91,7 @@
                                                 <div><a href="${enterprise.website}">Visiter le site web</a></div>
                                             </td>
                                             <td><div><a href="https://www.google.com/maps/dir/${enterprise.address} ${enterprise.zipcode} ${enterprise.city}">${enterprise.address} ${enterprise.zipcode} ${enterprise.city}</a></div></td>
-                                            <td>${enterprise.createdAt}</td>
+                                            <td class="createdAt">${enterprise.createdAt}</td>
 
                                             <td>
                                                 <c:forEach items="${enterprise.prospects}" var="prospect">

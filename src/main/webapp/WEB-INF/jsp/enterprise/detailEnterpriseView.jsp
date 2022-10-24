@@ -37,7 +37,7 @@
                     <div class="card shadow">
                         <div class="card-body profile-card">
                             <center class="mt-4"> <img src="${enterprise.logo}"
-                                    class="rounded-circle img-fluid" width="150" />
+                                    class="rounded-circle img-fluid" width="150"/>
                                 <h4 class="card-title mt-2">${enterprise.name}</h4>
                                 <div class="row text-center justify-content-center">
                                 </div>
@@ -56,13 +56,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-siret" class="col-md-12">SIRET</label>
+                                    <label class="col-md-12">SIRET</label>
                                     <div class="col-md-12">
                                         <h5 class="my-3">${enterprise.siret}</h5>
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <label class="col-md-12">Email</label>
                                     <div class="col-md-12">
                                         <h5 class="my-3"><a href="mailto:${enterprise.email}">${enterprise.email}</a></h5>
                                     </div>
