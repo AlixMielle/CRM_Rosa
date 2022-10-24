@@ -47,9 +47,6 @@
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div class="btn-group">
                                                 <button type="submit" class="btn"><i class="bi bi-search"></i></button>
-                                                <button type="button" id="clearButton" class="btn"
-                                                        onclick="clearSearch()"><i class="bi bi-arrow-clockwise"></i>
-                                                </button>
                                             </div>
                                         </div>
                                     </form>
@@ -61,11 +58,15 @@
                                     <tr>
                                         <th class="border-top-0">Logo</th>
 
-                                        <th class="border-top-0">Nom <button id="sortAlphabetButton">A/Z</button> <button id="sortReverseAlphabetButton">Z/A</button></th>
+                                        <th class="border-top-0">Nom
+                                            <a type="button" id="sortAlphabetButton"><i class="bi bi-sort-alpha-down"></i></a>
+                                            <a type="button" id="sortReverseAlphabetButton"><i class="bi bi-sort-alpha-up"></i></a></th>
                                         <th class="border-top-0">SIRET</th>
                                         <th class="border-top-0">Informations</th>
                                         <th class="border-top-0">Adresse</th>
-                                        <th class="border-top-0">Date de création <button id="sortDateButton">1/12</button> <button id="sortReverseDateButton">12/1</button></th>
+                                        <th class="border-top-0">Date de création
+                                            <a type="button" id="sortDateButton"><i class="bi bi-sort-numeric-down"></i></a>
+                                            <a type="button" id="sortReverseDateButton"><i class="bi bi-sort-numeric-up"></i></a></th>
                                         <th class="border-top-0">Prospects de l'entreprise</th>
                                         <th class="border-top-0">Actions</th>
                                     </tr>

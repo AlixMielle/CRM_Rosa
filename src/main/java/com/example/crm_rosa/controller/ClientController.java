@@ -34,14 +34,14 @@ public class ClientController {
     public String displayAllProspects(Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("clients", this.clientService.getAllClients(user));
-        return "clientsAllView";
+        return "client/clientsAllView";
     }
 
     @GetMapping("/enterprise/{id}")
     public String displayClientOfEnterprise(Model model, @PathVariable("id") long idEnterprise, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("prospects", this.clientService.getClientsByEnterprise(idEnterprise, user));
-        return "prospectAllView";
+        return "prospect/prospectAllView";
     }
 
     @GetMapping("/details/{id}")
@@ -50,7 +50,7 @@ public class ClientController {
         Prospect prospect = clientService.getClientById(id);
         if(user.getIsAdmin() || prospect.getUser().equals(user)){
             model.addAttribute("prospect", prospect);
-            return "prospectDetailsView";
+            return "prospect/prospectDetailsView";
         } else{
             return "redirect:/prospects/all";
         }
@@ -60,7 +60,7 @@ public class ClientController {
     public String displaySearchedProspects(String search, Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("prospects", clientService.getClientsBySearch(search, user));
-        return "prospectAllView";
+        return "prospect/prospectAllView";
     }
 
     @GetMapping("/add")
@@ -68,7 +68,7 @@ public class ClientController {
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
         model.addAttribute("addingClient", true);
-        return "addProspectForm";
+        return "prospect/addProspectForm";
     }
 
     @PostMapping("/add")
@@ -86,7 +86,7 @@ public class ClientController {
             model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
             model.addAttribute("prospectionStatuses", ProspectionStatus.values());
             model.addAttribute("prospect", prospect);
-            return "addProspectForm";
+            return "prospect/addProspectForm";
         } else{
             return "redirect:/prospects/all";
         }
@@ -105,7 +105,7 @@ public class ClientController {
         if(user.getIsAdmin() || prospect.getUser().equals(user)){
             model.addAttribute("prospect", prospect);
             model.addAttribute("isDeleteForm", true);
-            return "prospectDetailsView";
+            return "prospect/prospectDetailsView";
         } else{
             return "redirect:/prospects/all";
         }

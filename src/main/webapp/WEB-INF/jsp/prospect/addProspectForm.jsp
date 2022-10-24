@@ -97,13 +97,6 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label class="col-sm-12" for="profilePictureUrl">Photo de profil</label>
-                                    <div class="col-md-12">
-                                        <input class="form-control ps-0 form-control-line" type="text" name="profilePictureUrl" id="profilePictureUrl"
-                                               <c:if test="${!empty prospect}">value="${prospect.profilePictureUrl}"</c:if>>
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label class="col-sm-12" for="mobilePhone">Télephone portable</label>
                                     <div class="col-md-12">
                                         <input class="form-control ps-0 form-control-line" type="text" name="mobilePhone" id="mobilePhone"
