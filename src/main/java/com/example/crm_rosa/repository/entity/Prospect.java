@@ -169,10 +169,4 @@ public class Prospect {
         this.notes.remove(note);
     }
 
-/*    public void removeEvent(Event event) { this.events.remove(event);
-    }
-
-    public void addEvent(Event event){
-        this.events.add(event);
-    }*/
 }
