@@ -1,3 +1,4 @@
+/*
 package com.example.crm_rosa.controller.dto;
 
 import java.time.LocalDateTime;
@@ -76,3 +77,4 @@ public class EventCreateDto {
         this.tel = tel;
     }
 }
+*/
