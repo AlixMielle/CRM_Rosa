@@ -17,7 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
-    <title>EasyToTask | Liste des prospects</title>
+    <title>EasyToTask | Détails d'un prospect</title>
 
 
 </head>
@@ -25,24 +25,31 @@
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-    <jsp:include page="header.jsp"/>
+    <jsp:include page="../header.jsp"/>
 
-<form class="d-flex" role="search" action="${pageContext.request.contextPath}/prospects/search" method="get">
-    <input class="form-control me-2" type="search" placeholder="Rechercher" aria-label="Search" name="search">
-    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-    <button class="btn btn-outline-success" type="submit">Search</button>
-</form>
+<h1>Contact details</h1>
+<div><img src="${prospect.profilePictureUrl}" class="max-width=500px max-height=500px"></div>
+<div>Prenom: ${prospect.firstName}</div>
+<div>Nom de famille: ${prospect.lastName}</div>
+<div>Email: ${prospect.email}</div>
+<div>Telephone portable: ${prospect.mobilePhone}</div>
+<div>Telephone fixe: ${prospect.landlinePhone}</div>
+<div>Prospection status: ${prospect.prospectionStatus}</div>
 
-<div><a href="${pageContext.request.contextPath}/prospects/all">all prospects</a> <a href="${pageContext.request.contextPath}/prospects/add">Ajout de prospect</a></div>
+<c:if test="${isDeleteForm}">
+    <div>
+        <form action="${pageContext.request.contextPath}/prospects/delete/${prospect.id}" method="post">
+            <input id="id" name="id" type="text" value="${prospect.id}" required hidden=/>
+            <div>Etes vous sur de vouloir supprimer ce prospect?</div>
+            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+            <button type="submit">Oui</button>
+        </form>
+    </div>
+</c:if>
+<div><a href="${pageContext.request.contextPath}/notes/${prospect.id}">Notes du prospect</a></div>
+<div><a href="${pageContext.request.contextPath}/prospects/all">Retour</a></div>
 
-<h1>Liste Prospects</h1>
-<c:forEach items="${prospects}" var="prospect">
-    <div>Prenom: ${prospect.firstName}</div>
-    <div>Nom de famille: ${prospect.lastName}</div>
-    <div><a href="${pageContext.request.contextPath}/prospects/details/${prospect.id}">Details</a> <a href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}">Suppression</a> <a href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}">Mise a jour</a></div>
-</c:forEach>
-
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="../footer.jsp"></jsp:include>
 </div>
 </body>
 </html>
