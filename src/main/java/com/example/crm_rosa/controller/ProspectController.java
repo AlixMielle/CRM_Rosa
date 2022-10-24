@@ -34,6 +34,7 @@ public class ProspectController {
     public String displayAllProspects(Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("prospects", this.prospectService.getAllProspects(user));
+        model.addAttribute("user", user);
         return "prospect/prospectAllView";
     }
 
@@ -51,7 +52,7 @@ public class ProspectController {
         if(user.getIsAdmin() || prospect.getUser().equals(user)){
             model.addAttribute("prospect", prospect);
             return "prospect/prospectDetailsView";
-        } else{
+        } else {
             return "redirect:/prospects/all";
         }
     }
@@ -64,9 +65,11 @@ public class ProspectController {
     }
 
     @GetMapping("/add")
-    public String displayAddProspectForm(Model model){
+    public String displayAddProspectForm(Model model,  Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("enterprises", this.enterpriseService.findAllEnterprises());
         model.addAttribute("prospectionStatuses", ProspectionStatus.values());
+        model.addAttribute("user", user);
         return "prospect/addProspectForm";
     }
 

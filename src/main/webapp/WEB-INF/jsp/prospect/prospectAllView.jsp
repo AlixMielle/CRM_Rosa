@@ -61,40 +61,41 @@
                                     <tr>
                                         <th class="border-top-0">Photo</th>
                                         <th class="border-top-0">Nom <button id="sortAlphabetButton">A/Z</button> <button id="sortReverseAlphabetButton">Z/A</button></th>
-                                        <th class="border-top-0">Prénom </th>
                                         <th class="border-top-0">Informations</th>
-                                        <th class="border-top-0">Adresse</th>
+                                        <th class="border-top-0">Profession </th>
+                                        <th class="border-top-0">Entreprise</th>
+                                        <th class="border-top-0">Statut de prospection </th>
                                         <th class="border-top-0">Date de création <button id="sortDateButton">1/12</button> <button id="sortReverseDateButton">12/1</button></th>
                                         <th class="border-top-0">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody id="enterpriseSheet">
-                                    <c:forEach items="${prospectList}" var="prospect">
+                                    <c:forEach items="${prospects}" var="prospect">
                                         <tr>
                                             <td>
-                                                <img src="${prospect.pictureUrl}" width="40" height="40"
+                                                <img src="${prospect.profilePictureUrl}" width="40" height="40"
                                                      class="rounded-circle">
                                             </td>
                                             <td>
-                                                <a href="${pageContext.request.contextPath}/enterprises/details/${prospect.id}"
-                                                   class="card-text enterpriseName">${prospect.lastName}</a>
+                                                <a href="${pageContext.request.contextPath}/prospects/details/${prospect.id}"
+                                                   class="card-text enterpriseName">${prospect.lastName} ${prospect.firstName}</a>
                                             </td>
-                                            <td>
-                                                    ${enterprise.firstName}
-                                            </td>
+                                            <td>${prospect.jobTitle}</td>
+                                            <td>${prospect.enterprise}</td>
                                             <td>
                                                 <div><a href="mailto:${prospect.email}">${prospect.email}</a></div>
-                                                <div><a href="tel:${prospect.mobile}">${prospect.mobile}</a></div>
-                                                <div><a href="tel:${prospect.phone}">${prospect.phone}</a></div>
+                                                <div><a href="tel:${prospect.mobilePhone}">${prospect.mobilePhone}</a></div>
+                                                <div><a href="tel:${prospect.landlinePhone}">${prospect.landlinePhone}</a></div>
                                             </td>
                                             <td><div><a href="https://www.google.com/maps/dir/${prospect.address} ${prospect.zipcode} ${prospect.city}">${prospect.address} ${prospect.zipcode} ${prospect.city}</a></div></td>
                                             <td class="createdAt">${prospect.createdAt}</td>
+                                            <td class="createdAt">${prospect.prospectionStatus}</td>
                                             <td>
                                                 <a type="button" class="btn btn-sm btn-outline-primary"
-                                                   href="${pageContext.request.contextPath}/enterprises/details/${prospect.id}"><i
+                                                   href="${pageContext.request.contextPath}/prospects/details/${prospect.id}"><i
                                                         class="bi bi-eye"></i></a>
                                                 <a type="button" class="btn btn-sm btn-outline-secondary"
-                                                   href="${pageContext.request.contextPath}/enterprises/edit/${prospect.id}"><i
+                                                   href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}"><i
                                                         class="bi bi-pencil"></i></a>
                                             </td>
                                         </tr>
