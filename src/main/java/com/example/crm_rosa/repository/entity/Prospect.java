@@ -27,8 +27,6 @@ public class Prospect {
     @OneToMany(mappedBy = "prospect", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes;
 
-    @OneToMany(mappedBy = "prospect", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
-    private List<Event> events;
 
     public Prospect() {
     }
@@ -161,10 +159,10 @@ public class Prospect {
         this.notes.remove(note);
     }
 
-    public void removeEvent(Event event) { this.events.remove(event);
+/*    public void removeEvent(Event event) { this.events.remove(event);
     }
 
     public void addEvent(Event event){
         this.events.add(event);
-    }
+    }*/
 }
