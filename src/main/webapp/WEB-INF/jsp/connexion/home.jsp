@@ -144,12 +144,12 @@
                                 </div>
                                 <h5 class="font-weight-bold mb-3">A relancer</h5>
                                 <div class="progress mb-4">
-                                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${nbRelace/(nbProspects+nbClients)*100}%"
+                                    <div class="progress-bar bg-danger" role="progressbar" style="width: ${nbRelance/(nbProspects+nbClients)*100}%"
                                          aria-valuenow="${nbRelance}" aria-valuemin="0" aria-valuemax="${nbProspects+nbClients}"></div>
                                 </div>
                                 <h5 class="font-weight-bold mb-3">Terminées</h5>
                                 <div class="progress mb-4">
-                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${nbClients/(nbProspects+nbClients)}%"
+                                    <div class="progress-bar bg-success" role="progressbar" style="width: ${nbClients/(nbProspects+nbClients)*100}%"
                                          aria-valuenow="${nbClients}" aria-valuemin="0" aria-valuemax="${nbProspects+nbClients}"></div>
                                 </div>
                             </div>

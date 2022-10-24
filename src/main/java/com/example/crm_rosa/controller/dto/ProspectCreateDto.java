@@ -10,6 +10,7 @@ public class ProspectCreateDto {
     private String email;
     private String mobilePhone;
     private String landlinePhone;
+    private String address;
     private long enterpriseId;
     private String jobTitle;
     private ProspectionStatus prospectionStatus;
@@ -63,6 +64,14 @@ public class ProspectCreateDto {
 
     public void setLandlinePhone(String landlinePhone) {
         this.landlinePhone = landlinePhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public long getEnterpriseId() {

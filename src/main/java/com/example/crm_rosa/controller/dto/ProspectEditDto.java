@@ -11,6 +11,7 @@ public class ProspectEditDto {
     private String email;
     private String mobilePhone;
     private String landlinePhone;
+    private String address;
     private long enterpriseId;
     private String jobTitle;
     private ProspectionStatus prospectionStatus;
@@ -68,6 +69,14 @@ public class ProspectEditDto {
 
     public String getLandlinePhone() {
         return landlinePhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public void setLandlinePhone(String landlinePhone) {
