@@ -1,9 +1,9 @@
+/*
 package com.example.crm_rosa.repository.entity;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
+
 
 @Entity
 public class Event {
@@ -12,10 +12,9 @@ public class Event {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
 
-    @ManyToOne(fetch = FetchType.EAGER)
-    private Prospect prospect;
+    // Prospect to add
 
-    /*date de début, date de fin*/
+    //date de début, date de fin
     private LocalDateTime startingDate;
 
     private LocalDateTime endingDate;
@@ -95,11 +94,13 @@ public class Event {
         this.tel = tel;
     }
 
-    public Prospect getProspect() {
+*/
+/*    public Prospect getProspect() {
         return prospect;
     }
 
     public void setProspect(Prospect prospect) {
         this.prospect = prospect;
-    }
-}
+    }*//*
+
+}*/

@@ -1,3 +1,4 @@
+/*
 package com.example.crm_rosa.service;
 
 import com.example.crm_rosa.controller.dto.EventCreateDto;
@@ -34,7 +35,7 @@ public class CalendarService {
     public void addEvent(EventCreateDto eventCreateDto, long idProspect) {
         Event event = new Event();
         Prospect prospect = this.prospectRepository.findById(idProspect).orElseThrow(() -> new ObjectNotFoundException(idProspect, "Prospect"));
-        event.setProspect(prospect);
+        //event.setProspect(prospect);
         event.setStartingDate(eventCreateDto.getStartingDate());
         event.setEndingDate(eventCreateDto.getEndingDate());
         event.setTitre(eventCreateDto.getTitre());
@@ -57,7 +58,8 @@ public class CalendarService {
 
     public void deleteEventById(long id) {
         Event event = this.getEventById(id);
-        event.getProspect().removeEvent(event);
+       // event.getProspect().removeEvent(event);
         this.eventRepository.deleteById(id);
     }
 }
+*/

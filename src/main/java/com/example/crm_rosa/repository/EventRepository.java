@@ -1,3 +1,4 @@
+/*
 package com.example.crm_rosa.repository;
 
 import com.example.crm_rosa.repository.entity.Event;
@@ -11,3 +12,4 @@ public interface EventRepository extends CrudRepository<Event, Long> {
 
     List<Event> findAllByProspect_Id(long idProspect);
 }
+*/

@@ -1,3 +1,4 @@
+/*
 package com.example.crm_rosa.controller;
 
 import com.example.crm_rosa.controller.dto.EventCreateDto;
@@ -57,7 +58,7 @@ public class CalendarController {
     public String displayEditEventForm(@PathVariable("id") long id, Model model){
         Event event =  this.calendarService.getEventById(id);
         model.addAttribute("event",event);
-        model.addAttribute("idProspect", event.getProspect().getId());
+        //model.addAttribute("idProspect", event.getProspect().getId());
         return "addEventForm.jsp";
     }
 
@@ -81,3 +82,4 @@ public class CalendarController {
     }
 
 }
+*/
