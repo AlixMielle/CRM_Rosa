@@ -51,6 +51,7 @@ public class ProspectService {
         prospect.setEmail(prospectCreateDto.getEmail());
         prospect.setMobilePhone(prospectCreateDto.getMobilePhone());
         prospect.setLandlinePhone(prospectCreateDto.getLandlinePhone());
+        prospect.setAddress(prospectCreateDto.getAddress());
         //enterprise stuff
         if(prospectCreateDto.getEnterpriseId() != -1){
             prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectCreateDto.getEnterpriseId()));
@@ -71,6 +72,7 @@ public class ProspectService {
         prospect.setEmail(prospectEditDto.getEmail());
         prospect.setMobilePhone(prospectEditDto.getMobilePhone());
         prospect.setLandlinePhone(prospectEditDto.getLandlinePhone());
+        prospect.setAddress(prospectEditDto.getAddress());
         //enterprise stuff
         if(prospectEditDto.getEnterpriseId() == -1){
             prospect.setEnterprise(null);

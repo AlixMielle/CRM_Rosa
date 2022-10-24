@@ -52,6 +52,7 @@ public class ClientService {
         prospect.setEmail(prospectCreateDto.getEmail());
         prospect.setMobilePhone(prospectCreateDto.getMobilePhone());
         prospect.setLandlinePhone(prospectCreateDto.getLandlinePhone());
+        prospect.setAddress(prospectCreateDto.getAddress());
         //enterprise stuff
         prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectCreateDto.getEnterpriseId()));
         prospect.setJobTitle(prospectCreateDto.getJobTitle());
@@ -71,6 +72,7 @@ public class ClientService {
         prospect.setEmail(prospectEditDto.getEmail());
         prospect.setMobilePhone(prospectEditDto.getMobilePhone());
         prospect.setLandlinePhone(prospectEditDto.getLandlinePhone());
+        prospect.setAddress(prospectEditDto.getAddress());
         //enterprise stuff
         prospect.setEnterprise(this.enterpriseService.findEnterpriseById(prospectEditDto.getEnterpriseId()));
         prospect.setJobTitle(prospectEditDto.getJobTitle());

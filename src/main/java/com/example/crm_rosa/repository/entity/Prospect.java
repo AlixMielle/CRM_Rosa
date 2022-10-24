@@ -18,6 +18,7 @@ public class Prospect {
     private String email;
     private String mobilePhone;
     private String landlinePhone;
+    private String address;
     @ManyToOne(fetch = FetchType.EAGER)
     private Enterprise enterprise;
     private String jobTitle;
@@ -30,7 +31,7 @@ public class Prospect {
     public Prospect() {
     }
 
-    public Prospect(User user, String firstName, String lastName, String profilePictureUrl, String email, String mobilePhone, String landlinePhone, Enterprise enterprise, String jobTitle, LocalDate createdAt, ProspectionStatus prospectionStatus) {
+    public Prospect(User user, String firstName, String lastName, String profilePictureUrl, String email, String mobilePhone, String landlinePhone, String address, Enterprise enterprise, String jobTitle, LocalDate createdAt, ProspectionStatus prospectionStatus) {
         this.user = user;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -38,6 +39,7 @@ public class Prospect {
         this.email = email;
         this.mobilePhone = mobilePhone;
         this.landlinePhone = landlinePhone;
+        this.address = address;
         this.enterprise = enterprise;
         this.jobTitle = jobTitle;
         this.createdAt = createdAt;
@@ -107,6 +109,14 @@ public class Prospect {
 
     public void setLandlinePhone(String landlinePhone) {
         this.landlinePhone = landlinePhone;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
     }
 
     public Enterprise getEnterprise() {
