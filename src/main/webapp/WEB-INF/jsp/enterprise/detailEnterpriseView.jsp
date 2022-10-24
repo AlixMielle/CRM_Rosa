@@ -17,9 +17,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css">
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
-    <title>EasyToTask | Détail d'une entreprise</title>
-
-
+    <title>EasyToTask | Détails entreprise</title>
 </head>
 
 <body>
@@ -27,59 +25,101 @@
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <jsp:include page="../header.jsp"/>
 
-<main>
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Détail d'une entreprise</h1>
-                <p>
-                    <a href="${pageContext.request.contextPath}/enterprises/add" class="btn my-2 text-white" style="background-color: lightcoral">Ajouter une entreprise</a>
-                </p>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+
+            <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                <h1 class="h3 mb-0 text-gray-800">Informations de l'entreprise</h1>
             </div>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="${enterprise.logo}" alt="photo">
-                        <div class="card-body">
-                            <h3 class="card-text">${enterprise.name}</h3>
-                                <%--<c:forEach items="${enterprises.prospects}" var="prospect">
-                                    <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
-                                </c:forEach>--%>
-                            <h5 class="card-text">${enterprise.siret}</h5>
-                            <h5 class="card-text">${enterprise.email}</h5>
-                            <h5 class="card-text">${enterprise.mobile}</h5>
-                            <h5 class="card-text">${enterprise.phone}</h5>
-                            <h5 class="card-text">${enterprise.website}</h5>
-                            <h5 class="card-text">${enterprise.address}</h5>
-                            <h5 class="card-text">${enterprise.additionalAddress}</h5>
-                            <h5 class="card-text"> ${enterprise.zipcode} ${enterprise.city}</h5>
-                            <h5 class="card-text">${enterprise.sector}</h5>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
-                                    <c:import url="deleteEnterpriseAction.jsp"></c:import>
+            <div class="row">
+                <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <div class="card shadow">
+                        <div class="card-body profile-card">
+                            <center class="mt-4"> <img src="${enterprise.logo}"
+                                    class="rounded-circle img-fluid" width="150" />
+                                <h4 class="card-title mt-2">${enterprise.name}</h4>
+                                <div class="row text-center justify-content-center">
                                 </div>
-                            </div>
+                            </center>
                         </div>
                     </div>
                 </div>
+                <div class="col-lg-8 col-xlg-9 col-md-7">
+                    <div class="card shadow mb-5">
+                        <div class="card-body">
+                            <form class="form-horizontal form-material mx-2">
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Nom</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3">${enterprise.name}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-siret" class="col-md-12">SIRET</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3">${enterprise.siret}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="example-email" class="col-md-12">Email</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3"><a href="mailto:${enterprise.email}">${enterprise.email}</a></h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Numéro de téléphone fixe</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3"><a href="tel:${enterprise.phone}">${enterprise.phone}</a></h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Numéro de téléphone portable</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3"><a href="tel:${enterprise.mobile}">${enterprise.mobile}</a></h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Site web</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3"><a href="${enterprise.website}">Visiter le site web</a></h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Adresse postale</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3"><a href="https://www.google.com/maps/dir/${enterprise.address} ${enterprise.zipcode} ${enterprise.city}">
+                                            ${enterprise.address} (${enterprise.additionalAddress})</a></h5>
+                                        <h5 class="my-3"><a href="https://www.google.com/maps/dir/${enterprise.address} ${enterprise.zipcode} ${enterprise.city}">${enterprise.zipcode} ${enterprise.city}</a></h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Secteur d'activité</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3">${enterprise.sector}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-md-12 mb-0">Date de création</label>
+                                    <div class="col-md-12">
+                                        <h5 class="my-3">${enterprise.createdAt}</h5>
+                                    </div>
+                                </div>
+                                <div class="form-group m-2 p-2">
+                                    <div class="col-sm-12 d-flex p-2">
+                                        <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier</a>
+                                        <c:import url="deleteEnterpriseAction.jsp"></c:import>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+s
+            <jsp:include page="../footer.jsp"/>
             </div>
         </div>
     </div>
-
-</main>
-
-        <jsp:include page="../footer.jsp"/>
-    <!--Div main-wrapper, tout mettre dedans sauf le script-->
-</div>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
+
 </html>

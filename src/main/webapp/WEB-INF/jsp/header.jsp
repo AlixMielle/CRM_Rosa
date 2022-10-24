@@ -24,8 +24,8 @@
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
                             <a class="nav-item text-white" href="${pageContext.request.contextPath}/details/{id}" id="navbarProfil" role="button">
-                                John Doe
-                                <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
+                                ${user.firstname} ${user.lastname}
+                                <img src="${user.pictureUrl}"
                                      width="40" height="40" class="rounded-circle">
                             </a>
                         </li>
