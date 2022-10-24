@@ -72,6 +72,39 @@ button5.addEventListener("click", (event)=>{
     sheet.appendChild(fragment)
 })
 
+const button6 = document.getElementById("sortAlphabetButton")
+button6.addEventListener("click", (event)=>{
+    //window.location = "/enterprises/all/sorted";
+    const fragment = document.createDocumentFragment();
+    const sheet = document.getElementById("enterpriseSheet");
+    const enterprises = sheet.querySelectorAll("tr");
+    const sortedList = [...enterprises].sort((a, b) =>{
+        const aSorter = a.getElementsByClassName("prospectLastName")[0].innerHTML;
+        const bSorter = b.getElementsByClassName("prospectLastName")[0].innerHTML;
+        return aSorter < bSorter ? -1 : aSorter > bSorter ? 1 : 0;
+    });
+    for (const enterprise of sortedList){
+        fragment.appendChild(enterprise);
+    }
+    sheet.appendChild(fragment)
+})
+
+const button7 = document.getElementById("sortReverseAlphabetButton")
+button7.addEventListener("click", (event)=>{
+    //window.location = "/enterprises/all";
+    const fragment = document.createDocumentFragment();
+    const sheet = document.getElementById("enterpriseSheet");
+    const enterprises = sheet.querySelectorAll("tr");
+    const sortedList = [...enterprises].sort((a, b) =>{
+        const aSorter = a.getElementsByClassName("prospectLastName")[0].innerHTML;
+        const bSorter = b.getElementsByClassName("prospectLastName")[0].innerHTML;
+        return aSorter > bSorter ? -1 : aSorter < bSorter ? 1 : 0;
+    });
+    for (const enterprise of sortedList){
+        fragment.appendChild(enterprise);
+    }
+    sheet.appendChild(fragment)
+})
 
 
 
