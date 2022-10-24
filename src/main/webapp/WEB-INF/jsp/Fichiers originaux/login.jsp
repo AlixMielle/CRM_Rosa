@@ -23,7 +23,7 @@
 
                     <div>
                         <img src="img/logo.png" alt="logo" class="img-fluid mt-5 mb-5 mx-auto d-block">
-                        <h3 class="mb-5 text-center" style="color: #ffff;">Connectez-vous :</h5>
+                        <h5 class="mb-5 text-center" style="color: #ffff;">Connectez-vous :</h5>
                     </div>
                     <!-- Email input -->
                     <div class="form-outline mb-4">
