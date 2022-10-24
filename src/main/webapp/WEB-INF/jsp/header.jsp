@@ -1,14 +1,16 @@
-<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
-     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="th" uri="http://jakarta.apache.org/taglibs/standard/permittedTaglibs" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
+
     <header class="topbar">
-        <nav class="navbar top-navbar navbar-expand-sm">
-            <div class="navbar-header" style="background-color: #1D4851;">
-                <a class="navbar-brand ms-4" href="#">
+        <nav class="navbar top-navbar navbar-expand-sm"  style="background-color: #1D4851;">
+            <div class="navbar-header">
+                <a class="navbar-brand ms-4" href="${pageContext.request.contextPath}/home">
                     <b class="logo-icon">
-                        <img src="../../img/logo.png" alt="homepage" class="dark-logo img-fluid" />
+                        <img src="img/logo.png" alt="homepage" class="dark-logo img-fluid" />
+
                     </b>
                 </a>
-
             </div>
             <div class="navbar-collapse collapse me-sm-auto" style="background-color: #1D4851;" id="navbarTopbar">
                 <ul class="navbar-nav me-auto mt-0">
@@ -20,24 +22,16 @@
                             </span>
                     </div>
                 </ul>
-
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-list-4"
-                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbar-list-4">
-                    <ul class="navbar-nav">
-                        <li class="nav-item dropdown">
-
-                            <a class="nav-item" href="#" id="navbarProfil" role="button"
-                               data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item">
+                            <a class="nav-item text-white" href="${pageContext.request.contextPath}/details/{id}" id="navbarProfil" role="button">
                                 John Doe
                                 <img src="https://images.unsplash.com/photo-1570295999919-56ceb5ecca61?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=880&q=80"
                                      width="40" height="40" class="rounded-circle">
                             </a>
                         </li>
                     </ul>
-                </div>
+
             </div>
         </nav>
     </header>
@@ -47,7 +41,7 @@
             <nav class="sidebar-nav">
                 <ul id="sidebarnav" style="background-color: #1D4851;">
                     <li>
-                        <a href="#" data-bs-toggle="collapse" class="nav-link align-items-center mt-3"
+                        <a href="${pageContext.request.contextPath}/home" data-bs-toggle="collapse" class="nav-link align-items-center mt-3"
                            style="color: #fff">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                  class="bi bi-clipboard-data" viewBox="0 0 16 16">
@@ -63,7 +57,7 @@
                     <hr>
 
                     <li>
-                        <a href="#" class="nav-link align-items-center" style="color: #fff">
+                        <a href="${pageContext.request.contextPath}/enterprises/all" class="nav-link align-items-center" style="color: #fff">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                  class="bi bi-building" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd"
@@ -76,7 +70,7 @@
                     <hr>
 
                     <li>
-                        <a href="#" data-bs-toggle="collapse" class="nav-link align-items-center"
+                        <a href="${pageContext.request.contextPath}/clients/all" data-bs-toggle="collapse" class="nav-link align-items-center"
                            style="color: #fff">
                             <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="currentColor"
                                  class="bi bi-briefcase" viewBox="0 0 16 16">
@@ -88,7 +82,7 @@
                     <hr>
 
                     <li>
-                        <a href="#" class="nav-link align-items-center" style="color: #fff">
+                        <a href="${pageContext.request.contextPath}/prospects/all" class="nav-link align-items-center" style="color: #fff">
                             <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor"
                                  class="bi bi-person" viewBox="0 0 16 16">
                                 <path
@@ -96,9 +90,20 @@
                             </svg> <span class="ms-1 d-none d-sm-inline">Gestion prospects</span> </a>
                     </li>
 
+                    <hr>
+
+                    <li>
+                        <!--Déco mapping à compléter-->
+                        <a href="${pageContext.request.contextPath}/" class="nav-link align-items-center" style="color: #ffe500">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill="currentColor" class="bi bi-box-arrow-right" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
+                                <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
+                            </svg><span class="ms-2 d-none d-sm-inline">Déconnexion</span> </a>
+                    </li>
+
                 </ul>
 
             </nav>
         </div>
     </aside>
-</div>
+

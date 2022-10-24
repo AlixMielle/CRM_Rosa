@@ -23,6 +23,8 @@
 </head>
 
 <body>
+<div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+     data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
 <jsp:include page="../header.jsp"/>
 
     <div class="page-wrapper">
@@ -109,6 +111,7 @@
             <jsp:include page="../footer.jsp"/>
         </div>
     </div>
+</div>
 </body>
 
 </html>
