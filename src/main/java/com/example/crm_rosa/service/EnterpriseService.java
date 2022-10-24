@@ -6,12 +6,11 @@ import com.example.crm_rosa.repository.EnterpriseRepository;
 import com.example.crm_rosa.repository.ProspectRepository;
 import com.example.crm_rosa.repository.entity.Enterprise;
 import com.example.crm_rosa.repository.entity.Prospect;
-import net.bytebuddy.asm.Advice;
+import com.example.crm_rosa.repository.entity.User;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -43,6 +42,10 @@ public class EnterpriseService {
     }
     public List<Enterprise> resortEnterpriseByNameOrder() {
         return this.enterpriseRepository.resortByAlphabeticalOrder();
+    }
+
+    public List<Enterprise> getEnterprisesOfUser(User user){
+        return this.enterpriseRepository.getEnterprisesOfUser(user.getId());
     }
 
     public Enterprise findEnterpriseById(long id) {

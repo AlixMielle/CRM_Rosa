@@ -1,7 +1,10 @@
 package com.example.crm_rosa.controller;
 
 import com.example.crm_rosa.controller.dto.CreateUser;
+import com.example.crm_rosa.repository.entity.Enterprise;
+import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.User;
+import com.example.crm_rosa.service.EnterpriseService;
 import com.example.crm_rosa.service.UserService;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -18,9 +21,11 @@ import java.util.List;
 public class HomeController {
 
     private UserService userService;
+    private EnterpriseService enterpriseService;
 
-    public HomeController(UserService userService) {
+    public HomeController(UserService userService, EnterpriseService enterpriseService) {
         this.userService = userService;
+        this.enterpriseService = enterpriseService;
     }
 
     @GetMapping("/signin")
@@ -48,7 +53,28 @@ public class HomeController {
     @GetMapping("/home")
     public String displayHome(Model model, Authentication authentication) {
         User user = this.userService.findUserByEmail(authentication.getName());
+        List<Enterprise> enterprisesOfUser = this.enterpriseService.getEnterprisesOfUser(user);
+        int nbProspects = 0;
+        int nbRelance = 0;
+        int nbClients = 0;
+        for (Prospect p : user.getProspects()) {
+            switch (p.getProspectionStatus()){
+                case CLIENT:
+                    nbClients++;
+                    break;
+                case SEEKUPDATE:
+                    nbRelance++;
+                case NOTSTARTED:
+                case ONGOING:
+                    nbProspects++;
+                    break;
+            }
+        }
         model.addAttribute("user", user);
+        model.addAttribute("nbProspects", nbProspects);
+        model.addAttribute("nbRelance", nbRelance);
+        model.addAttribute("nbClients", nbClients);
+        model.addAttribute("nbEnterprises", enterprisesOfUser.size());
         return "home";
     }
 }

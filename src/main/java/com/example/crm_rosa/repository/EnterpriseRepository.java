@@ -18,4 +18,7 @@ public interface EnterpriseRepository extends CrudRepository<Enterprise, Long> {
 
     @Query("SELECT e FROM Enterprise e ORDER BY e.name DESC")
     List<Enterprise> resortByAlphabeticalOrder();
+
+    @Query("SELECT e FROM Enterprise e JOIN Prospect p ON e = p.enterprise WHERE p.user.id = :userId")
+    List<Enterprise> getEnterprisesOfUser(@Param("userId") long userId);
 }
