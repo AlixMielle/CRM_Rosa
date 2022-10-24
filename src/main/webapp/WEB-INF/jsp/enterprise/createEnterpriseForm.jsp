@@ -33,6 +33,8 @@
             </div>
             <div class="row">
                 <div class="col-lg-4 col-xlg-3 col-md-5">
+                    <form action="${pageContext.request.contextPath}/enterprises/add" method="post"
+                          enctype="multipart/form-data">
                     <div class="card shadow">
                         <div class="card-footer bg-dark text-white">
                             <div class="text-white form-check form-switch">
@@ -65,8 +67,7 @@
                 <div class="col-lg-8 col-xlg-9 col-md-7">
                     <div class="card shadow mb-5">
                         <div class="card-body">
-                            <form class="form-horizontal form-material mx-2" action="${pageContext.request.contextPath}/enterprises/add" method="post"
-                                  enctype="multipart/form-data">
+                            <div class="form-horizontal form-material mx-2">
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">Nom</label>
                                     <div class="col-md-12">
@@ -127,12 +128,12 @@
                                 <div class="form-group">
                                     <label class="col-sm-12" for="prospect">Sélectionner un prospect/client:</label>
                                     <div class="col-sm-12 border-bottom">
-                                        <select class="form-select shadow-none ps-0 border-0 form-control-line" id="prospect" required name="prospectsIds" multiple>
-                                        <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
-                                        <c:forEach items="${prospectList}" var="prospect">
-                                            <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}">${prospect.firstName} ${prospect.lastName}</option>
-                                        </c:forEach>
-                                    </select>
+                                        <select class="form-select shadow-none my-2 border-0 form-control-line" id="prospect" required name="prospectsIds" multiple style="min-height: 80px">
+                                            <option <c:if test="${empty enterprise}">selected</c:if> value="-1">Aucune</option>
+                                            <c:forEach items="${prospectList}" var="prospect">
+                                                <option <c:if test="${enterprise.prospect==prospect}">selected</c:if> value="${prospect.id}">${prospect.firstName} ${prospect.lastName}</option>
+                                            </c:forEach>
+                                        </select>
                                     </div>
                                 </div>
                                 <div class="form-group m-2 p-2">
@@ -145,6 +146,7 @@
                                     </div>
                                 </div>
                             </form>
+                        </div>
                         </div>
                     </div>
                 </div>
