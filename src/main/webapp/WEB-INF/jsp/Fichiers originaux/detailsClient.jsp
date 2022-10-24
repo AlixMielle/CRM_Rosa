@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="canonical" href="https://www.wrappixel.com/templates/materialpro-lite/" />
     <link rel="icon" type="image/png" sizes="16x16" href="../assets/images/favicon.png">
-    <link href="css/style.min.css" rel="stylesheet">
+    <link href="../../..css/style.min.css" rel="stylesheet">
     <title>EasyToTask | Détails prospect</title>
 
 </head>
