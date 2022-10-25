@@ -76,6 +76,20 @@ public class EnterpriseController {
         return "redirect:/enterprises/all";
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteEnterpriseConfirm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User user = this.userService.findUserByEmail(authentication.getName());
+        Enterprise enterprise = enterpriseService.findEnterpriseById(id);
+        if(user.getIsAdmin()){
+            model.addAttribute("enterprise", enterprise);
+            model.addAttribute("isDeleteForm", true);
+            model.addAttribute("currentUser", user);
+            return "enterprise/detailEnterpriseView";
+        } else{
+            return "redirect:/enterprises/all";
+        }
+    }
+
     @PostMapping ("/delete/{id}")
     public RedirectView deleteEnterprise(@PathVariable("id") long id){
         enterpriseService.deleteEnterprise(id);

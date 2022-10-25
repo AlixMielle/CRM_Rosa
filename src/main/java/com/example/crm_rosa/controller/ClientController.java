@@ -121,8 +121,6 @@ public class ClientController {
 
     @PostMapping("/delete/{id}")
     public String deleteProspect(@PathVariable("id") long id){
-        Prospect prospect = clientService.getClientById(id);
-        prospect.getEnterprise().removeProspect(prospect);
         clientService.deleteProspectById(id);
         return "redirect:/prospects/all";
     }

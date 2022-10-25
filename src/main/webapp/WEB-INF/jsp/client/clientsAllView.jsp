@@ -95,6 +95,9 @@
                                                 <a type="button" class="btn btn-sm btn-outline-secondary"
                                                    href="${pageContext.request.contextPath}/clients/edit/${client.id}"><i
                                                         class="bi bi-pencil"></i></a>
+                                                <a type="button" class="btn btn-sm btn-outline-secondary"
+                                                   href="${pageContext.request.contextPath}/clients/delete/${client.id}"><i
+                                                        class="bi bi-x"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

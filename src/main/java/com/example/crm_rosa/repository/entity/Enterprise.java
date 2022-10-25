@@ -36,7 +36,7 @@ public class Enterprise {
 
     private LocalDate createdAt;
 
-    @OneToMany(mappedBy = "enterprise", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "enterprise", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Prospect> prospects;
 
     public Enterprise() {
