@@ -94,7 +94,7 @@
                                 <div class="form-group">
                                     <label class="col-md-12 mb-0">Statut de prospection</label>
                                     <div class="col-md-12">
-                                        <h5 class="my-3">${prospect.prospectionStatus}</h5>
+                                        <h5 class="my-3">${prospect.prospectionStatus.inFrench}</h5>
                                     </div>
                                 </div>
                                 <div class="form-group m-2 p-2">

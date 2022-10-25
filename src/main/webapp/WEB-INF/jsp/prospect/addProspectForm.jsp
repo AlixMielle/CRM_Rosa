@@ -151,7 +151,7 @@
                                             <c:forEach items="${prospectionStatuses}" var="prospectionStatus">
                                                 <option
                                                         <c:if test="${prospect.prospectionStatus==prospectionStatus}">selected</c:if>
-                                                        value="${prospectionStatus}">${prospectionStatus}</option>
+                                                        value="${prospectionStatus}">${prospectionStatus.inFrench}</option>
                                             </c:forEach>
                                         </select>
                                         </c:otherwise>
