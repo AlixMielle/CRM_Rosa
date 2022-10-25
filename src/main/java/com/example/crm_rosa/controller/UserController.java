@@ -21,23 +21,29 @@ public class UserController {
     }
 
     @GetMapping("/all")
-    public String displayAllUsers(Model model, @RequestParam(value = "keyword", required = false) String keyword){
+    public String displayAllUsers(Model model, @RequestParam(value = "keyword", required = false) String keyword, Authentication authentication){
+        User currentUser = this.userService.findUserByEmail(authentication.getName());
         List<User> userList = userService.findUserByName(keyword);
         model.addAttribute("userList", userList);
         model.addAttribute("keyword", keyword);
+        model.addAttribute("currentUser", currentUser);
         return "user/listUserView";
     }
     @GetMapping("/details/{id}")
-    public String displayUserProfile(@PathVariable("id") long id, Model model){
+    public String displayUserProfile(@PathVariable("id") long id, Model model, Authentication authentication){
+        User currentUser = this.userService.findUserByEmail(authentication.getName());
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
+        model.addAttribute("currentUser", currentUser);
         return "user/detailUserView";
     }
 
     @GetMapping("/edit/{id}")
-    public String editUserForm(@PathVariable("id") long id, Model model){
+    public String editUserForm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User currentUser = this.userService.findUserByEmail(authentication.getName());
         User user = userService.findUserById(id);
         model.addAttribute("user", user);
+        model.addAttribute("currentUser", currentUser);
         return "user/editUserForm";
     }
 

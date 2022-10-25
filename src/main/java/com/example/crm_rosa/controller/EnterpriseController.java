@@ -35,7 +35,7 @@ public class EnterpriseController {
         List<Enterprise> enterpriseList = enterpriseService.findEnterpriseByName(keyword);
         model.addAttribute("enterpriseList", enterpriseList);
         model.addAttribute("keyword", keyword);
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         return "enterprise/listEnterpriseView";
     }
 
@@ -57,7 +57,7 @@ public class EnterpriseController {
         User user = this.userService.findUserByEmail(authentication.getName());
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         return "enterprise/detailEnterpriseView";
     }
 
@@ -66,7 +66,7 @@ public class EnterpriseController {
         User user = this.userService.findUserByEmail(authentication.getName());
         List<Prospect> prospectList = prospectService.getAbsolutelyAllProspects();
         model.addAttribute("prospectList", prospectList);
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         return "enterprise/createEnterpriseForm";
     }
 
@@ -87,7 +87,7 @@ public class EnterpriseController {
         User user = this.userService.findUserByEmail(authentication.getName());
         Enterprise enterprise = enterpriseService.findEnterpriseById(id);
         model.addAttribute("enterprise", enterprise);
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         return "enterprise/editEnterpriseForm";
     }
 
