@@ -68,7 +68,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
                                         Prospections à relancer
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbRelance}</div>
@@ -92,7 +92,7 @@
                         <div class="card-body">
                             <div class="row no-gutters align-items-center">
                                 <div class="col mr-2">
-                                    <div class="text-xs font-weight-bold text-danger text-uppercase mb-1">
+                                    <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
                                         Nombre de clients
                                     </div>
                                     <div class="h5 mb-0 font-weight-bold text-gray-800 ms-5">${nbClients}</div>

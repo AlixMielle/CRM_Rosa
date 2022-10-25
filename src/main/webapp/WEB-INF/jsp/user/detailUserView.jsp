@@ -81,11 +81,21 @@
                                                 <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/users/edit/${user.id}">Modifier le profil</a>
                                             </c:if>
                                             <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
-                                                <c:import url="deleteUser.jsp"></c:import>
+                                                <a type="button" class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/users/delete/${user.id}">Supprimer le profil</a>
                                             </c:if>
                                         </div>
                                     </div>
                                 </form>
+                                <c:if test="${isDeleteForm}">
+                                    <div>
+                                        <form action="${pageContext.request.contextPath}/users/delete/${user.id}" method="post">
+                                            <input id="id" name="id" type="text" value="${user.id}" required hidden=/>
+                                            <div>Voulez-vous supprimer ce prospect ?</div>
+                                            <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                            <button type="submit">Oui</button>
+                                        </form>
+                                    </div>
+                                </c:if>
                             </div>
                         </div>
                     </div>
