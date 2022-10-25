@@ -10,7 +10,7 @@ public class Prospect {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private User user;
     private String firstName;
     private String lastName;
@@ -19,13 +19,13 @@ public class Prospect {
     private String mobilePhone;
     private String landlinePhone;
     private String address;
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     private Enterprise enterprise;
     private String jobTitle;
     private LocalDate createdAt;
     @Enumerated(EnumType.STRING)
     private ProspectionStatus prospectionStatus;
-    @OneToMany(mappedBy = "prospect", fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "prospect", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private List<Note> notes;
 
 

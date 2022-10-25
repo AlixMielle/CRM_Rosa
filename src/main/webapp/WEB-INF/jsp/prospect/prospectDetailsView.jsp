@@ -102,18 +102,18 @@
                                         <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/notes/${prospect.id}">Notes du prospect</a>
                                         <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/prospects/all">Retour à la liste</a>
                                     </div>
-                                    <c:if test="${isDeleteForm}">
-                                        <div>
-                                            <form action="${pageContext.request.contextPath}/prospects/delete/${prospect.id}" method="post">
-                                                <input id="id" name="id" type="text" value="${prospect.id}" required hidden=/>
-                                                <div>Voulez-vous supprimer ce prospect ?</div>
-                                                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                                <button type="submit">Oui</button>
-                                            </form>
-                                        </div>
-                                    </c:if>
                                 </div>
                             </form>
+                            <c:if test="${isDeleteForm}">
+                                <div>
+                                    <form action="${pageContext.request.contextPath}/prospects/delete/${prospect.id}" method="post">
+                                        <input id="id" name="id" type="text" value="${prospect.id}" required hidden=/>
+                                        <div>Voulez-vous supprimer ce prospect ?</div>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <button type="submit">Oui</button>
+                                    </form>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>

@@ -114,6 +114,16 @@
                                     </div>
                                 </div>
                             </form>
+                            <c:if test="${isDeleteForm}">
+                                <div>
+                                    <form action="${pageContext.request.contextPath}/enterprises/delete/${enterprise.id}" method="post">
+                                        <input id="id" name="id" type="text" value="${enterprise.id}" required hidden=/>
+                                        <div>Voulez-vous supprimer cette entreprise ?</div>
+                                        <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
+                                        <button type="submit">Oui</button>
+                                    </form>
+                                </div>
+                            </c:if>
                         </div>
                     </div>
                 </div>
