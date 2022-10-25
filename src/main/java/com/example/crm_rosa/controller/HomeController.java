@@ -53,6 +53,7 @@ public class HomeController {
     public String displayHome(Model model, Authentication authentication) {
         User user = this.userService.findUserByEmail(authentication.getName());
         List<Enterprise> enterprisesOfUser = this.enterpriseService.getEnterprisesOfUser(user);
+        List<User> userList = userService.findAllUsers();
         int nbProspects = 0;
         int nbRelance = 0;
         int nbClients = 0;
@@ -74,6 +75,8 @@ public class HomeController {
         model.addAttribute("nbRelance", nbRelance);
         model.addAttribute("nbClients", nbClients);
         model.addAttribute("nbEnterprises", enterprisesOfUser.size());
+        model.addAttribute("userList", userList);
         return "connexion/home";
     }
 }
+
