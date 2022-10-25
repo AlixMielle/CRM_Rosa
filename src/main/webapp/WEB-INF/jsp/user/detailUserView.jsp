@@ -18,8 +18,6 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Détails de l'utilisateur</title>
-
-
 </head>
 
 <body>
@@ -27,51 +25,74 @@
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <jsp:include page="../header.jsp"/>
 
-<main>
+        <div class="page-wrapper">
+            <div class="container-fluid">
 
-    <section class="py-5 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">Mon profil</h1>
-                <p>
-                </p>
-            </div>
-        </div>
-    </section>
+                <div class="d-sm-flex align-items-center justify-content-between mb-2">
+                    <h1 class="h3 mb-0 text-gray-800">Mon profil</h1>
+                </div>
+                <div class="row">
+                    <div class="col-lg-4 col-xlg-3 col-md-5">
+                        <div class="card shadow">
+                            <div class="card-body profile-card">
+                                <center class="mt-4"> <img src="${user.pictureUrl}"
+                                                           class="rounded-circle img-fluid" width="150"/>
+                                    <h4 class="card-title mt-2">${user.firstname} ${user.lastname}</h4>
+                                    <div class="row text-center justify-content-center">
+                                    </div>
+                                </center>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 col-xlg-9 col-md-7">
+                        <div class="card shadow mb-5">
+                            <div class="card-body">
+                                <form class="form-horizontal form-material mx-2">
+                                    <div class="form-group">
+                                        <label class="col-md-12">Email</label>
+                                        <div class="col-md-12">
+                                            <h5 class="my-3"><a href="mailto:${user.email}">${user.email}</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Téléphone fixe</label>
+                                        <div class="col-md-12">
+                                            <h5 class="my-3"><a href="tel:${user.phone}">${user.phone}</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Téléphone portable</label>
+                                        <div class="col-md-12">
+                                            <h5 class="my-3"><a href="tel:${user.mobile}">${user.mobile}</a></h5>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-12 mb-0">Adresse</label>
+                                        <div class="col-md-12">
+                                            <h5 class="my-3"><a href="https://www.google.com/maps/dir/${user.address} ${user.zipcode} ${user.city}">
+                                                ${user.address}</a></h5>
+                                            <h5 class="my-3"><a href="https://www.google.com/maps/dir/${user.address} ${user.zipcode} ${user.city}">${user.zipcode} ${user.city}</a></h5>
+                                        </div>
+                                    </div>
 
-    <div class="album py-5 bg-light">
-        <div class="container">
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <div class="col">
-                    <div class="card shadow-sm">
-                        <img src="${user.pictureUrl}" alt="photo">
-                        <div class="card-body">
-                            <h3 class="card-text">${user.firstname} ${user.lastname}</h3>
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div class="btn-group">
-                                    <c:if test="${user.id == currentUser.id}">
-                                        <a href="${pageContext.request.contextPath}/users/edit/${user.id}" class="btn my-2 text-white" style="background-color: lightcoral">Compléter mon profil</a>
-                                    </c:if>
-                                    <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
-                                        <c:import url="deleteUser.jsp"></c:import>
-                                    </c:if>
-                                </div>
+                                    <div class="form-group m-2 p-2">
+                                        <div class="col-sm-12 d-flex p-2">
+                                            <c:if test="${user.id == currentUser.id}">
+                                                <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier une entreprise</a>
+                                            </c:if>
+                                            <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
+                                                <c:import url="deleteUser.jsp"></c:import>
+                                            </c:if>
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div>
-                <a href="${pageContext.request.contextPath}/users/all" style="color: darkslategray">Retour à la liste</a>
+                <jsp:include page="../footer.jsp"/>
             </div>
         </div>
-    </div>
-
-</main>
-
-        <jsp:include page="../footer.jsp"/>
-</div>
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
+
 </html>

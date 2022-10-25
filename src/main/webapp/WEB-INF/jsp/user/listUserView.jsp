@@ -18,8 +18,6 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Liste des utilisateurs</title>
-
-
 </head>
 
 <body>
@@ -27,56 +25,87 @@
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <jsp:include page="../header.jsp"/>
 
-<main>
-
-    <section class="py-2 text-center container">
-        <div class="row py-lg-5">
-            <div class="col-lg-6 col-md-8 mx-auto">
-                <h1 class="fw-light">EasyToTask</h1>
-                <p class="lead text-muted">Simplifiez-vous la vie !</p>
-                <p>
-                    <a href="${pageContext.request.contextPath}/signup" class="btn my-2 text-white" style="background-color: darkslategray">Créer un compte</a>
-                </p>
+    <div class="page-wrapper">
+        <div class="container-fluid">
+            <div class="d-sm-flex align-items-center justify-content-between mb-4">
+                <h1 class="h3 mb-0 text-gray-800">Liste des prospects</h1>
             </div>
-        </div>
-    </section>
-
-    <div class="album py-5 bg-light">
-        <div class="container">
-
-            <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-                <c:forEach items="${userList}" var="user">
-                    <div class="col">
-                        <div class="card shadow-sm">
-                            <img src="${user.pictureUrl}" alt="photo">
-                            <div class="card-body">
-                                <h3 class="card-text">${user.firstname} ${user.lastname}</h3>
-                                    <%--<c:forEach items="${enterprises.prospects}" var="prospect">
-                                        <h5 class="card-text">${prospect.firstname} ${prospect.lastname}</h5>
-                                    </c:forEach>--%>
-                                <h5 class="card-text">${user.email}</h5>
-                                <div class="d-flex justify-content-between align-items-center">
-                                    <div class="btn-group">
-                                        <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/users/details/${user.id}">Voir</a>
-                                        <c:if test="${user.id == currentUser.id}">
-                                            <a type="button" class="btn btn-sm btn-outline-secondary" href="${pageContext.request.contextPath}/users/edit/${user.id}">Modifier</a>
-                                        </c:if>
-                                    </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="row d-flex align-items-center justify-content-around">
+                                <div class="col-10">
+                                    <form action="${pageContext.request.contextPath}/users/all"
+                                          class="d-flex justify-content-between" role="search">
+                                        <input class="form-control me-2" type="search" name="keyword" value="${keyword}"
+                                               id="keyword"
+                                               placeholder="Rechercher un utilisateur" aria-label="Search"
+                                               style="color: darkslategray">
+                                        <div class="d-flex justify-content-between align-items-center">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn"><i class="bi bi-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
                                 </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table user-table">
+                                    <thead>
+                                    <tr>
+                                        <th class="border-top-0">Photo</th>
+                                        <th class="border-top-0">Nom
+                                            <a type="button" id="sortAlphabetButton"><i class="bi bi-sort-alpha-down"></i></a>
+                                            <a type="button" id="sortReverseAlphabetButton"><i class="bi bi-sort-alpha-up"></i></a></th>
+                                        <th class="border-top-0">Informations</th>
+                                        <th class="border-top-0">Adresse</th>
+                                        <th class="border-top-0">Profession </th>
+                                        <th class="border-top-0">Entreprise</th>
+                                        <th class="border-top-0">Actions</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody id="enterpriseSheet">
+                                    <c:forEach items="${userList}" var="user">
+                                        <tr>
+                                            <td>
+                                                <img src="${user.pictureUrl}" width="40" height="40"
+                                                     class="rounded-circle">
+                                            </td>
+                                            <td>
+                                                <a href="${pageContext.request.contextPath}/users/details/${user.id}"
+                                                   class="card-text enterpriseName">${user.lastname} ${user.firstname}</a>
+                                            <td>
+                                                <div><a href="mailto:${user.email}">${user.email}</a></div>
+                                                <div><a href="tel:${user.mobile}">${user.mobile}</a></div>
+                                                <div><a href="tel:${user.phone}">${user.phone}</a></div>
+                                            </td>
+                                            <td><div><a href="https://www.google.com/maps/dir/${user.address} ${user.zipcode} ${user.city}">${user.address} ${user.zipcode} ${user.city}</a></div></td>
+                                            <td>${user.job}</td>
+                                            <td>${user.enterpriseName}</td>
+                                            <td>
+                                                <c:if test="${user.id == currentUser.id}">
+                                                <a type="button" class="btn btn-sm btn-outline-primary"
+                                                   href="${pageContext.request.contextPath}/users/details/${user.id}"><i
+                                                        class="bi bi-eye"></i></a>
+                                                <a type="button" class="btn btn-sm btn-outline-secondary"
+                                                   href="${pageContext.request.contextPath}/users/edit/${user.id}"><i
+                                                        class="bi bi-pencil"></i></a>
+                                                </c:if>
+                                            </td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                             </div>
                         </div>
                     </div>
-                </c:forEach>
+                </div>
             </div>
+            <jsp:include page="../footer.jsp"/>
         </div>
     </div>
-
-</main>
-
-        <jsp:include page="../footer.jsp"/>
 </div>
-
-<!-- JavaScript Bundle with Popper -->
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 </body>
+
 </html>
