@@ -19,6 +19,16 @@
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Home</title>
 
+    <style>
+        @media screen and (max-width: 560px) {
+            .left-sidebar {
+                max-width: 100px;
+            }
+            .page-wrapper {
+                margin-left: 100px !important;
+            }
+        }
+    </style>
 
 </head>
 

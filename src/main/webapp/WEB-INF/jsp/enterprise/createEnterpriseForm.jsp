@@ -18,6 +18,17 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Créer une entreprise</title>
+
+    <style>
+        @media screen and (max-width: 560px) {
+            .left-sidebar {
+                max-width: 100px;
+            }
+            .page-wrapper {
+                margin-left: 100px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -151,8 +162,9 @@
                     </div>
                 </div>
             </div>
-        <jsp:include page="../footer.jsp"/>
     </div>
+    </div>
+        <jsp:include page="../footer.jsp"/>
 </div>
 </body>
 

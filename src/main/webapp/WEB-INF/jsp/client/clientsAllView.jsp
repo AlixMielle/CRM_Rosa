@@ -18,6 +18,18 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Liste des clients</title>
+
+    <style>
+        @media screen and (max-width: 560px) {
+            .left-sidebar {
+                max-width: 100px;
+            }
+            .page-wrapper {
+                margin-left: 100px !important;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -25,7 +37,7 @@
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
     <jsp:include page="../header.jsp"/>
     <div class="page-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid min-vh-100">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-0 text-gray-800">Liste des clients</h1>
                 <p><a href="${pageContext.request.contextPath}/prospects/add"
@@ -107,9 +119,9 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="../footer.jsp"/>
         </div>
     </div>
+    <jsp:include page="../footer.jsp"/>
 </div>
 </body>
 

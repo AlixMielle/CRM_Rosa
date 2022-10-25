@@ -18,6 +18,17 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Modifier un utilisateur</title>
+
+    <style>
+        @media screen and (max-width: 560px) {
+            .left-sidebar {
+                max-width: 100px;
+            }
+            .page-wrapper {
+                margin-left: 100px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -26,7 +37,7 @@
     <jsp:include page="../header.jsp"/>
 
     <div class="page-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid min-vh-100">
             <div class="row">
                 <div class="col-lg-4 col-xlg-3 col-md-5">
                     <form action="${pageContext.request.contextPath}/users/edit/${user.id}"
@@ -152,8 +163,9 @@
                     </div>
                 </div>
             </div>
-            <jsp:include page="../footer.jsp"/>
         </div>
+    </div>
+        <jsp:include page="../footer.jsp"/>
     </div>
 </body>
 </html>
