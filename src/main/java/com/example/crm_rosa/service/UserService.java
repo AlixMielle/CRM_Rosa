@@ -70,13 +70,14 @@ public class UserService {
     }
 
     public void editUser(long id, CreateUser editUser) {
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         User user = this.userRepository
                 .findById(id)
                 .orElseThrow(()->new UserNotFoundException(id));
 
         user.setFirstname(editUser.getFirstname());
         user.setLastname(editUser.getLastname());
-        user.setPassword(editUser.getPassword());
+        user.setPassword(passwordEncoder.encode(editUser.getPassword()));
         user.setEmail(editUser.getEmail());
 
         MultipartFile picture = editUser.getPictureFile();

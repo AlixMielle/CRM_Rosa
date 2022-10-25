@@ -27,7 +27,7 @@ public class ProspectService {
     }
 
     public List<Prospect> getAllProspects(User user){
-        return this.prospectRepository.findProspectByUser(user);
+        return this.prospectRepository.findOnlyProspectByUser(user);
     }
 
     public List<Prospect> getProspectsByEnterprise(long enterpriseId, User user){

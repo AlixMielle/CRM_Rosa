@@ -86,7 +86,7 @@
                                             </td>
                                             <td>${client.jobTitle}</td>
                                             <td>${client.enterprise.name}</td>
-                                            <td>${client.prospectionStatus}</td>
+                                            <td>${client.prospectionStatus.inFrench}</td>
                                             <td class="createdAt">${client.createdAt}</td>
                                             <td>
                                                 <a type="button" class="btn btn-sm btn-outline-primary"

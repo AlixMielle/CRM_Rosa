@@ -69,7 +69,7 @@ public class HomeController {
                     break;
             }
         }
-        model.addAttribute("user", user);
+        model.addAttribute("currentUser", user);
         model.addAttribute("nbProspects", nbProspects);
         model.addAttribute("nbRelance", nbRelance);
         model.addAttribute("nbClients", nbClients);

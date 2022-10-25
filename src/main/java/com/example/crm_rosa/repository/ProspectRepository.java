@@ -13,8 +13,10 @@ import java.util.Optional;
 @Repository
 public interface ProspectRepository extends CrudRepository<Prospect, Long> {
 
-    //TODO: change the long into a User and the name of the function appropriately
     List<Prospect> findProspectByUser(User user);
+
+    @Query("SELECT p FROM Prospect p WHERE p.user = :user AND p.prospectionStatus <> 'CLIENT'")
+    List<Prospect> findOnlyProspectByUser(@Param("user") User user);
 
     List<Prospect> findProspectByEnterprise_Id(long enterpriseId);
 
@@ -26,6 +28,9 @@ public interface ProspectRepository extends CrudRepository<Prospect, Long> {
     //CLIENT STUFF
     @Query("SELECT p FROM Prospect p WHERE p.prospectionStatus='CLIENT'")
     List<Prospect> findAllClients();
+
+    @Query("SELECT p FROM Prospect p WHERE p.user = :user AND p.prospectionStatus = 'CLIENT'")
+    List<Prospect> findOnlyClientByUser(@Param("user") User user);
 
     @Query("SELECT p FROM Prospect p WHERE p.prospectionStatus='CLIENT' AND p.id = :id")
     Optional<Prospect> findClientById(@Param("id") long id);
