@@ -1,9 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
-<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
-<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 
 <!doctype html>
 <html lang="fr">
@@ -28,7 +25,7 @@
         <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-4">
             <div class="bloc">
                 <img src="img/logo.png" alt="logo" class="img-fluid mt-5 mb-5 mx-auto d-block">
-                <h5 class="mb-5 text-center" style="color: #ffff;">Connectez-vous :</h5>
+                <h5 class="mb-5 text-center" style="color: #ffff;">Connectez-vous à EasyToTask </h5>
                 </p>
 
                 <div class="py-2 container">
@@ -39,17 +36,13 @@
                         <div class="form-outline mb-4">
                             <input type="password" name="password" id="password" placeholder="Mot de passe" class="form-control" required>
                         </div>
-
-                        <div class="text-center">
-                            <p style="color: #ffff;">Nouvel utilisateur?
-                                <br>
-                                <a style="text-decoration: none; color: #F3F3F3;" href="${pageContext.request.contextPath}/signup">Créer un compte</a>
-                            </p>
-                        </div>
-
-                        <div class="text-center">
+                        <div class="text-center mb-4">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <button type="submit" class="btn my-2 text-white" style="background-color: darkslategray">Connexion</button>
+                            <button type="submit" class="btn my-2 text-dark" style="background-color: gold">Se connecter</button>
+                        </div>
+                        <div class="text-center mb-4">
+                            <p class="text-white mb-4"> Nouvel utilisateur ? <a style="text-decoration: none; color: gold;" href="${pageContext.request.contextPath}/signup">Créer un compte</a> </p>
+
                         </div>
                     </form>
                 </div>

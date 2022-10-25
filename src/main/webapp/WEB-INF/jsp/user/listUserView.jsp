@@ -28,7 +28,7 @@
     <div class="page-wrapper">
         <div class="container-fluid">
             <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3 mb-0 text-gray-800">Liste des prospects</h1>
+                <h1 class="h3 mb-0 text-gray-800">Liste des utilisateurs</h1>
             </div>
             <div class="row">
                 <div class="col-sm-12">
