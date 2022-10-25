@@ -79,7 +79,10 @@
                                                 <div><a href="tel:${prospect.landlinePhone}">${prospect.landlinePhone}</a></div>
                                             </td>
                                             <td>${prospect.jobTitle}</td>
-                                            <td>${prospect.enterprise.name}</td>
+                                            <td>
+                                                <a href="${pageContext.request.contextPath}/enterprises/details/${prospect.enterprise.id}"
+                                                   class="card-text">${prospect.enterprise.name}</a>
+                                            </td>
                                             <td>${prospect.prospectionStatus.inFrench}</td>
                                             <td class="createdAt">${prospect.createdAt}</td>
                                             <td>
@@ -89,9 +92,8 @@
                                                 <a type="button" class="btn btn-sm btn-outline-secondary"
                                                    href="${pageContext.request.contextPath}/prospects/edit/${prospect.id}"><i
                                                         class="bi bi-pencil"></i></a>
-                                                <a type="button" class="btn btn-sm btn-outline-secondary"
-                                                   href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}"><i
-                                                        class="bi bi-x"></i></a>
+                                                <a type="button" class="btn btn-sm btn-outline-danger"
+                                                   href="${pageContext.request.contextPath}/prospects/delete/${prospect.id}"><i class="bi bi-trash3"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>

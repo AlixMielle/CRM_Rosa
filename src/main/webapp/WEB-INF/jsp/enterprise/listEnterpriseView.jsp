@@ -109,9 +109,8 @@
                                                 <a type="button" class="btn btn-sm btn-outline-secondary"
                                                    href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}"><i
                                                         class="bi bi-pencil"></i></a>
-                                                <a type="button" class="btn btn-sm btn-outline-secondary"
-                                                   href="${pageContext.request.contextPath}/enterprises/delete/${enterprise.id}"><i
-                                                        class="bi bi-x"></i></a>
+                                                <a type="button" class="btn btn-sm btn-outline-danger"
+                                                   href="${pageContext.request.contextPath}/enterprises/delete/${enterprise.id}"><i class="bi bi-trash3"></i></a>
                                             </td>
                                         </tr>
                                     </c:forEach>
