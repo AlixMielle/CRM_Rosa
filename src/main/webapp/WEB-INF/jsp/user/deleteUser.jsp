@@ -11,10 +11,10 @@
                 Voulez-vous supprimer votre profil ?
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Non</button>
+                <button type="button" class="btn btn-success mx-auto text-white" data-bs-dismiss="modal">Non</button>
                 <form method="post" action="${pageContext.request.contextPath}/users/delete/${user.id}">
                     <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                    <button type="submit" class="btn btn-danger">Oui</button>
+                    <button type="submit" class="btn btn-danger mx-auto text-white">Oui</button>
                 </form>
             </div>
         </div>
