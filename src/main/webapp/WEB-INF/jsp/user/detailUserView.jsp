@@ -49,8 +49,12 @@
                             <h3 class="card-text">${user.firstname} ${user.lastname}</h3>
                             <div class="d-flex justify-content-between align-items-center">
                                 <div class="btn-group">
-                                    <a href="${pageContext.request.contextPath}/users/edit/${user.id}" class="btn my-2 text-white" style="background-color: lightcoral">Compléter mon profil</a>
-                                    <c:import url="deleteUser.jsp"></c:import>
+                                    <c:if test="${user.id == currentUser.id}">
+                                        <a href="${pageContext.request.contextPath}/users/edit/${user.id}" class="btn my-2 text-white" style="background-color: lightcoral">Compléter mon profil</a>
+                                    </c:if>
+                                    <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
+                                        <c:import url="deleteUser.jsp"></c:import>
+                                    </c:if>
                                 </div>
                             </div>
                         </div>
