@@ -25,7 +25,7 @@
                 </ul>
                     <ul class="navbar-nav me-auto">
                         <li class="nav-item">
-                            <a class="nav-item text-white" href="${pageContext.request.contextPath}/details/{id}" id="navbarProfil" role="button">
+                            <a class="nav-item text-white" href="${pageContext.request.contextPath}/users/details/${user.id}" id="navbarProfil" role="button">
                                 ${user.firstname} ${user.lastname}
                                 <img src="${user.pictureUrl}"
                                      width="40" height="40" class="rounded-circle">
