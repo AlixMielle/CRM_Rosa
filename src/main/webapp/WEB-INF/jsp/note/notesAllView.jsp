@@ -23,7 +23,7 @@
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-    <jsp:include page= "header.jsp"/>
+    <jsp:include page= "../header.jsp"/>
 
         <div class="page-wrapper">
             <div class="container-fluid">
@@ -32,8 +32,7 @@
                 </div>
                 <div class="form-group m-2 p-2">
                     <div class="col-sm-12 d-flex p-2">
-                        <a href="${pageContext.request.contextPath}/notes/${idProspect}" class="btn btn-primary mx-auto" style="background-color: darkslategray">Toutes les notes</a>
-                        <a href="${pageContext.request.contextPath}/notes/add/${idProspect}" class="btn btn-primary mx-auto" style="background-color: darkslategray">Ajouter un prospect</a>
+                        <a href="${pageContext.request.contextPath}/notes/add/${idProspect}" class="btn btn-success mx-auto text-white">Créer une note</a>
                     </div>
                 </div>
 
@@ -43,16 +42,15 @@
                         <div class="card-body">
                             <h5 class="card-title">${note.createdAt}</h5>
                             <p class="card-text">${note.content}</p>
-                            <a href="${pageContext.request.contextPath}/notes/${idProspect}/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Détails</a>
-                            <a href="${pageContext.request.contextPath}/notes/delete/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Suppression</a>
-                            <a href="${pageContext.request.contextPath}/notes/edit/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Edition</a>
+                            <a href="${pageContext.request.contextPath}/notes/${idProspect}/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Voir le détail</a>
+                            <a href="${pageContext.request.contextPath}/notes/edit/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Modifier</a>
                         </div>
                     </div>
                     </c:forEach>
 
             </div>
         </div>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="../footer.jsp"></jsp:include>
 </div>
 </body>
 </html>

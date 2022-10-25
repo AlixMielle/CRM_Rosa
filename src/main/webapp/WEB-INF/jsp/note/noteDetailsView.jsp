@@ -23,7 +23,7 @@
 <body>
 <div id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
      data-sidebar-position="absolute" data-header-position="absolute" data-boxed-layout="full">
-    <jsp:include page= "header.jsp"/>
+    <jsp:include page= "../header.jsp"/>
 
     <div class="page-wrapper">
         <div class="container-fluid">
@@ -37,8 +37,8 @@
                     <h5 class="card-title">${note.createdAt}</h5>
                     <h4 class="card-title">${note.prospect.firstName} ${note.prospect.lastName}</h4>
                     <p class="card-text">${note.content}</p>
-                    <a href="${pageContext.request.contextPath}/notes/delete/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Suppression</a>
-                    <a href="${pageContext.request.contextPath}/notes/edit/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Edition</a>
+                    <a href="${pageContext.request.contextPath}/notes/edit/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Modifier</a>
+                    <a href="${pageContext.request.contextPath}/notes/delete/${note.id}" class="btn btn-primary" style="background-color: darkslategray">Supprimer</a>
                 </div>
             </div>
 
@@ -47,18 +47,19 @@
                 <div class="d-sm-flex align-items-center justify-content-between mb-4">
                     <form action="${pageContext.request.contextPath}/notes/delete/${note.id}" method="post">
                         <input id="id" name="id" type="text" value="${note.id}" required hidden=/>
-                        <div>Etes vous sur de vouloir supprimer ce prospect?</div>
+                        <div>Voulez-vous supprimer cette note ?</div>
                         <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
                         <button class="btn btn-primary" style="background-color: darkslategray" type="submit">Oui</button>
+                        <a class="btn btn-primary " style="background-color: darkslategray" href="${pageContext.request.contextPath}/notes/${note.prospect.id}">Non</a>
                     </form>
                 </div>
             </c:if>
-            <div>
-                <a class="btn btn-primary " style="background-color: darkslategray" href="${pageContext.request.contextPath}/notes/${note.prospect.id}">Retour</a>
-            </div>
+
+
+
         </div>
     </div>
-    <jsp:include page="footer.jsp"></jsp:include>
+    <jsp:include page="../footer.jsp"></jsp:include>
 </div>
 
 </body>
