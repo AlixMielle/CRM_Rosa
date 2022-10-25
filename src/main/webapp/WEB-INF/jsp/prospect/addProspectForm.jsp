@@ -54,16 +54,16 @@
                                 </div>
                                 <div class="col-sm-12 mb-1">
                                     <label for="pictureFile">Chargez une photo :</label>
-                                    <input id="pictureFile" type="file" name="pictureFile" required="" disabled
-                                           value="${user.pictureUrl}">
+                                    <input id="pictureFile" type="file" name="profilePictureFile" required="" disabled
+                                           value="${prospect.profilePictureUrl}">
                                     <div class="invalid-feedback">Un fichier valide est demandé.</div>
                                 </div>
 
                                 <div class="col-sm-12 mb-3">
                                     <label for="pictureUrl">ou saisissez une adresse URL :</label>
-                                    <input id="pictureUrl" type="text" class="form-control" name="pictureUrl"
+                                    <input id="pictureUrl" type="text" class="form-control" name="profilePictureUrl"
                                            placeholder="http://www.picture.website.fr/my-picture.png" required=""
-                                           value="${user.pictureUrl}">
+                                           value="${prospect.profilePictureUrl}">
                                     <div class="invalid-feedback">Une URL valide est obligatoire.</div>
                                 </div>
                             </div>
