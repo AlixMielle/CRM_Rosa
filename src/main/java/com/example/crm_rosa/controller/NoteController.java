@@ -34,24 +34,24 @@ public class NoteController {
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("notes", this.noteService.getAllNotesOfProspect(idProspect));
         model.addAttribute("idProspect", idProspect);
-        model.addAttribute("user", user);
-        return "notesAllView";
+        model.addAttribute("currentUser", user);
+        return "note/notesAllView";
     }
 
     @GetMapping("/{idProspect}/{idNote}")
     public String displayNote(@PathVariable("idProspect") long idProspect, @PathVariable("idNote") long idNote, Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("note", this.noteService.getNoteById(idNote));
-        model.addAttribute("user", user);
-        return "noteDetailsView";
+        model.addAttribute("currentUser", user);
+        return "note/noteDetailsView";
     }
 
     @GetMapping("/add/{idProspect}")
     public String displayAddNoteForm(@PathVariable("idProspect") long idProspect, Model model, Authentication authentication){
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("idProspect", idProspect);
-        model.addAttribute("user", user);
-        return "addNoteForm";
+        model.addAttribute("currentUser", user);
+        return "note/addNoteForm";
     }
 
     @PostMapping("/add")
@@ -66,8 +66,8 @@ public class NoteController {
         Note note =  this.noteService.getNoteById(id);
         model.addAttribute("note",note);
         model.addAttribute("idProspect", note.getProspect().getId());
-        model.addAttribute("user", user);
-        return "addNoteForm";
+        model.addAttribute("currentUser", user);
+        return "note/addNoteForm";
     }
 
     @PostMapping("/edit")
@@ -81,8 +81,8 @@ public class NoteController {
         User user = this.userService.findUserByEmail(authentication.getName());
         model.addAttribute("note", noteService.getNoteById(id));
         model.addAttribute("isDeleteForm", true);
-        model.addAttribute("user", user);
-        return "noteDetailsView";
+        model.addAttribute("currentUser", user);
+        return "note/noteDetailsView";
     }
 
     @PostMapping("/delete/{id}")
