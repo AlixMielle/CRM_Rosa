@@ -78,7 +78,7 @@
                                     <div class="form-group m-2 p-2">
                                         <div class="col-sm-12 d-flex p-2">
                                             <c:if test="${user.id == currentUser.id}">
-                                                <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/enterprises/edit/${enterprise.id}">Modifier une entreprise</a>
+                                                <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/users/edit/${user.id}">Modifier le profil</a>
                                             </c:if>
                                             <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
                                                 <c:import url="deleteUser.jsp"></c:import>
