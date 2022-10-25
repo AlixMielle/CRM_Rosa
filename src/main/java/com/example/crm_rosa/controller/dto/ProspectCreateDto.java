@@ -1,12 +1,15 @@
 package com.example.crm_rosa.controller.dto;
 
 import com.example.crm_rosa.repository.entity.ProspectionStatus;
+import org.springframework.web.multipart.MultipartFile;
 
 public class ProspectCreateDto {
 
     private String firstName;
     private String lastName;
     private String profilePictureUrl;
+
+    private MultipartFile profilePictureFile;
     private String email;
     private String mobilePhone;
     private String landlinePhone;
@@ -40,6 +43,14 @@ public class ProspectCreateDto {
 
     public void setProfilePictureUrl(String profilePictureUrl) {
         this.profilePictureUrl = profilePictureUrl;
+    }
+
+    public MultipartFile getProfilePictureFile() {
+        return profilePictureFile;
+    }
+
+    public void setProfilePictureFile(MultipartFile profilePictureFile) {
+        this.profilePictureFile = profilePictureFile;
     }
 
     public String getEmail() {

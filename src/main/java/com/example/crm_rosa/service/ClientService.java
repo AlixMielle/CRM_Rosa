@@ -8,6 +8,7 @@ import com.example.crm_rosa.repository.entity.ProspectionStatus;
 import com.example.crm_rosa.repository.entity.User;
 import org.hibernate.ObjectNotFoundException;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.time.LocalDate;
 import java.util.List;
@@ -18,9 +19,12 @@ public class ClientService {
     private ProspectRepository prospectRepository;
     private EnterpriseService enterpriseService;
 
-    public ClientService(ProspectRepository prospectRepository, EnterpriseService enterpriseService) {
+    private StorageService storageService;
+
+    public ClientService(ProspectRepository prospectRepository, EnterpriseService enterpriseService, StorageService storageService) {
         this.prospectRepository = prospectRepository;
         this.enterpriseService = enterpriseService;
+        this.storageService = storageService;
     }
 
     public List<Prospect> getAbsolutelyAllClients(){
@@ -48,7 +52,6 @@ public class ClientService {
         prospect.setUser(currentUser);
         prospect.setFirstName(prospectCreateDto.getFirstName());
         prospect.setLastName(prospectCreateDto.getLastName());
-        prospect.setProfilePictureUrl(prospectCreateDto.getProfilePictureUrl());
         prospect.setEmail(prospectCreateDto.getEmail());
         prospect.setMobilePhone(prospectCreateDto.getMobilePhone());
         prospect.setLandlinePhone(prospectCreateDto.getLandlinePhone());
@@ -60,6 +63,14 @@ public class ClientService {
         //prospection
         prospect.setProspectionStatus(ProspectionStatus.CLIENT);
 
+        MultipartFile pictureProfil = prospectCreateDto.getProfilePictureFile();
+        if (pictureProfil == null || pictureProfil.isEmpty()){
+            prospect.setProfilePictureUrl(prospectCreateDto.getProfilePictureUrl());
+        } else {
+            storageService.store(pictureProfil);
+            prospect.setProfilePictureUrl("http://localhost:8080/images/" + pictureProfil.getOriginalFilename());
+        }
+
         this.prospectRepository.save(prospect);
     }
 
@@ -68,7 +79,6 @@ public class ClientService {
         prospect.setId(prospectEditDto.getId());
         prospect.setFirstName(prospectEditDto.getFirstName());
         prospect.setLastName(prospectEditDto.getLastName());
-        prospect.setProfilePictureUrl(prospectEditDto.getProfilePictureUrl());
         prospect.setEmail(prospectEditDto.getEmail());
         prospect.setMobilePhone(prospectEditDto.getMobilePhone());
         prospect.setLandlinePhone(prospectEditDto.getLandlinePhone());
@@ -78,6 +88,14 @@ public class ClientService {
         prospect.setJobTitle(prospectEditDto.getJobTitle());
         //prospection
         prospect.setProspectionStatus(prospectEditDto.getProspectionStatus());
+
+        MultipartFile pictureProfil = prospectEditDto.getProfilePictureFile();
+        if (pictureProfil == null || pictureProfil.isEmpty()){
+            prospect.setProfilePictureUrl(prospectEditDto.getProfilePictureUrl());
+        } else {
+            storageService.store(pictureProfil);
+            prospect.setProfilePictureUrl("http://localhost:8080/images/" + pictureProfil.getOriginalFilename());
+        }
 
         this.prospectRepository.save(prospect);
     }

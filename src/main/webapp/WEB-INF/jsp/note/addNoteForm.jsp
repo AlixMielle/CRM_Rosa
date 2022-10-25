@@ -35,10 +35,10 @@
                 <div class="col-12 col-sm-8 col-md-7 col-lg-6 col-xl-4">
                     <div class="bloc">
                         <div class="card shadow p-5" style="background-color: #1D4851">
-                            <form action="${pageContext.request.contextPath}/notes<c:choose><c:when test="${empty prospect}">/add</c:when><c:otherwise>/edit</c:otherwise></c:choose>"
+                            <form action="${pageContext.request.contextPath}/notes<c:choose><c:when test="${empty note}">/add</c:when><c:otherwise>/edit</c:otherwise></c:choose>"
                                   method="post">
-                                <c:if test="${!empty note}"><input hidden type="text" name="id"
-                                                                   value="${note.id}"></c:if>
+                                <c:if test="${!empty note}"><input hidden type="text" name="idNote"
+                                                                   value="${note.id}" required></c:if>
                                 <input hidden type="text" name="idProspect" id="idProspect" value="${idProspect}">
                                 <div class="form-outline mb-4">
                                     <label for="content" class="text-white">Intitulé de la note</label>
