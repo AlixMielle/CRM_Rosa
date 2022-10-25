@@ -92,7 +92,7 @@
                                                 <a type="button" class="btn btn-success mx-auto text-white" href="${pageContext.request.contextPath}/users/edit/${user.id}">Modifier le profil</a>
                                             </c:if>
                                             <c:if test="${user.id == currentUser.id || currentUser.isAdmin}">
-                                                <a type="button" class="btn btn-sm btn-outline-danger" href="${pageContext.request.contextPath}/users/delete/${user.id}">Supprimer le profil</a>
+                                                <a type="button" class="btn btn-danger mx-auto text-white" href="${pageContext.request.contextPath}/users/delete/${user.id}">Supprimer le profil</a>
                                             </c:if>
                                         </div>
                                     </div>
@@ -101,9 +101,10 @@
                                     <div>
                                         <form action="${pageContext.request.contextPath}/users/delete/${user.id}" method="post">
                                             <input id="id" name="id" type="text" value="${user.id}" required hidden=/>
-                                            <div>Voulez-vous supprimer ce prospect ?</div>
+                                            <div>Voulez-vous supprimer cet utilisateur ?</div>
                                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                                            <button type="submit">Oui</button>
+                                            <button type="submit" class="btn btn-danger mx-auto text-white">Oui</button>
+                                                <a type="button" class="btn btn-secondary mx-auto text-white" href="${pageContext.request.contextPath}/users/all">Non</a>
                                         </form>
                                     </div>
                                 </c:if>

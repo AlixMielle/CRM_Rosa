@@ -97,7 +97,7 @@
                                                 </div>
                                             </td>
                                             <td>${client.jobTitle}</td>
-                                            <td>${client.enterprise.name}</td>
+                                            <td><a href="${pageContext.request.contextPath}/enterprises/details/${client.enterprise.id}">${client.enterprise.name}</a></td>
                                             <td>${client.prospectionStatus.inFrench}</td>
                                             <td class="createdAt">${client.createdAt}</td>
                                             <td>
