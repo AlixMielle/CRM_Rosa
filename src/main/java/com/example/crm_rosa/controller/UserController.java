@@ -1,6 +1,7 @@
 package com.example.crm_rosa.controller;
 
 import com.example.crm_rosa.controller.dto.CreateUser;
+import com.example.crm_rosa.repository.entity.Prospect;
 import com.example.crm_rosa.repository.entity.User;
 import com.example.crm_rosa.service.UserService;
 import org.springframework.security.core.Authentication;
@@ -63,10 +64,32 @@ public class UserController {
         return "redirect:/users/details/" + id;
     }
 
+    @GetMapping("/delete/{id}")
+    public String deleteUserConfirm(@PathVariable("id") long id, Model model, Authentication authentication){
+        User currentUser = this.userService.findUserByEmail(authentication.getName());
+        User user = this.userService.findUserById(id);
+        if(currentUser.getIsAdmin() || currentUser.equals(user)){
+            model.addAttribute("user", user);
+            model.addAttribute("isDeleteForm", true);
+            model.addAttribute("currentUser", currentUser);
+            return "user/detailUserView";
+        } else{
+            return "redirect:/home";
+        }
+    }
+
     @PostMapping ("/delete/{id}")
-    public String deleteUser(@PathVariable("id") long id){
-        userService.deleteUser(id);
-        return "redirect:/users/all";
+    public String deleteUser(@PathVariable("id") long id, Authentication authentication){
+        User currentUser = this.userService.findUserByEmail(authentication.getName());
+        if(currentUser.equals(this.userService.findUserById(id))){
+            userService.deleteUser(id);
+            return "redirect:/logout";
+        } else if (currentUser.getIsAdmin()) {
+            userService.deleteUser(id);
+            return "redirect:/users/all";
+        } else{
+            return "redirect:/home";
+        }
     }
 
 
