@@ -38,7 +38,7 @@
                         </div>
                         <div class="text-center mb-4">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <button type="submit" class="btn my-2 text-dark" style="background-color: gold">Se connecter</button>
+                            <button type="submit" class="btn my-2 text-dark" style="background-color: #ffc700">Se connecter</button>
                         </div>
                         <div class="text-center mb-4">
                             <p class="text-white mb-4"> Nouvel utilisateur ? <a style="text-decoration: none; color: gold;" href="${pageContext.request.contextPath}/signup">Créer un compte</a> </p>
@@ -52,7 +52,6 @@
     </div>
 </section>
 
-<jsp:include page="../footer.jsp"/>
 <!-- JavaScript Bundle with Popper -->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
 

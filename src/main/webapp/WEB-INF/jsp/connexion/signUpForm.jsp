@@ -80,10 +80,10 @@
                     <div class="form-group p-2">
                         <div class="col-sm-12 d-flex align-items-center justify-content-between mb-4">
                             <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}">
-                            <button type="submit" class="btn my-2 text-dark" style="background-color: gold">Créer
+                            <button type="submit" class="btn my-2 text-dark" style="background-color: #ffc700">Créer
                             </button>
                             <a href="${pageContext.request.contextPath}/signin" type="button" class="btn my-2 text-dark"
-                               style="background-color: gold">Annuler</a>
+                               style="background-color: #ffc700">Annuler</a>
                         </div>
                     </div>
                 </form>

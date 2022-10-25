@@ -18,6 +18,17 @@
     <link href="../../../css/style.min.css" rel="stylesheet">
     <script defer src="../../../js/main.js"></script>
     <title>EasyToTask | Détails entreprise</title>
+
+    <style>
+        @media screen and (max-width: 560px) {
+            .left-sidebar {
+                max-width: 100px;
+            }
+            .page-wrapper {
+                margin-left: 100px !important;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -27,7 +38,7 @@
 
 
     <div class="page-wrapper">
-        <div class="container-fluid">
+        <div class="container-fluid min-vh-100">
 
             <div class="d-sm-flex align-items-center justify-content-between mb-2">
                 <h1 class="h3 mb-0 text-gray-800">Informations de l'entreprise</h1>
@@ -127,10 +138,10 @@
                         </div>
                     </div>
                 </div>
-s
-            <jsp:include page="../footer.jsp"/>
             </div>
         </div>
+    </div>
+        <jsp:include page="../footer.jsp"/>
     </div>
 </body>
 

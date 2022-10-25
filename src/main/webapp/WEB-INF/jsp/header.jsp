@@ -8,23 +8,14 @@
         <nav class="navbar top-navbar navbar-expand-sm"  style="background-color: #1D4851;">
             <div class="navbar-header">
                 <a class="navbar-brand ms-4" href="${pageContext.request.contextPath}/home">
-                    <b class="logo-icon">
+                    <b class="logo-icon w-75">
                         <img src="../../img/logo.png" alt="homepage" class="dark-logo img-fluid" />
                     </b>
                 </a>
             </div>
-            <div class="navbar-collapse collapse me-sm-auto" style="background-color: #1D4851;" id="navbarTopbar">
-                <ul class="navbar-nav me-auto mt-0">
-                    <div class="input-group rounded">
-                        <input type="search" class="form-control rounded" placeholder="Rechercher"
-                               aria-label="Search" aria-describedby="search-addon" />
-                        <span class="input-group-text border-0" id="search-addon">
-                                <i class="fas fa-search"></i>
-                            </span>
-                    </div>
-                </ul>
-                    <ul class="navbar-nav me-auto">
-                        <li class="nav-item">
+            <div class="navbar-collapse justify-content-end" style="background-color: #1D4851;" id="navbarTopbar">
+                    <ul class="navbar-nav justify-content-end ">
+                        <li class="nav-item me-5">
                             <a class="nav-item text-white" href="${pageContext.request.contextPath}/users/details/${currentUser.id}" id="navbarProfil" role="button">
                                 ${currentUser.firstname} ${currentUser.lastname}
                                 <img src="${currentUser.pictureUrl}"
