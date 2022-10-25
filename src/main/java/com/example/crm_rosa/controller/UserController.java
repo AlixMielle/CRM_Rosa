@@ -42,9 +42,14 @@ public class UserController {
     public String editUserForm(@PathVariable("id") long id, Model model, Authentication authentication){
         User currentUser = this.userService.findUserByEmail(authentication.getName());
         User user = userService.findUserById(id);
-        model.addAttribute("user", user);
-        model.addAttribute("currentUser", currentUser);
-        return "user/editUserForm";
+        if(user.getId() == id){ //a user can only edit themselves
+            model.addAttribute("user", user);
+            model.addAttribute("currentUser", currentUser);
+            return "user/editUserForm";
+        } else{
+            return "redirect:/users/all";
+        }
+
     }
 
     @PostMapping ("/edit/{id}")
